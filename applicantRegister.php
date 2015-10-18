@@ -1,8 +1,10 @@
+<?php
+	include 'establishConnection.php';
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
 <link rel="icon" href="http://i376.photobucket.com/albums/oo207/happyice/favicon-32x32_zpsci38sgpc.png">
-include "establishConnection.php";
 <title>One stop Job Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
