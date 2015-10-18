@@ -1,18 +1,10 @@
+<?php
+	include 'establishConnection.php';
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
 <link rel="icon" href="http://i376.photobucket.com/albums/oo207/happyice/favicon-32x32_zpsci38sgpc.png">
-<?php
-putenv('ORACLE_HOME=/oraclient');
-$dbh = ocilogon('A0101002', 'crse1510', ' (DESCRIPTION =
-	(ADDRESS_LIST =
-	(ADDRESS = (PROTOCOL = TCP)(HOST = sid3.comp.nus.edu.sg)(PORT = 1521))
-	)
-	(CONNECT_DATA =
-	(SERVICE_NAME = sid3.comp.nus.edu.sg)
-	)
-	)');
-?>
 <title>One stop Job Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
