@@ -1,6 +1,9 @@
 <?php
-include 'connectToServer.php'
-?>
+include 'session.php';
+include 'connectToServer.php';
+if ($allowaccess=true)
+{
+    ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -24,16 +27,11 @@ include 'connectToServer.php'
 <script>
 
               function checkServer(){
-                var firstname = document.getElementById("firstName").value
-                var lastname = document.getElementById("lastName").value
+                var description = document.getElementById("description").value
+                var qualification = document.getElementById("qualification").value
                 var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-				var username = document.getElementById("email").value
-				var password = document.getElementById("password").value
 				var age = document.getElementById("age").value
-				var mobilenum = document.getElementById("mobilenum").value
-				var gender = document.getElementById("gender").value
-				var dob = document.getElementById("dob").value
-				var nationality = document.getElementById("nationality").value
+			
 				
 			var r = confirm("Are you sure to register for an account?");
 			if (r == true) {
@@ -41,38 +39,14 @@ include 'connectToServer.php'
 			 var errormsg = "Below are the errors:\n\n";
 			   var errorlog = false;
 			   
-			   if( firstname.trim().length == 0) {
+			   if( description.trim().length == 0) {
 					errorlog = true;
-					errormsg += "- firstname field is empty.\n";
+					errormsg += "- Job description field is empty.\n";
 				}
-			    if( username.trim().length == 0) {
+			    if( qualification.trim().length == 0) {
 					errorlog = true;
-					errormsg += "- Email field is empty.\n";
-				} else if (!username.match(re)){
-					errorlog = true;
-					errormsg += "- Email is invalid. Please enter a valid email so that we can send a confirmation email to you.\n";
+					errormsg += "- Job minimum qualification field is empty.\n";
 				}
-			   if(password.trim().length < 4){
-					errorlog = true;
-					errormsg += "- Please enter a valid password of atleast 4 characters long.\n";
-				}
-			  if (Number(age)*0 != 0 || age.trim().length == 0 || Number(age) < 13 || Number(age) > 99){
-					errorlog = true;
-					errormsg += "- Please enter a valid agae\n";
-				} if (mobilenum.trim().length == 0){
-					errorlog = true;
-					errormsg += "- Mobile number is empty\n";
-					} if (gender != 'F' && gender != 'M'){
-					errorlog = true;
-					errormsg += "- Gender is invalid. Please enter M for male and F for female.\n"
-					} if (dob.trim().length == 0){
-					errorlog = true;
-					errormsg += "- DOB is empty.\n"
-					}
-					if (nationality.trim().length == 0){
-					errorlog = true;
-					errormsg += "- Nationality is empty.\n"
-					}
 	
 					if(errorlog){
 					errormsg += "\nPlease correct these errors before submitting.";
@@ -104,9 +78,13 @@ include 'connectToServer.php'
 	        <a class="navbar-brand" href="home.php"><img src="images/logo.png" alt=""/></a>
 	    </div>
 	    <!--/.navbar-header-->
-    
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
 	        <ul class="nav navbar-nav">
+	        	<?php
+
+                    echo "&nbsp;&nbsp;&nbsp;&nbsp;"."Hello, ".$_SESSION['CurrentUser']."<br>";
+                    echo "&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['Role']."<br>";
+                    ?>
 			  <li><a href="about.php">About Us</a></li>
 		        <li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jobs<b class="caret"></b></a>
@@ -124,21 +102,22 @@ include 'connectToServer.php'
 							  <li><a href="searchmatched.php">Search for matched applicants</a></li>
 		             </ul>
 		        </li>
-				
+				<!-- 
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
 						  <li><a href="employerLogin.php">Employer login</a></li>
 						    <li><a href="applicantLogin.php">Applicant Login</a></li>
 		             </ul>
-		        </li>
-			<li class="dropdown">
+		        </li> -->
+		<!-- 	<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registration<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
 						  <li><a href="employerRegister.php">Create an employer account</a></li>
 						    <li><a href="applicantRegister.php">Create an applicant account</a></li>
 		             </ul>
-		        </li>
+		        </li> -->
+		     <li><a href = "index.php" onClick = <?php session_destroy();?>>Logout</a></li>   
 	    </div>
 	    <div class="clearfix"> </div>
 	  </div>
@@ -147,148 +126,61 @@ include 'connectToServer.php'
 <div class="container">
     <div class="single">  
 	   <div class="form-container">
-        <h2>Applicant Register Form</h2>
+        <h2>Post Job Details</h2>
         <form>
-          <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="firstName">First Name</label>
-                <div class="col-md-9">
-                    <input type="text" name = "firstName" path="firstName" id="firstName" class="form-control input-sm"/>
-                </div>
-            </div>
-         </div>
-         <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="lastName">Last Name</label>
-                <div class="col-md-9">
-                    <input type="text" name ="lastName" path="lastName" id="lastName" class="form-control input-sm"/>
-                </div>
-            </div>
-        </div>
-		
 		<!-- Primary key -->
 		
 		<div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="email">Email</label>
+                <label class="col-md-3 control-lable" for="description">Job Description</label>
                 <div class="col-md-9">
-                    <input type="text" name="email" path="email" id="email" class="form-control input-sm"/>
+                    <input type="text" name = "description" path="description" id="description" class="form-control input-sm"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="category">Job Category</label>
+                <div class="col-md-9">
+                    <input type="text" name = "category" path="category" id="category" class="form-control input-sm"/>
                 </div>
             </div>
         </div>
 		
 		        <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="password">Password</label>
+                <label class="col-md-3 control-lable" for="qualification">Minimum Qualification</label>
                 <div class="col-md-9">
-                    <input type="password" name="password" path="password" id="password" class="form-control input-sm"/>
+                    <input type="text" name = "qualification" path="qualification" id="qualification" class="form-control input-sm"/>
                 </div>
             </div>
         </div>
 		
-		     <div class="row">
+		    <!--  <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="age">Age</label>
+                <label class="col-md-3 control-lable" for="age">Minimum Age</label>
                 <div class="col-md-9">
-                    <input type="text" name="age" path="password" id="age" class="form-control input-sm"/>
+                    <input type="text" name = "age" path="age" id="age" class="form-control input-sm"/>
                 </div>
             </div>
-        </div>
-		
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="mobilenum">Mobile Number</label>
-                <div class="col-md-9">
-                    <input type="text" name="mobilenum" path="lastName" id="mobilenum" class="form-control input-sm"/>
-                </div>
-            </div>
-        </div>
-		
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="gender">Gender</label>
-                <div class="col-md-9">
-                    <input type="text" name="gender" path="lastName" id="gender" class="form-control input-sm"/>
-                </div>
-            </div>
-        </div>
-		
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="dob">Date of birth</label>
-                <div class="col-md-9">
-                    <input type="text" name="dob" path="dob" id="dob" class="form-control input-sm"/>
-                </div>
-            </div>
-        </div>
-		
-        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="nationality">Nationality</label>
-                <div class="col-md-9">
-                    <input type="text" name="nationality" path="nationality" id="nationality" class="form-control input-sm"/>
-                </div>
-            </div>
-        </div>
-		
-		 <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="website">Personal website</label>
-                <div class="col-md-9">
-                    <input type="text" name="website" path="website" id="website" class="form-control input-sm"/>
-                </div>
-            </div>
-        </div>
+        </div> -->
 
-        <input type="submit" name="formSubmit" value="Submit" style="display: block; margin: 0 auto;" >
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="skill">Required Skills</label>
+                <div class="col-md-9">
+                    <input type="text" name = "skill" path="skill" id="skill" class="form-control input-sm"/>
+                </div>
+            </div>
+        </div>
+		
 		
 		</form>
-
-		 <?php if(isset($_GET['formSubmit']))
-		{
-			$firstname = $_GET['firstName'];
-			$lastname = $_GET['lastName'];
-			$email = $_GET['email'];
-			$password = $_GET['password'];
-			$age = $_GET['age'];
-			$mobilenumber = $_GET['mobilenum'];
-			$gender = $_GET['gender'];
-			$dateofbirth = $_GET['dob'];
-			$nationality = $_GET['nationality'];
-			$personalweb = $_GET['website'];
-
-			$sql = 'INSERT INTO applicant (firstname, lastname, email, password, age, mobilenumber, gender, dateofbirth, nationality, personalweb) VALUES(:firstname, :lastname, :email, :password, :age, :mobilenumber, :gender, :dateofbirth, :nationality, :personalweb)';
-			
-			echo "<b>SQL: </b>".$sql."<br><br>";
-			$stid = oci_parse($dbh, $sql);
-			oci_bind_by_name($stid, ":firstname", $firstname);
-			oci_bind_by_name($stid, ":lastname", $lastname);
-			oci_bind_by_name($stid, ":email", $email);
-			oci_bind_by_name($stid, ":password", $password);
-			oci_bind_by_name($stid, ":age", $age);
-			oci_bind_by_name($stid, ":mobilenumber", $mobilenumber);
-			oci_bind_by_name($stid, ":gender", $gender);
-			oci_bind_by_name($stid, ":dateofbirth", $dateofbirth);
-			oci_bind_by_name($stid, ":nationality", $nationality);
-			oci_bind_by_name($stid, ":personalweb", $personalweb);
-	
-			oci_execute($stid);
-			while($row = oci_fetch_array($stid)) {
-			echo "<tr>";
-			echo "<td>" . $row[0] . "</td>";
-			echo "<td>" . $row[1] . "</td>";
-			echo "</tr>";
-			}
-			oci_free_statement($stid);
-			}
-		?>
+			    <input type="submit" name="formSubmit" value="Submit" style="display: block; margin: 0 auto;" >
     </div>
  </div>
 </div>
-
-
-
-
 <!-- footer --> 
 <div class="footer">
 	<div class="container">
@@ -327,8 +219,8 @@ include 'connectToServer.php'
 	</div>
   </div>
 </div>
-<?php
-oci_close($dbh);
-?>
 </body>
 </html>	
+<?php
+}
+    ?>

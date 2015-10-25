@@ -36,7 +36,7 @@ if ($allowaccess=true)
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="home.html"><img src="images/logo.png" alt=""></a>
+                    <a class="navbar-brand" href="home.php"><img src="images/logo.png" alt=""></a>
                 </div>
              	    <!--/.navbar-header-->
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
@@ -49,27 +49,27 @@ if ($allowaccess=true)
 		        <li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jobs<b class="caret"></b></a>
 		            <ul class="dropdown-menu">
-			            <li><a href="jobs.html">Part-time Jobs</a></li>
-			            <li><a href="jobs.html">Internships</a></li>
-			            <li><a href="jobs.html">Full-time Jobs</a></li>
+			            <li><a href="jobs.php">Part-time Jobs</a></li>
+			            <li><a href="jobs.php">Internships</a></li>
+			            <li><a href="jobs.php">Full-time Jobs</a></li>
 		            </ul>
 		        </li>
 				
 				        <!-- <li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
-						  <li><a href="post.html">Post Jobs</a></li>
-						    <li><a href="search.html">Search applicants</a></li>
-							  <li><a href="searchmatched.html">Search for matched applicants</a></li>
+						  <li><a href="post.php">Post Jobs</a></li>
+						    <li><a href="search.php">Search applicants</a></li>
+							  <li><a href="searchmatched.php">Search for matched applicants</a></li>
 		             </ul>
 		        </li> -->
 				
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged In<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
-						  <li><a href="employerProfile.html">User Profile</a></li>
-						    <li><a href="employerEdit.html">Profile Settings/Edit</a></li>
-							  <li><a href="passwordChange.html">Change Password</a></li>
+						  <li><a href="applicantProfile.php">User Profile</a></li>
+						    <li><a href="applicantEdit.php">Profile Settings/Edit</a></li>
+							  <li><a href="passwordChange.php">Change Password</a></li>
 		             </ul>
 		        </li>
 				
@@ -106,10 +106,10 @@ if ($allowaccess=true)
 		  <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
 		    <div class="tab_grid">
 			    <div class="jobs-item with-thumb">
-				    <div class="thumb"><a href="jobs_single.html"><img src="images/a2.jpg" class="img-responsive" alt=""/></a></div>
+				    <div class="thumb"><a href="jobs_single.php"><img src="images/a2.jpg" class="img-responsive" alt=""/></a></div>
 				    <div class="jobs_right">
 						<div class="date">30 <span>Jul</span></div>
-						<div class="date_desc"><h6 class="title"><a href="jobs_single.html">Front-end Developer</a></h6>
+						<div class="date_desc"><h6 class="title"><a href="jobs_single.php">Front-end Developer</a></h6>
 						  <span class="meta">Envato, Sydney, AU</span>
 						</div>
 						<div class="clearfix"> </div>
@@ -118,7 +118,7 @@ if ($allowaccess=true)
 							<li><a href="#" class="fa fa-star"></a></li>
 							<li><a href="#" class="fa fa-link"></a></li>
 						</ul>
-						<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, maxime, excepturi, mollitia, voluptatibus similique aliquid a dolores autem laudantium sapiente ad enim ipsa modi laborum accusantium deleniti neque architecto vitae. <a href="jobs_single.html" class="read-more">Read More</a></p>
+						<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, maxime, excepturi, mollitia, voluptatibus similique aliquid a dolores autem laudantium sapiente ad enim ipsa modi laborum accusantium deleniti neque architecto vitae. <a href="jobs_single.php" class="read-more">Read More</a></p>
                     </div>
 					<div class="clearfix"> </div>
 					
@@ -144,15 +144,15 @@ if ($allowaccess=true)
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
 			<ul class="f_list f_list1">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="applicantLogin.html">Sign In</a></li>
-				<li><a href="applicantRegister.html">Join Now</a></li>
-				<li><a href="about.html">About</a></li>
+				<li><a href="index.php">Home</a></li>
+				<li><a href="applicantLogin.php">Sign In</a></li>
+				<li><a href="applicantRegister.php">Join Now</a></li>
+				<li><a href="about.php">About</a></li>
 			</ul>
 			<ul class="f_list">
-				<li><a href ="jobs.html">Find a Job</a></li>
-				<li><a href="contact.html">Contact Us</a></li>
-				<li><a href="post.html">Post a Job</a></li>
+				<li><a href ="jobs.php">Find a Job</a></li>
+				<li><a href="contact.php">Contact Us</a></li>
+				<li><a href="post.php">Post a Job</a></li>
 			</ul>
 			<div class="clearfix"> </div>
 		</div>
