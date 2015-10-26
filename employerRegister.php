@@ -1,18 +1,10 @@
+<?php
+include 'connectToServer.php'
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
 <link rel="icon" href="http://i376.photobucket.com/albums/oo207/happyice/favicon-32x32_zpsci38sgpc.png">
-<?php
-putenv('ORACLE_HOME=/oraclient');
-$dbh = ocilogon('A0101002', 'crse1510', ' (DESCRIPTION =
-	(ADDRESS_LIST =
-	(ADDRESS = (PROTOCOL = TCP)(HOST = sid3.comp.nus.edu.sg)(PORT = 1521))
-	)
-	(CONNECT_DATA =
-	(SERVICE_NAME = sid3.comp.nus.edu.sg)
-	)
-	)');
-?>
 <title>One stop Job Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -168,7 +160,7 @@ $dbh = ocilogon('A0101002', 'crse1510', ' (DESCRIPTION =
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="password">Password</label>
                 <div class="col-md-9">
-                    <input type="text" name="password" path="password" id="password" class="form-control input-sm"/>
+                    <input type="password" name="password" path="password" id="password" class="form-control input-sm"/>
                 </div>
             </div>
          </div>
@@ -245,36 +237,30 @@ $dbh = ocilogon('A0101002', 'crse1510', ' (DESCRIPTION =
 			$email = $_GET['email'];
 			$password = $_GET['password'];
 			$companyname = $_GET['companyname'];
-			$companyid = $_GET['companynum'];
+			$companynum = $_GET['companynum'];
 			$companyurl = $_GET['companyurl'];
 			$postalcode = $_GET['postalcode'];
 			$natureofbusiness = $_GET['natureofbusiness'];
-			$addressofcompany = $_GET['addressofcompany'];
+			$companyaddress = $_GET['addressofcompany'];
 			$industry = $_GET['industry'];
 
 
-			$sql = 'INSERT INTO applicant (email, password, companyname, companyid, companyurl, postalcode, natureofbusiness, companyaddress, industry) VALUES(:email, :password, :companyname, :companyid, :companyurl, :postalcode, :natureofbusiness, :addressofcompany, :industry)';
+			$sql = 'INSERT INTO employer (email, password, companyname, companynum, companyurl, postalcode, natureofbusiness, companyaddress, industry) VALUES(:email, :password, :companyname, :companynum, :companyurl, :postalcode, :natureofbusiness, :companyaddress, :industry)';
 			
-			echo "<b>SQL: </b>".$sql."<br><br>";
+			//echo "<b>SQL: </b>".$sql."<br><br>";
 			$stid = oci_parse($dbh, $sql);
 			oci_bind_by_name($stid, ":email", $email);
 			oci_bind_by_name($stid, ":password", $password);
 			oci_bind_by_name($stid, ":companyname", $companyname);
-			oci_bind_by_name($stid, ":companynum", $companyid);
+			oci_bind_by_name($stid, ":companynum", $companynum);
 			oci_bind_by_name($stid, ":companyurl", $companyurl);
 			oci_bind_by_name($stid, ":postalcode", $postalcode);
 			oci_bind_by_name($stid, ":natureofbusiness", $natureofbusiness);
-			oci_bind_by_name($stid, ":addressofcompany", $addressofcompany);
+			oci_bind_by_name($stid, ":companyaddress", $companyaddress);
 			oci_bind_by_name($stid, ":industry", $industry);
 
 	
 			oci_execute($stid);
-			// while($row = oci_fetch_array($stid)) {
-			// echo "<tr>";
-			// echo "<td>" . $row[0] . "</td>";
-			// echo "<td>" . $row[1] . "</td>";
-			// echo "</tr>";
-			// }
 			oci_free_statement($stid);
 			}
 		?>

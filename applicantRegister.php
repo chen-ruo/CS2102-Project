@@ -208,7 +208,8 @@ include 'connectToServer.php'
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="gender">Gender</label>
                 <div class="col-md-9">
-                    <input type="text" name="gender" path="lastName" id="gender" class="form-control input-sm"/>
+                    <input type="radio" name="gender" id="Format1" value="Male">Male
+					<input type="radio" name="gender" id="Format2" value="Female">Female
                 </div>
             </div>
         </div>
@@ -257,29 +258,47 @@ include 'connectToServer.php'
 			$nationality = $_GET['nationality'];
 			$personalweb = $_GET['website'];
 
-			$sql = 'INSERT INTO applicant (firstname, lastname, email, password, age, mobilenumber, gender, dateofbirth, nationality, personalweb) VALUES(:firstname, :lastname, :email, :password, :age, :mobilenumber, :gender, :dateofbirth, :nationality, :personalweb)';
-			
-			echo "<b>SQL: </b>".$sql."<br><br>";
-			$stid = oci_parse($dbh, $sql);
-			oci_bind_by_name($stid, ":firstname", $firstname);
-			oci_bind_by_name($stid, ":lastname", $lastname);
-			oci_bind_by_name($stid, ":email", $email);
-			oci_bind_by_name($stid, ":password", $password);
-			oci_bind_by_name($stid, ":age", $age);
-			oci_bind_by_name($stid, ":mobilenumber", $mobilenumber);
-			oci_bind_by_name($stid, ":gender", $gender);
-			oci_bind_by_name($stid, ":dateofbirth", $dateofbirth);
-			oci_bind_by_name($stid, ":nationality", $nationality);
-			oci_bind_by_name($stid, ":personalweb", $personalweb);
-	
-			oci_execute($stid);
-			while($row = oci_fetch_array($stid)) {
-			echo "<tr>";
-			echo "<td>" . $row[0] . "</td>";
-			echo "<td>" . $row[1] . "</td>";
-			echo "</tr>";
+			$sql_check = 'SELECT email FROM applicant';
+
+
+			$stid_check = oci_parse($dbh, $sql_check);
+
+			oci_execute($stid_check, OCI_DEFAULT);
+
+			$exist = 0;
+
+			while($query_applicant = oci_fetch_array($stid_check)){
+
+				if($email == $query_applicant[0]){
+					$exist = 1;
+				}
 			}
-			oci_free_statement($stid);
+
+			if($exist == 0){
+				$sql_insert = 'INSERT INTO applicant (firstname, lastname, email, password, age, mobilenumber, gender, dateofbirth, nationality, personalweb) VALUES(:firstname, :lastname, :email, :password, :age, :mobilenumber, :gender, :dateofbirth, :nationality, :personalweb)';
+				
+				//echo "<b>SQL: </b>".$sql."<br><br>";
+				$stid = oci_parse($dbh, $sql_insert);
+				oci_bind_by_name($stid, ":firstname", $firstname);
+				oci_bind_by_name($stid, ":lastname", $lastname);
+				oci_bind_by_name($stid, ":email", $email);
+				oci_bind_by_name($stid, ":password", $password);
+				oci_bind_by_name($stid, ":age", $age);
+				oci_bind_by_name($stid, ":mobilenumber", $mobilenumber);
+				oci_bind_by_name($stid, ":gender", $gender);
+				oci_bind_by_name($stid, ":dateofbirth", $dateofbirth);
+				oci_bind_by_name($stid, ":nationality", $nationality);
+				oci_bind_by_name($stid, ":personalweb", $personalweb);
+
+				oci_execute($stid);
+				oci_free_statement($stid);
+			}
+			else{
+				die("<script> alert ('The email has already been registered!')</script>");
+			}
+
+			oci_free_statement($stid_check);
+
 			}
 		?>
     </div>
