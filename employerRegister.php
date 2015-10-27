@@ -244,24 +244,64 @@ include 'connectToServer.php'
 			$companyaddress = $_GET['addressofcompany'];
 			$industry = $_GET['industry'];
 
+			$sql_check = 'SELECT email FROM employer';
+			$stid_check = oci_parse($dbh, $sql_check);
 
-			$sql = 'INSERT INTO employer (email, password, companyname, companynum, companyurl, postalcode, natureofbusiness, companyaddress, industry) VALUES(:email, :password, :companyname, :companynum, :companyurl, :postalcode, :natureofbusiness, :companyaddress, :industry)';
-			
-			//echo "<b>SQL: </b>".$sql."<br><br>";
-			$stid = oci_parse($dbh, $sql);
-			oci_bind_by_name($stid, ":email", $email);
-			oci_bind_by_name($stid, ":password", $password);
-			oci_bind_by_name($stid, ":companyname", $companyname);
-			oci_bind_by_name($stid, ":companynum", $companynum);
-			oci_bind_by_name($stid, ":companyurl", $companyurl);
-			oci_bind_by_name($stid, ":postalcode", $postalcode);
-			oci_bind_by_name($stid, ":natureofbusiness", $natureofbusiness);
-			oci_bind_by_name($stid, ":companyaddress", $companyaddress);
-			oci_bind_by_name($stid, ":industry", $industry);
+			oci_execute($stid_check, OCI_DEFAULT);
 
-	
-			oci_execute($stid);
-			oci_free_statement($stid);
+			$exist = 0;
+
+			while($query_employer = oci_fetch_array($stid_check)){
+
+				if($email == $query_employer[0]){
+					$exist = 1;
+				}
+			}
+
+			if($exist == 0){
+
+				$sql = 'INSERT INTO employer (email, password, companyname, companynum, companyurl, postalcode, natureofbusiness, companyaddress, industry) VALUES(:email, :password, :companyname, :companynum, :companyurl, :postalcode, :natureofbusiness, :companyaddress, :industry)';
+				
+				//echo "<b>SQL: </b>".$sql."<br><br>";
+				$stid = oci_parse($dbh, $sql);
+				oci_bind_by_name($stid, ":email", $email);
+				oci_bind_by_name($stid, ":password", $password);
+				oci_bind_by_name($stid, ":companyname", $companyname);
+				oci_bind_by_name($stid, ":companynum", $companynum);
+				oci_bind_by_name($stid, ":companyurl", $companyurl);
+				oci_bind_by_name($stid, ":postalcode", $postalcode);
+				oci_bind_by_name($stid, ":natureofbusiness", $natureofbusiness);
+				oci_bind_by_name($stid, ":companyaddress", $companyaddress);
+				oci_bind_by_name($stid, ":industry", $industry);
+
+		
+				oci_execute($stid);
+				oci_free_statement($stid);
+			}
+			else{
+				die("<script> alert ('The email has already been registered!')</script>");
+			}
+
+			$sql_insertChk = 'SELECT email FROM employer';
+			$stid_insertChk = oci_parse($dbh, $sql_insertChk);
+
+			oci_execute($stid_insertChk,OCI_DEFAULT);
+
+			$insert_successful = 0;
+
+			while ($query_insertChk = oci_fetch_array($stid_insertChk)) {
+				if($email == $query_insertChk[0]){
+					$insert_successful =1;
+				}
+			}
+
+			if($insert_successful == 1){
+				echo("<script> alert ('Your account is registered succcessfully!')</script>");
+				die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/index.php'</script>");
+			}
+			oci_free_statement($stid_check);
+			oci_free_statement($sql_insertChk);
+
 			}
 		?>
 		
