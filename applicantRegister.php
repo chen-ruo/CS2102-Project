@@ -297,7 +297,25 @@ include 'connectToServer.php'
 				die("<script> alert ('The email has already been registered!')</script>");
 			}
 
+			$sql_insertChk = 'SELECT email FROM applicant';
+			$stid_insertChk = oci_parse($dbh, $sql_insertChk);
+
+			oci_execute($stid_insertChk,OCI_DEFAULT);
+
+			$insert_successful = 0;
+
+			while ($query_insertChk = oci_fetch_array($stid_insertChk)) {
+				if($email == $query_insertChk[0]){
+					$insert_successful =1;
+				}
+			}
+
+			if($insert_successful == 1){
+				echo("<script> alert ('Your account is registered succcessfully!')</script>");
+				die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/index.php'</script>");
+			}
 			oci_free_statement($stid_check);
+			oci_free_statement($sql_insertChk);
 
 			}
 		?>
