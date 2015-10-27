@@ -1,3 +1,6 @@
+<?php
+include 'connectToServer.php';
+?>
 
 <!DOCTYPE HTML>
 <html>
@@ -83,6 +86,17 @@
 			 <input type="text" class="text" placeholder=" " value="Location" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Location';}">
 			 <label class="btn2 btn-2 btn2-1b"><input type="submit" value="Find Jobs"></label>
 			</p>
+
+			<!-- add in code here -->
+			<?php
+
+
+			
+			?>
+
+
+
+
             <h2 class="title">Top searches</h2>
          </div>
 		 <div id="city_1" class="clearfix">
