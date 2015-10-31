@@ -65,7 +65,7 @@ if ($allowaccess=true)
 		             </ul>
 		        </li>
 				
-				<li><a onClick = "logout()">Logout</a></li>
+				<li><a href = "logout.php">Logout</a></li>   
 	    </div>
 	    <div class="clearfix"> </div>
 	  </div>
@@ -109,6 +109,7 @@ if ($allowaccess=true)
 					oci_free_statement($stid);
 				
 			?>
+<br><br>
 <form>				
 				<select name="JobID" id="Job ID"><option value="">select Job ID</option>
 					<?php
