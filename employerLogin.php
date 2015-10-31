@@ -235,11 +235,11 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 						$_SESSION['CurrentUser'] = $username;
 						$_SESSION['Role'] = 'Employer';
 						//die("<script> alert ('Employer')</script>");
-						die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0099726/employerHome.php'</script>");
+						die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101973/employerHome.php'</script>");
 					}else{
 						//echo "Wrong Username or Password";
 						die("<script> alert ('Wrong Email or Password')</script>");
-						//die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0099726/home.php'</script>");
+						//die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101973/home.php'</script>");
 					
 					}
 
