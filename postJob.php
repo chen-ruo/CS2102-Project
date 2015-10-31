@@ -135,9 +135,9 @@ if ($allowaccess=true)
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="jobType">Job Type</label>
                 <div class="col-md-9">
-                    <input type="radio" name="jobType" id="Format1" value="Intern">Intern
-					<input type="radio" name="jobType" id="Format2" value="Permanent">Permanent
-					<input type="radio" name="jobType" id="Format1" value="Temporary">Temporary
+                <input type="radio" name="jobType" 	id="Format1" value="Full-time">Full-time
+					<input type="radio" name="jobType" id="Format1" value="Part-time">Part-time
+                    <input type="radio" name="jobType" id="Format1" value="Internship">Internship	
 
                 </div>
             </div>
