@@ -174,7 +174,7 @@ if ($allowaccess=true)
 
 		<div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="description">Description</label>
+                <label class="col-md-3 control-lable" for="description">Job Description</label>
                 <div class="col-md-9">
                     <input type="text" name = "description" path="description" id="description" class="form-control input-sm"/>
                 </div>
@@ -255,7 +255,7 @@ if ($allowaccess=true)
 
 			if($insert_successful == 1){
 				echo("<script> alert ('The job is posted succcessfully!')</script>");
-				//die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/employerProfile.php'</script>");
+				die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/employerProfile.php'</script>");
 			}
 	
 			oci_free_statement($stid);
