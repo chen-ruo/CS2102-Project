@@ -191,7 +191,7 @@ if ($allowaccess=true)
 		 
 		 <br><br>
 		 
-		    
+	<!--	    
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="mobilenum">Mobile Number</label>
@@ -209,7 +209,7 @@ if ($allowaccess=true)
                 </div>
             </div>
         </div>
-		
+		-->
 		
 		</form>
 			   <input type="submit" name="formSubmit" value="Submit" style="display: block; margin: 0 auto;" >
