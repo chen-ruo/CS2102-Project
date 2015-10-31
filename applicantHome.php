@@ -1,6 +1,7 @@
 <?php
 include 'session.php';
 include 'connectToServer.php';
+
 if ($allowaccess=true)
 {
     ?>
@@ -85,14 +86,19 @@ if ($allowaccess=true)
 		   <div id="search_form" class="clearfix">
 		    <h1>Start your job search</h1>
 		    <p>
-			 <input type="text" class="text" placeholder=" " value="Enter Keyword(s)" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Keyword(s)';}">
-			  <select name="Language"> <option value="">Select job type</option> </select>
-			 <label class="btn2 btn-2 btn2-1b"><input type="submit" value="Find Jobs"></label>
-			</p>
+			 <form>
+			  Title: <input type="text" name="Title" id="Title">
+			  <input type="radio" name="Format" id="Format1" value="Permanent">Permanent
+			  <input type="radio" name="Format" id="Format1" value="Temporary">Temporary
+			  <input type="radio" name="Format" id="Format1" value="Intern">Intern
+			  <input type="submit" name="formSubmit" value="Search" style="background-color:#A9E2F3">
+			 </form>
            </div>
 		</div>
    </div> 
 </div>	
+ 		
+
 <div class="container">
     <div class="single">  
 	   <div class="col-md-9 single_right">
@@ -100,8 +106,126 @@ if ($allowaccess=true)
 	       <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 			<ul id="myTab" class="nav nav-tabs" role="tablist">
 			  <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Available jobs</a></li>
-			  
+			  			  
 		   </ul>
+		   <?php if(isset($_GET['formSubmit']))
+				{
+					$keywords=$_GET['Title'];
+					$type=$_GET['Format'];
+					$sql="select * from job where description like '%$keywords%' and jobtype = '$type' ";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					echo "<table border=\"1\" >
+				    <col width=\"10%\">
+					<col width=\"15%\">
+					<col width=\"20%\">
+					<col width=\"15%\">
+					<col width=\"15%\">
+					<col width=\"15%\">
+					<col width=\"10%\">
+					
+					<tr>
+					<th>Job ID</th>
+					<th>Job Style</th>					
+					<th>Owner</th>
+					<th>Category</th>
+					<th>Qualification Required</th>
+					<th>Skills Required</th>
+					<th>Description</th>
+					</tr>";
+	
+					while($row = oci_fetch_array($stid)) {
+					echo "<tr>";
+					echo "<td>" . $row[0] . "</td>";
+					echo "<td>" . $row[1] . "</td>";
+					echo "<td>" . $row[2] . "</td>";
+					echo "<td>" . $row[3] . "</td>";
+					echo "<td>" . $row[4] . "</td>";
+					echo "<td>" . $row[5] . "</td>";
+					echo "<td>" . $row[6] . "</td>";
+					echo "</tr>";
+					}
+					echo "</table>";
+					oci_free_statement($stid);
+				}
+			?>
+			<form>				
+				<select name="JobID" id="Job ID"><option value="">select Job ID</option>
+					<?php
+					$sql="select jobid from job where description like '%$keywords%' and jobtype = '$type' ";
+					$stid = oci_parse($dbh, $sql);
+					oci_execute($stid, OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)){
+					echo "<option value=\"".$row[0]."\">".$row[0]."</option><br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</select>
+					<select name="jobOwner" id="jobOwner"><option value="">select Owner</option>
+					<?php
+					$sql="select owner from job where description like '%$keywords%' and jobtype = '$type' ";
+					$stid = oci_parse($dbh, $sql);
+					oci_execute($stid, OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)){
+					echo "<option value=\"".$row[0]."\">".$row[0]."</option><br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</select>
+					<input type="submit" name="formSubmit1" value="Apply" >
+					<?php
+					
+					if (isset($_GET['formSubmit1'])){
+					
+					$jobid = $_GET['JobID'];
+					$applicantid=$_SESSION['CurrentUser'];
+					$companyid=$_GET['jobOwner'];				
+					
+					$sql_check = 'select jobid,emaile from applyfor';
+					$stid_check = oci_parse($dbh, $sql_check);
+					oci_execute($stid_check, OCI_DEFAULT);
+					$exist = 0;
+					while($query_jobapplied = oci_fetch_array($stid_check)){
+
+				        if($jobid == $query_jobapplied[0] and $companyid==$query_jobapplied[1]){
+					    $exist = 1;
+				        }
+			        }
+			        if($exist == 0){
+						$sql_insert = 'INSERT INTO applyfor(emaila,emaile,jobid) VALUES(:applicantid,:companyid,:jobid)';
+						$stid = oci_parse($dbh, $sql_insert);
+						oci_bind_by_name($stid, ":jobid", $jobid);
+						oci_bind_by_name($stid, ":applicantid", $applicantid);
+						oci_bind_by_name($stid, ":companyid", $companyid);
+						oci_execute($stid);
+						oci_free_statement($stid);
+					}
+					else
+					{
+						die("<script> alert ('You have already applied for this job!')</script>");
+					}
+					$sql_insertChk = 'SELECT jobid,emaile FROM applyfor';
+					$stid_insertChk = oci_parse($dbh, $sql_insertChk);
+
+					oci_execute($stid_insertChk,OCI_DEFAULT);
+
+					$insert_successful = 0;
+
+					while ($query_insertChk = oci_fetch_array($stid_insertChk)) {
+						if($jobid == $query_insertChk[0] and $companyid == $query_insertChk[1]){
+							$insert_successful =1;
+						}
+					}
+
+					if($insert_successful == 1){
+						echo("<script> alert ('You applied for the job succcessfully!')</script>");
+					}
+					oci_free_statement ($stid_check);
+					oci_free_statement ($stid_insertChk);
+                }       
+					?>
+			</form>
+			    
 		<div id="myTabContent" class="tab-content">
 		  <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
 		    <div class="tab_grid">
