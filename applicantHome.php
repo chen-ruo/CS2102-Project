@@ -112,7 +112,7 @@ if ($allowaccess=true)
 				{
 					$keywords=$_GET['Title'];
 					$type=$_GET['Format'];
-					$sql="select * from jobs where description like '%$keywords%' and jobtype = '$type' ";
+					$sql="select * from jobs where description like '%$keywords%' and jobtype = '$type' union select * from jobs where jobtype = '$type'";
 					$stid = oci_parse($dbh,$sql);
 					oci_execute($stid,OCI_DEFAULT);
 					echo "<table border=\"1\" >
@@ -152,7 +152,7 @@ if ($allowaccess=true)
 			<form>				
 				<select name="JobID" id="Job ID"><option value="">select Job ID</option>
 					<?php
-					$sql="select jobid from jobs where description like '%$keywords%' and jobtype = '$type' ";
+					$sql="select jobid from jobs where description like '%$keywords%' and jobtype = '$type' union select jobid from jobs where jobtype = '$type'";
 					$stid = oci_parse($dbh, $sql);
 					oci_execute($stid, OCI_DEFAULT);
 					while($row = oci_fetch_array($stid)){
@@ -163,7 +163,7 @@ if ($allowaccess=true)
 				</select>
 					<select name="jobOwner" id="jobOwner"><option value="">select Owner</option>
 					<?php
-					$sql="select owner from jobs where description like '%$keywords%' and jobtype = '$type' ";
+					$sql="select owner from jobs where description like '%$keywords%' and jobtype = '$type' union select owner from jobs where jobtype = '$type'";
 					$stid = oci_parse($dbh, $sql);
 					oci_execute($stid, OCI_DEFAULT);
 					while($row = oci_fetch_array($stid)){
