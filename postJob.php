@@ -97,7 +97,7 @@ if ($allowaccess=true)
 				        <li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
-						  <li><a href="post.php">Post Jobs</a></li>
+						  <li><a href="postJob.php">Post Jobs</a></li>
 						    <li><a href="search.php">Search applicants</a></li>
 							  <li><a href="searchmatched.php">Search for matched applicants</a></li>
 		             </ul>
@@ -117,7 +117,8 @@ if ($allowaccess=true)
 						    <li><a href="applicantRegister.php">Create an applicant account</a></li>
 		             </ul>
 		        </li> -->
-		     <li><a href = "index.php" onClick = <?php session_destroy();?>>Logout</a></li>   
+		     <li><a href = "logout.php">Logout</a></li>   
+
 	    </div>
 	    <div class="clearfix"> </div>
 	  </div>
@@ -130,44 +131,27 @@ if ($allowaccess=true)
         <form>
 		<!-- Primary key -->
 		
-		   <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="jobtype">Job Type</label>
-                <div class="col-md-9">
-                    <input type="radio" name="jobtype" id="Format1" value="intern">Internship
-					<input type="radio" name="jobtype" id="Format2" value="permanent">Permanent
-					<input type="radio" name="jobtype" id="Format2" value="temporary">Temporary
-                </div>
-            </div>
-        </div>
-		
-		
 		<div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="description">Job Description</label>
+                <label class="col-md-3 control-lable" for="jobType">Job Type</label>
                 <div class="col-md-9">
-                    <input type="text" name = "description" path="description" id="description" class="form-control input-sm"/>
-                </div>
-            </div>
-        </div>
-		
-		<div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="description">Job Description</label>
-                <div class="col-md-9">
-                    <input type="text" name = "description" path="description" id="description" class="form-control input-sm"/>
+                    <input type="radio" name="jobType" id="Format1" value="Intern">Intern
+					<input type="radio" name="jobType" id="Format2" value="Permanent">Permanent
+					<input type="radio" name="jobType" id="Format1" value="Temporary">Temporary
+
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="category">Job Category</label>
+                <label class="col-md-3 control-lable" for="category">Category</label>
                 <div class="col-md-9">
                     <input type="text" name = "category" path="category" id="category" class="form-control input-sm"/>
                 </div>
             </div>
         </div>
+
 		
 		        <div class="row">
             <div class="form-group col-md-12">
@@ -177,7 +161,6 @@ if ($allowaccess=true)
                 </div>
             </div>
         </div>
-		
 
         <div class="row">
             <div class="form-group col-md-12">
@@ -187,10 +170,99 @@ if ($allowaccess=true)
                 </div>
             </div>
         </div>
+
+
+		<div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="description">Description</label>
+                <div class="col-md-9">
+                    <input type="text" name = "description" path="description" id="description" class="form-control input-sm"/>
+                </div>
+            </div>
+        </div>
 		
+		<input type="submit" name="formSubmit" value="Submit" style="display: block; margin: 0 auto;" >
 		
 		</form>
-			    <input type="submit" name="formSubmit" value="Submit" style="display: block; margin: 0 auto;" >
+
+		<?php if(isset($_GET['formSubmit']))
+		{
+			$type = $_GET['jobType'];
+			$owner = $_SESSION['CurrentUser'];
+			$category = $_GET['category'];
+			$qualification = $_GET['qualification'];
+			$skill = $_GET['skill'];
+			$description = $_GET['description'];
+
+			$sql_findId = "SELECT jobid FROM jobs WHERE owner = '$owner' ";
+			$stid_findId = oci_parse($dbh, $sql_findId);
+			oci_execute($stid_findId, OCI_DEFAULT);
+
+			$prev_id = 0;
+			$current_id = 0;
+			$jobId = 0;
+
+			if($query_id = oci_fetch_array($stid_findId)){
+
+				$current_id = $query_id[0];
+				if($query_id[0] == 2){
+					$jobId = 1;
+				}
+
+			}
+
+			while($query_id = oci_fetch_array($stid_findId)){
+
+				$prev_id = $current_id;
+				$current_id = $query_id[0];
+
+				if($prev_id+1 != $current_id && $jobId != 1)
+					$jobId = $prev_id + 1;
+
+			}
+
+			if($jobId < $prev_id && $jobId != 1 || $current_id == 1 || $current_id == 0){
+				if($jobId != 1){
+					$jobId = $current_id + 1;
+				}
+			}
+
+			$sql_insert = 'INSERT INTO jobs (jobid, jobtype, owner, category, minrequiredqualification, minrequiredskills, description) VALUES (:jobid, :jobtype, :owner, :category, :minrequiredqualification, :minrequiredskills, :description)';
+
+			$stid = oci_parse($dbh, $sql_insert);
+			oci_bind_by_name($stid, ":jobid", $jobId);
+			oci_bind_by_name($stid, ":jobtype", $type);
+			oci_bind_by_name($stid, ":owner", $owner);
+			oci_bind_by_name($stid, ":category", $category);
+			oci_bind_by_name($stid, ":minrequiredqualification", $qualification);
+			oci_bind_by_name($stid, ":minrequiredskills", $skill);
+			oci_bind_by_name($stid, ":description", $description);
+
+			oci_execute($stid);
+
+			$sql_insertChk = 'SELECT jobid, owner FROM jobs';
+			$stid_insertChk = oci_parse($dbh, $sql_insertChk);
+
+			oci_execute($stid_insertChk,OCI_DEFAULT);
+
+			$insert_successful = 0;
+
+			while ($query_insertChk = oci_fetch_array($stid_insertChk)) {
+				if($jobId == $query_insertChk[0] && $owner == $query_insertChk[1]){
+					$insert_successful =1;
+				}
+			}
+
+			if($insert_successful == 1){
+				echo("<script> alert ('The job is posted succcessfully!')</script>");
+				//die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/employerProfile.php'</script>");
+			}
+	
+			oci_free_statement($stid);
+			oci_free_statement($stid_insertChk);
+			}
+		?>
+			    
     </div>
  </div>
 </div>
@@ -208,7 +280,7 @@ if ($allowaccess=true)
 			<ul class="f_list">
 				<li><a href ="jobs.php">Find a Job</a></li>
 				<li><a href="contact.php">Contact Us</a></li>
-				<li><a href="post.php">Post a Job</a></li>
+				<li><a href="postJob.php">Post a Job</a></li>
 			</ul>
 			<div class="clearfix"> </div>
 		</div>
