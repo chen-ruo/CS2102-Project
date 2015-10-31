@@ -23,12 +23,12 @@ create table employer(
   industry varchar(32)
 );
 
-create table admin(
+create table admins(
   email varchar(128) primary key,
   password varchar(64)
 );
 
-create table job(
+create table jobs(
   jobID varchar(16),
   jobType varchar(32) check(jobType = 'Intern' or jobType = 'Permanent' or jobType = 'Temporary'),
   owner varchar(128) not null,
@@ -45,12 +45,12 @@ create table applyFor(
   emailE varchar(128),
   jobID varchar(16),
 
-  Foreign Key (emailE, jobID) References job(owner, jobID),
+  Foreign Key (emailE, jobID) References jobs(owner, jobID),
   Foreign Key (emailA) References applicant (email),
   primary key (emailA, emailE, jobID)
-)
+);
 
-create table record(
+create table information(
   applicant varchar(128) primary key,
   mobile varchar(16),
   web varchar(128),
