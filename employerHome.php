@@ -75,10 +75,92 @@ if ($allowaccess=true)
     <div class="single">  
 	   <div class="col-md-9 single_right">
 	    <h1>Shows list of jobs posted <h1>
+		
   <div class="clearfix"> </div>
  </div>
+ 
 </div>
+<?php 
+					$currentuser=$_SESSION['CurrentUser'];
+					$sql="select j.jobid,j.jobtype,j.category,j.minrequiredqualification,j.minrequiredskills,j.description from jobs j where owner='$currentuser'";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					echo "<table border=\"1\" >					
+					<tr>
+					<th>Job ID</th>
+					<th>Job Type</th>
+					<th>Category</th>				
+					<th>Qualification Required</th>
+					<th>Skills Required</th>
+					<th>Description</th>
+					</tr>";
+	
+					while($row = oci_fetch_array($stid)) {
+					echo "<tr>";
+					echo "<td>" . $row[0] . "</td>";
+					echo "<td>" . $row[1] . "</td>";
+					echo "<td>" . $row[2] . "</td>";
+					echo "<td>" . $row[3] . "</td>";
+					echo "<td>" . $row[4] . "</td>";
+					echo "<td>" . $row[5] . "</td>";
+					echo "</tr>";
+					}
+					echo "</table>";
+					oci_free_statement($stid);
+				
+			?>
+<form>				
+				<select name="JobID" id="Job ID"><option value="">select Job ID</option>
+					<?php
+					$sql="select jobid from jobs where owner='$currentuser'";
+					$stid = oci_parse($dbh, $sql);
+					oci_execute($stid, OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)){
+					echo "<option value=\"".$row[0]."\">".$row[0]."</option><br>";
+					}
+					oci_free_statement($stid);
+					?>
+				<input type="submit" name="formSubmit1" value="DELETE" >
+				<?php
+				        if(isset($_GET['formSubmit1']))
+				{
+					    $job_id=$_GET['JobID'];
+						$sql_insert = "delete from jobs where jobid = '$job_id' and owner = '$currentuser'";
+						$stid = oci_parse($dbh, $sql_insert);
+				
+						oci_execute($stid);
+						oci_free_statement($stid);
+										
+                }                         			
+					?>
+				<input type="radio" name="Format" id="Format1" value="JObType">Job Type
+				<input type="radio" name="Format" id="Format1" value="Category">Category
+				<input type="radio" name="Format" id="Format1" value="minrequiredqualification">Qualification Required
+				<input type="radio" name="Format" id="Format1" value="minrequiredskills">Skills Required
+				<input type="radio" name="Format" id="Format1" value="Description">Description
+				Input: <input type="text" name="Title" id="Title">
+				
+				<input type="submit" name="formSubmit2" value="UPDATE" >	
+				<?php
+				        if(isset($_GET['formSubmit2']))
+				{
+					    $field=$_GET['Format'];
+						$input=$_GET['Title'];
+						$job_id=$_GET['JobID'];
+						
+						$sql_insert = "update jobs set $field ='$input' where owner = '$currentuser' and jobid= '$job_id' ";
+						
+					
+						$stid = oci_parse($dbh, $sql_insert);
+						oci_execute($stid);
+						oci_free_statement($stid);
+										
+                }    
+                     			
+					?>
+			</form>			
 </div></div></div></div></div></div>
+
 
 <!-- footer --> 
 <div class="footer">
