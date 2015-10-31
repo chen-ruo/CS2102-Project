@@ -130,6 +130,27 @@ if ($allowaccess=true)
         <form>
 		<!-- Primary key -->
 		
+		   <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="jobtype">Job Type</label>
+                <div class="col-md-9">
+                    <input type="radio" name="jobtype" id="Format1" value="intern">Internship
+					<input type="radio" name="jobtype" id="Format2" value="permanent">Permanent
+					<input type="radio" name="jobtype" id="Format2" value="temporary">Temporary
+                </div>
+            </div>
+        </div>
+		
+		
+		<div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="description">Job Description</label>
+                <div class="col-md-9">
+                    <input type="text" name = "description" path="description" id="description" class="form-control input-sm"/>
+                </div>
+            </div>
+        </div>
+		
 		<div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="description">Job Description</label>
@@ -157,14 +178,6 @@ if ($allowaccess=true)
             </div>
         </div>
 		
-		    <!--  <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="age">Minimum Age</label>
-                <div class="col-md-9">
-                    <input type="text" name = "age" path="age" id="age" class="form-control input-sm"/>
-                </div>
-            </div>
-        </div> -->
 
         <div class="row">
             <div class="form-group col-md-12">

@@ -216,7 +216,7 @@ include 'connectToServer.php'
 		
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="dob">Date of birth</label>
+                <label class="col-md-3 control-lable" for="dob">Date of birth *(Please enter it in this format dd-Mth-yy)</label>
                 <div class="col-md-9">
                     <input type="text" name="dob" path="dob" id="dob" class="form-control input-sm"/>
                 </div>
