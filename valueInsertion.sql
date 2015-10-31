@@ -5,7 +5,14 @@ INSERT INTO applicant VALUES('RenFei','Wang','wangrenfei1991@gmail.com','applepi
 /*Employer*/
 INSERT INTO employer VALUES('a0099726@u.nus.edu','12345','National University of Singapore','60000000',NULL,000000,'University','Lower Kent Ridge','Education');
 INSERT INTO employer VALUES('a0101002@u.nus.edu','54321','Bank of China','61000000',NULL,000001,'Finance','4 Battery Road','Banking');
-
+INSERT INTO employer VALUES('a0101973@u.nus.edu','hihi','Hewlett-Packard', '62000000', NULL, 000002, 'IT', 'Singapore', 'IT');
+INSERT INTO employer VALUES('hihi@hi.com','hi','Hihihi!','63100000',NULL,000003,'hi','Hi Road','Hi');
 
 /*Job*/
-INSERT INTO job VALUES('1','Permanent','a0099726@u.nus.edu','IT','Degree','C++',NULL);
+INSERT INTO jobs VALUES('1','Permanent','a0099726@u.nus.edu','IT','Degree','C++',NULL);
+INSERT INTO jobs VALUES('2','Permanent','a0101002@u.nus.edu','Finance','Degree','Banking background','Secretary');
+INSERT INTO jobs VALUES('3','Permanent','a0101002@u.nus.edu','Finance','Degree','Banking background','Admin');
+INSERT INTO jobs VALUES('1','Permanent','a0101973@u.nus.edu','IT','Degree','Banking background',NULL);
+INSERT INTO jobs VALUES('2','Permanent','a0101973@u.nus.edu','IT','Degree','Banking background','Secretary');
+INSERT INTO jobs VALUES('3','Permanent','a0101973@u.nus.edu','IT','Degree','Banking background','Admin');
+INSERT INTO jobs VALUES('5','Permanent','a0101973@u.nus.edu','IT','Degree','Banking background','Staff');
