@@ -80,7 +80,8 @@ if ($allowaccess=true)
 			  <input type="radio" name="Format" id="Format1" value="Full-time">Full-time
 			  <input type="radio" name="Format" id="Format1" value="Part-time">Part-time
 			  <input type="radio" name="Format" id="Format1" value="Internship">Internship
-			  <input type="submit" name="formSubmit" value="Search" style="background-color:#A9E2F3">
+			  <input type="submit" name="search" value="Search" style="background-color:#A9E2F3">
+			  <input type="submit" name="recommend" value="Recommend" style="background-color:#A9E2F3">
 			 </form>
            </div>
 		</div>
@@ -97,7 +98,8 @@ if ($allowaccess=true)
 			  <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Available jobs</a></li>
 			  			  
 		   </ul>
-		   <?php if(isset($_GET['formSubmit']))
+
+		   <?php if(isset($_GET['search']))
 				{
 					$keywords=$_GET['Title'];
 					$type=$_GET['Format'];
@@ -122,8 +124,8 @@ if ($allowaccess=true)
 					
 					<tr>
 					<th>Job ID</th>
-					<th>Job Style</th>					
-					<th>Owner</th>
+					<th>Job Type</th>					
+					<th>Employer</th>
 					<th>Category</th>
 					<th>Qualification Required</th>
 					<th>Skills Required</th>
@@ -145,15 +147,76 @@ if ($allowaccess=true)
 					oci_free_statement($stid);
 				}
 			?>
+			<?php if(isset($_GET['recommend']))
+				{
+					
+					$applicant = $_SESSION['CurrentUser'];
+					$sql= "select j.jobid, j.jobtype, e.companyname, j.owner, j.category, j.minrequiredqualification, j.minrequiredskills,j.description
+						from jobs j, information i, employer e
+						where i.applicant = '$applicant'
+						and j.owner = e.email
+						and (j.minrequiredskills = i.skill1 or j.minrequiredskills = i.skill2 or i.industryinterested = e.industry)
+						and j.minrequiredqualification = i.highestquali";
+
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					echo "<table border=\"1\" >
+				    <col width=\"10%\">
+					<col width=\"15%\">
+					<col width=\"20%\">
+					<col width=\"15%\">
+					<col width=\"15%\">
+					<col width=\"15%\">
+					<col width=\"10%\">
+					
+					<tr>
+					<th>Job ID</th>
+					<th>Job Type</th>					
+					<th>Employer</th>
+					<th>Email</th>
+					<th>Category</th>
+					<th>Qualification Required</th>
+					<th>Skills Required</th>
+					<th>Description</th>
+					</tr>";
+	
+					while($row = oci_fetch_array($stid)) {
+					echo "<tr>";
+					echo "<td>" . $row[0] . "</td>";
+					echo "<td>" . $row[1] . "</td>";
+					echo "<td>" . $row[2] . "</td>";
+					echo "<td>" . $row[3] . "</td>";
+					echo "<td>" . $row[4] . "</td>";
+					echo "<td>" . $row[5] . "</td>";
+					echo "<td>" . $row[6] . "</td>";
+					echo "<td>" . $row[7] . "</td>";
+					echo "</tr>";
+					}
+					echo "</table>";
+					oci_free_statement($stid);
+
+							
+
+				}
+			?>
+			<br><br>
 			<form>				
-				<select name="JobID" id="Job ID"><option value="">select Job ID</option>
+				<select name="JobID" id="Job ID"><option value="">Select Job ID</option>
 					<?php
-					if($keywords == null ){
+					if($keywords == null &&  isset($_GET['search'])){
 					$sql="select jobid from jobs where jobtype = '$type'";
 					}
-					else
+					else if ($keywords != null &&  isset($_GET['search']))
 					{					
 					$sql="select jobid from jobs where description like '%$keywords%' and jobtype = '$type'";
+					}
+					else if (isset($_GET['recommend'])){
+					$sql= "select j.jobid
+							from jobs j, information i, employer e
+							where i.applicant = '$applicant'
+							and j.owner = e.email
+							and (j.minrequiredskills = i.skill1 or j.minrequiredskills = i.skill2 or i.industryinterested = e.industry)
+							and j.minrequiredqualification = i.highestquali";
 					}
 					$stid = oci_parse($dbh, $sql);
 					oci_execute($stid, OCI_DEFAULT);
@@ -163,14 +226,23 @@ if ($allowaccess=true)
 					oci_free_statement($stid);
 					?>
 				</select>
-					<select name="jobOwner" id="jobOwner"><option value="">select Owner</option>
+					<select name="jobOwner" id="jobOwner"><option value="">Select Owner</option>
 					<?php
-					if($keywords == null ){
-					$sql="select owner from jobs where jobtype = '$type'";
+					if($keywords == null &&  isset($_GET['search'])){
+					$sql="select jobid from jobs where jobtype = '$type'";
 					}
-					else
+					else if ($keywords != null &&  isset($_GET['search']))
 					{					
-					$sql="select owner from jobs where description like '%$keywords%' and jobtype = '$type'";
+					$sql="select jobid from jobs where description like '%$keywords%' and jobtype = '$type'";
+					}
+					else if (isset($_GET['recommend'])){
+					$sql= "select j.owner
+							from jobs j, information i, employer e
+							where i.applicant = '$applicant'
+							and j.owner = e.email
+							and (j.minrequiredskills = i.skill1 or j.minrequiredskills = i.skill2 or i.industryinterested = e.industry)
+							and j.minrequiredqualification = i.highestquali";
+
 					}
 					$stid = oci_parse($dbh, $sql);
 					oci_execute($stid, OCI_DEFAULT);
