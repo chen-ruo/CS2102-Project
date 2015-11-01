@@ -95,40 +95,11 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 	  </div>
 	    <!--/.navbar-collapse-->
 	</nav>
-<div class="banner_1">
-	<div class="container">
-		<div id="search_wrapper">
-		 <div id="search_form" class="clearfix">
-		 <h1>Start your job search</h1>
-		    <p>
-			 <input type="text" class="text" placeholder=" " value="Enter Keyword(s)" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Keyword(s)';}">
-			 <input type="text" class="text" placeholder=" " value="Location" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Location';}">
-			 <label class="btn2 btn-2 btn2-1b"><input type="submit" value="Find Jobs"></label>
-			</p>
-			</div>
-			</div>
-			</div>
-			</div>
+
 <div class="container">
     <div class="single">  
 	   <div class="col-md-4">
-	   	  <div class="col_3">
-	   	  	<h3>Popular Jobs</h3>
-	   	  	<ul class="list_1">
-	   	  		<li><a href="#">CFFA Profession - KPMG</a></li>
-	   	  		<li><a href="#">Backend design - IBM</a></li>		
-	   	  		<li><a href="#">Singapore MOS requiring experts - MOS</a></li>					
-	   	  	</ul>
-	   	  </div>
-	   	  <div class="col_3">
-	   	  	<h3>Jobs by Category</h3>
-	   	  	<ul class="list_2">
-	   	  		<li><a href="#">Software Jobs</a></li>	
-	   	  		<li><a href="#">Research Jobs</a></li>
-				<li><a href="#">Part-time Jobs</a></li>	
-				<li><a href="#">Architecture Jobs</a></li>		
-	   	  	</ul>
-	   	  </div>
+	   	 
 	   	  <div class="widget">
 	        <h3>Take The Seeking Poll!</h3>
     	        <div class="widget-content"> 
