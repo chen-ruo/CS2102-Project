@@ -53,15 +53,28 @@ if ($allowaccess=true)
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
 	        <ul class="nav navbar-nav">
 		        
-				
-				       
-				<li><a href="about.php">About Us</a></li>
+				<?php
+
+                    echo "&nbsp;&nbsp;&nbsp;&nbsp;"."Hello, ".$_SESSION['CurrentUser']."<br>";
+                    echo "&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['Role']."<br>";
+                    ?>
+					<li><a href="about.php">About Us</a></li>
 		        
 				        
 		        
 		        </li>
+		        <li class="dropdown">
+		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged In<b class="caret"></b></a>
+		             <ul class="dropdown-menu">
+						  <li><a href="applicantProfile.php">User Profile</a></li>
+						    <li><a href="applicantEdit.php">Profile Settings/Edit</a></li>
+							  <li><a href="passwordChange.php">Change Password</a></li>
+		             </ul>
+		        </li>
+				       
 				
-				<li><a onClick = "logout()">Logout</a></li>
+				
+				<li><a href = "logout.php">Logout</a></li> 
 	    </div>
 	    <div class="clearfix"> </div>
 	  </div>
