@@ -53,8 +53,9 @@ include 'connectToServer.php';
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
+		             	<li><a href="adminLogin.php">Admin login</a></li>
 						  <li><a href="employerLogin.php">Employer login</a></li>
-						    <li><a href="applicantLogin.php">Applicant Login</a></li>
+						    <li><a href="applicantLogin.php">Applicant login</a></li>
 		             </ul>
 		        </li>
 			<li class="dropdown">
