@@ -30,7 +30,7 @@ create table admins(
 
 create table jobs(
   jobID varchar(16),
-  jobType varchar(32) check(jobType = 'Intern' or jobType = 'Permanent' or jobType = 'Temporary'),
+  jobType varchar(32) check(jobType = 'Full-time' or jobType = 'Part-time' or jobType = 'Internship'),
   owner varchar(128) not null,
   Foreign Key(owner)References employer(email),
   category varchar(32) not null,
@@ -55,8 +55,11 @@ create table information(
   mobile varchar(16),
   web varchar(128),
   highestQuali varchar(24) not null,
-  skills varchar(128)not null,
+  skill1 varchar(64)not null,
+  skill2 varchar(64),
   selfDescription varchar(128) not null,
+  industryInterested varchar(32),
+  status varchar(12) check(status = 'Avaliable' or status = 'Unavaliable'),
   prevJob varchar(64),
   prevWorkExperience varchar(64),
   Foreign Key(applicant) References applicant(email)  
