@@ -70,14 +70,14 @@ if ($allowaccess=true)
 			  
 			  function setMain(){
 				alert("Profile edited succcessfully");
-			  	window.location.href = "index.html";
+			  	window.location.href = "index.php";
 			}
 			
 			function logout(){
 				var r = confirm("Do you want to logout?");
 			if (r == true) {
 				alert("Logout successfully");
-				window.location.href = "index.html";
+				window.location.href = "index.php";
 				} else{}
 				}
 				
@@ -94,7 +94,7 @@ if ($allowaccess=true)
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 	        </button>
-	        <a class="navbar-brand" href="home.html"><img src="images/logo.png" alt=""/></a>
+	        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt=""/></a>
 	    </div>
 	    <!--/.navbar-header-->
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
@@ -104,10 +104,7 @@ if ($allowaccess=true)
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;"."Hello, ".$_SESSION['CurrentUser']."<br>";
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['Role']."<br>";
                     ?>
-		       
-				
-				        
-				
+		      
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged In<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
@@ -117,7 +114,7 @@ if ($allowaccess=true)
 		             </ul>
 		        </li>
 				
-				<li><a onClick = "logout()">Logout</a></li>
+				<li><a href = 'logout.php'>Logout</a></li>
 	    </div>
 	    <div class="clearfix"> </div>
 	  </div>
@@ -134,32 +131,50 @@ if ($allowaccess=true)
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="hq">*Highest qualification</label>
                 <div class="col-md-9">
-                    <input type="text" path="hq" id="hq" class="form-control input-sm" placeholder = "Highest qualification"/>
+                    <input type="text" path="hq" name="hq" id="hq" class="form-control input-sm" placeholder = "Highest qualification"/>
                 </div>
             </div>
          </div>
 		 
 		       <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="skill">*Skills</label>
+                <label class="col-md-3 control-lable" for="skill">*Skill 1</label>
                 <div class="col-md-9">
-                    <input type="text" path="skill" name="skill" id="skill" class="form-control input-sm" placeholder = "Skills"/>
+                    <input type="text" path="skill1" name="skill1" id="skill1" class="form-control input-sm" placeholder = "Skill 1"/>
+                </div>
+            </div>
+         </div>
+
+         <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="skill">Skill 2</label>
+                <div class="col-md-9">
+                    <input type="text" path="skill2" name="skill2" id="skill2" class="form-control input-sm" placeholder = "Skill 2"/>
                 </div>
             </div>
          </div>
 		 
 		       <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="descrip">*Short Description of yourself</label>
+                <label class="col-md-3 control-lable" for="descrip">*Short description of yourself</label>
                 <div class="col-md-9">
                     <input type="text" path="descrip" name="descrip" id="descrip" class="form-control input-sm" placeholder = "Description"/>
+                </div>
+            </div>
+         </div>
+
+         <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="work">*Industry interested</label>
+                <div class="col-md-9">
+                    <input type="text" path="industry" name="industry" id="industry" class="form-control input-sm" placeholder = "Industry interested"/>
                 </div>
             </div>
          </div>
 		 
 		  <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="work">*1 most recent work experience</label>
+                <label class="col-md-3 control-lable" for="work">*One most recent work experience</label>
                 <div class="col-md-9">
                     <input type="text" path="work" name="work" id="work" class="form-control input-sm" placeholder = "Experience"/>
                 </div>
@@ -168,9 +183,18 @@ if ($allowaccess=true)
 		 
 		  <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="title">*Job title held</label>
+                <label class="col-md-3 control-lable" for="title">*Previous Job</label>
                 <div class="col-md-9">
-                    <input type="text" path="work" name="title" id="title" class="form-control input-sm" placeholder = "Last held position."/>
+                    <input type="text" path="job" name="job" id="job" class="form-control input-sm" placeholder = "Last job."/>
+                </div>
+            </div>
+         </div>
+
+         <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="title">Status</label>
+                <div class="col-md-9">
+                    <input type="text" path="status" name="status" id="status" class="form-control input-sm" placeholder = "Status."/>
                 </div>
             </div>
          </div>
@@ -180,7 +204,7 @@ if ($allowaccess=true)
 
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="mobilenum">Mobile Number</label>
+                <label class="col-md-3 control-lable" for="mobilenum">Mobile number</label>
                 <div class="col-md-9">
                     <input type="text" path="lastName" name="mobilenum" id="mobilenum" class="form-control input-sm"/>
                 </div>
@@ -196,12 +220,122 @@ if ($allowaccess=true)
             </div>
         </div>
 
-		
+			<input type="submit" Value="Submit "name="Submit" id="Submit" style="display: block; margin: 0 auto;">
 		</form>
-			   <input type="submit" name="formSubmit" value="Submit" style="display: block; margin: 0 auto;" >
+			   <!-- <input type="submit" name="formSubmit" value="Submit" style="display: block; margin: 0 auto;" > -->
     </div>
  </div>
 </div>
+
+
+<?php  if(isset($_GET['Submit'])){
+
+	//echo ("<script>alert('Hello')</script>");
+
+	$currentUser  = $_SESSION['CurrentUser'];
+	$highestQual  = $_GET['hq'];
+	$skillOne     = $_GET['skill1'];
+	$skillTwo     = $_GET['skill2'];
+	$descrip      = $_GET['descrip'];
+	$industryLike = $_GET['industry'];
+	$recentWork   = $_GET['work'];
+	$prevJob      = $_GET['job'];
+	$mobileNo     = $_GET['mobilenum'];
+	$personalWeb  = $_GET['website'];
+	$availability = $_GET['status'];
+
+	//this part has no issue, I am to edit.
+	$sql1 = "UPDATE applicant SET personalWeb = :personalweb, mobilenumber = :mobileNo where email = '$currentUser'";
+	$stid1 = oci_parse($dbh, $sql1);
+	oci_bind_by_name($stid1, ":personalweb", $personalWeb);
+	oci_bind_by_name($stid1, ":mobileNo", $mobileNo);
+	oci_execute($stid1);
+	oci_free_statement($stid1);	
+
+	// $sql_insert = 'INSERT INTO applicant (firstname, lastname, email, password, age, mobilenumber, gender, dateofbirth, nationality, personalweb) 
+	// 				VALUES(:firstname, :lastname, :email, :password, :age, :mobilenumber, :gender, :dateofbirth, :nationality, :personalweb)';
+				
+	// 			//echo "<b>SQL: </b>".$sql."<br><br>";
+	// $stid = oci_parse($dbh, $sql_insert);
+	// oci_bind_by_name($stid, ":firstname", $firstname);
+	// oci_bind_by_name($stid, ":lastname", $lastname);
+	// oci_bind_by_name($stid, ":email", $email);
+	// oci_bind_by_name($stid, ":password", $password);
+	// oci_bind_by_name($stid, ":age", $age);
+	// oci_bind_by_name($stid, ":mobilenumber", $mobilenumber);
+	// oci_bind_by_name($stid, ":gender", $gender);
+	// oci_bind_by_name($stid, ":dateofbirth", $dateofbirth);
+	// oci_bind_by_name($stid, ":nationality", $nationality);
+	// oci_bind_by_name($stid, ":personalweb", $personalweb);
+
+	// oci_execute($stid);
+	// oci_free_statement($stid);
+
+
+
+	//check whether is user is inside the additional info
+	$sqlCheck = "SELECT applicant from information";
+	$count = 0;
+
+	$stidCheck = oci_parse($dbh, $sqlCheck);
+	oci_execute($stidCheck, OCI_DEFAULT);
+
+	while ($queryCheck = oci_fetch_array($stidCheck)) {
+				if($currentUser == $queryCheck[0]){
+					$count++;				
+				}
+			};
+	oci_free_statement($stidCheck);
+
+	if ($count == 1){
+		$sql2 = "UPDATE information SET mobile = :mobile, web = :personalweb, highestQuali = :highestQualification, skill1 = :sk1, skill2 = :sk2, selfdescription = :selfD, industryInterested = :interested, status = :availability, prevJob = :prevJob, prevWorkExperience = :prevWorkExperience WHERE applicant = '$currentUser'";
+		$stid2 = oci_parse($dbh, $sql2);
+		echo "$sql2";
+		// oci_bind_by_name($stid2, ":user", $currentUser);
+		oci_bind_by_name($stid2, ":personalweb", $personalWeb);
+		oci_bind_by_name($stid2, ":mobile", $mobileNo);
+		oci_bind_by_name($stid2, ":highestQualification", $highestQual);
+		oci_bind_by_name($stid2, ":sk1", $skillOne);
+		oci_bind_by_name($stid2, ":sk2", $skillTwo);
+		oci_bind_by_name($stid2, ":selfD", $descrip);
+		oci_bind_by_name($stid2, ":interested", $industryLike);
+		oci_bind_by_name($stid2, ":availability", $availability);
+		oci_bind_by_name($stid2, ":prevJob", $prevJob);
+		oci_bind_by_name($stid2, ":prevWorkExperience", $recentWork);
+		oci_execute($stid2);
+		oci_free_statement($stid2);
+	}
+	else{
+
+		$sql2 = "INSERT INTO information (APPLICANT, MOBILE, WEB, HIGHESTQUALI, SKILL1, SKILL2, SELFDESCRIPTION, INDUSTRYINTERESTED, STATUS, PREVJOB, PREVWORKEXPERIENCE) VALUES(:userID, :mobile, :personalweb, :highestQualification, :sk1, :sk2, :selfD, :interested, :availability, :prevJob, :prevWorkExperience)";
+		$stid2 = oci_parse($dbh, $sql2);	
+		echo "$sql2";
+
+		oci_bind_by_name($stid2, ":userID", $currentUser);
+		oci_bind_by_name($stid2, ":personalweb", $personalWeb);
+		oci_bind_by_name($stid2, ":mobile", $mobileNo);
+		oci_bind_by_name($stid2, ":highestQualification", $highestQual);
+		oci_bind_by_name($stid2, ":sk1", $skillOne);
+		oci_bind_by_name($stid2, ":sk2", $skillTwo);	
+		oci_bind_by_name($stid2, ":selfD", $descrip);
+		oci_bind_by_name($stid2, ":interested", $industryLike);
+		oci_bind_by_name($stid2, ":availability", $availability);
+		oci_bind_by_name($stid2, ":prevJob", $prevJob);
+		oci_bind_by_name($stid2, ":prevWorkExperience", $recentWork);
+		oci_execute($stid2);
+		oci_free_statement($stid2);
+	}
+
+
+	echo ("<script>alert('The informtaion has been updated successfully')</script>");
+	die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0099726/applicantProfile.php'</script>");
+
+}
+
+?>
+
+
+
 <!-- footer --> 
 <div class="footer">
 	<div class="container">
@@ -211,7 +345,7 @@ if ($allowaccess=true)
 				<li><a href="index.php">Home</a></li>
 				<li><a href="applicantLogin.php">Sign In</a></li>
 				<li><a href="applicantRegister.php">Join Now</a></li>
-				<li><a href="about.html">About</a></li>
+				<li><a href="about.php">About</a></li>
 			</ul>
 			<ul class="f_list">
 				<li><a href ="jobs.php">Find a Job</a></li>
