@@ -34,21 +34,8 @@
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
 	        <ul class="nav navbar-nav">
 			   <li> <a href="#testimonials"> Our Testimonials and team</a></li>
-		        <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jobs<b class="caret"></b></a>
-		            <ul class="dropdown-menu">
-			            <li><a href="jobs.html">Part-time Jobs</a></li>
-			            <li><a href="jobs.html">Internships</a></li>
-			            <li><a href="jobs.html">Full-time Jobs</a></li>
-		            </ul>
-		        </li>
-				   <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
-		             <ul class="dropdown-menu">
-						  <li><a href="post.html">Post Jobs</a></li>
-						    <li><a href="search.html">Search applicants</a></li>
-							  <li><a href="searchmatched.html">Search for matched applicants</a></li>
-		             </ul>
+		        
+				   
 		        </li>
 				
 				<li class="dropdown">
@@ -70,21 +57,7 @@
 	  </div>
 	    <!--/.navbar-collapse-->
 	</nav>
-<div class="banner_1">
-	<div class="container">
-		<div id="search_wrapper">
-		 <div id="search_form" class="clearfix">
-		 <h1>Start your job search</h1>
-		    <p>
-			 <input type="text" class="text" placeholder=" " value="Enter Keyword(s)" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Keyword(s)';}">
-			 <input type="text" class="text" placeholder=" " value="Location" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Location';}">
-			 <label class="btn2 btn-2 btn2-1b"><input type="submit" value="Find Jobs"></label>
-			</p>
-			</div>
-			</div>
-			</div>
-			</div>
-			
+
 			
 <!-- End of header -->
 
