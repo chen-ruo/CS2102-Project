@@ -74,7 +74,7 @@ if ($allowaccess=true)
 		             </ul>
 		        </li>
 				
-				<li><a onClick = "logout()">Logout</a></li>
+				<li><a href = "logout.php">Logout</a></li>
 	    </div>
 	    <div class="clearfix"> </div>
 	  </div>
