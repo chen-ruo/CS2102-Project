@@ -35,8 +35,15 @@
 	        <ul class="nav navbar-nav">
 			   <li> <a href="#testimonials"> Our Testimonials and team</a></li>
 		        
-				   
+				 <li class="dropdown">
+		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
+		             <ul class="dropdown-menu">
+						  <li><a href="post.php">Post Jobs</a></li>
+						    <li><a href="search.php">Search applicants</a></li>
+							  <li><a href="searchmatched.php">Search for matched applicants</a></li>
+		             </ul>
 		        </li>
+		        
 				
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
