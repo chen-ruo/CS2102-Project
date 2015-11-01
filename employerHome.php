@@ -1,10 +1,10 @@
 <?php
 include 'session.php';
 include 'connectToServer.php';
+
 if ($allowaccess=true)
 {
     ?>
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -25,76 +25,175 @@ if ($allowaccess=true)
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!----font-Awesome----->
 
+<script>
+
+              function checkServer(){
+                var description = document.getElementById("description").value
+                var qualification = document.getElementById("qualification").value
+                var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+				var age = document.getElementById("age").value
+			
+				
+			var r = confirm("Are you sure to register for an account?");
+			if (r == true) {
+
+			 var errormsg = "Below are the errors:\n\n";
+			   var errorlog = false;
+			   
+			   if( description.trim().length == 0) {
+					errorlog = true;
+					errormsg += "- Job description field is empty.\n";
+				}
+			    if( qualification.trim().length == 0) {
+					errorlog = true;
+					errormsg += "- Job minimum qualification field is empty.\n";
+				}
+	
+					if(errorlog){
+					errormsg += "\nPlease correct these errors before submitting.";
+					alert(errormsg);
+					} else{
+					setTimeout(setMain, 1000);
+				}
+			} else {
+			}
+              }
+			  
+			  function setMain(){
+				alert("Account created succcessfully");
+			  	window.location.href = "index.html";
+			}
+        </script>
+		
 </head>
 <body>
- <nav class="navbar navbar-default" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="home.php"><img src="images/logo.png" alt=""></a>
-                </div>
-             	    <!--/.navbar-header-->
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+	    <div class="navbar-header">
+	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+	        </button>
+	        <a class="navbar-brand" href="home.html"><img src="images/logo.png" alt=""/></a>
+	    </div>
+	    <!--/.navbar-header-->
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
 	        <ul class="nav navbar-nav">
-	        	<?php
+			
+			<?php
 
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;"."Hello, ".$_SESSION['CurrentUser']."<br>";
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['Role']."<br>";
                     ?>
-					<li><a href="about.php">About Us</a></li>
-					</li>
-		        <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
-		             <ul class="dropdown-menu">
-						  <li><a href="postJob.php">Post Jobs</a></li>
-						    <li><a href="searchApplicant.php">Search applicants</a></li>
-							  <li><a href="searchMatched.php">Search for matched applicants</a></li>
-		             </ul>
+
+			<li><a href="postJob.php">Post Jobs</a></li>
+
 		        </li>
+				
 				
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged In<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
 						  <li><a href="employerProfile.php">User Profile</a></li>
 						    <li><a href="employerEdit.php">Profile Settings/Edit</a></li>
-							  <li><a href="passwordChange.php">Change Password</a></li>
+						    <li><a href="editJob.php">Jobs Settings/Edit</a></li>
+							<li><a href="passwordChange.php">Change Password</a></li>
 		             </ul>
 		        </li>
+		        <li><a href = "logout.php">Logout</a></li>
 				
-				<li><a href = "logout.php">Logout</a></li>   
 	    </div>
 	    <div class="clearfix"> </div>
 	  </div>
 	    <!--/.navbar-collapse-->
 	</nav>
+	<div class="banner_1">
+	<div class="container">
+		<div id="search_wrapper1">
+		   <div id="search_form" class="clearfix">
+		    <h1>Search for employees</h1>
+		    <p>
+		    <form>
+			Skill: <input type="text" name="skill" id="skill">
+			<select name="qualification" id="qualification ID">
+			 <option value="Required Qualification">Required Qualification</option>
+			 <option value="O-level">O-level</option>
+			 <option value="A-level">A-level</option>
+			 <option value="Diplomas">Diplomas</option>
+			 <option value="Bachelor's degrees">Bachelor's degrees</option>
+			 <option value="Master">Master</option>
+			 <option value="Ph.D">Ph.D</option>
+			 </select>
+			<input type="submit" name="search" value="Search" style="background-color:#A9E2F3">
+			 </form>
+			</p>
+           </div>
+		</div>
+   </div> 
+</div>
 <div class="container">
     <div class="single">  
 	   <div class="col-md-9 single_right">
-	    <h1>Shows list of jobs posted <h1>
-		
-  <div class="clearfix"> </div>
- </div>
- 
-</div>
-<?php 
-					$currentuser=$_SESSION['CurrentUser'];
-					$sql="select j.jobid,j.jobtype,j.category,j.minrequiredqualification,j.minrequiredskills,j.description from jobs j where owner='$currentuser'";
+	      <div class="but_list">
+	       <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+			<ul id="myTab" class="nav nav-tabs" role="tablist">
+			  <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Available employees</a></li>			  			  
+		   </ul>
+
+		    <?php if(isset($_GET['search']))
+				{
+					$skill = $_GET['skill'];
+					$qualification = $_GET['qualification'];
+					$employer = $_SESSION['CurrentUser'];
+
+					if($qualification == "Required Qualification"){
+						$sql = "select a.firstname, a.lastname, a.email, a.mobilenumber, i.skill1,i.skill2,i.highestquali, i.industryinterested, i.status
+								from applicant a, information i
+								where a.email = i.applicant
+								and i.status = 'Avaliable'
+								and i.industryinterested in
+								  (select e.industry
+								    from employer e
+								    where e.email = '$employer'
+								    and (i.skill1 = '$skill' or i.skill2 = '$skill') 
+								    )";
+					}
+					else{
+						$sql = "select a.firstname, a.lastname, a.email, a.mobilenumber, i.skill1,i.skill2,i.highestquali, i.industryinterested, i.status
+								from applicant a, information i
+								where a.email = i.applicant
+								and i.status = 'Avaliable'
+								and i.industryinterested in
+								  (select e.industry
+								    from employer e
+								    where e.email = '$employer'
+								    and i.highestquali = '$qualification'
+								    and (i.skill1 = '$skill' or i.skill2 = '$skill') 
+								    )";
+					}
 					$stid = oci_parse($dbh,$sql);
 					oci_execute($stid,OCI_DEFAULT);
-					echo "<table border=\"1\" >					
+					echo "<table border=\"1\" >
+				    <col width=\"10%\">
+					<col width=\"15%\">
+					<col width=\"20%\">
+					<col width=\"15%\">
+					<col width=\"15%\">
+					<col width=\"15%\">
+					<col width=\"10%\">
+					
 					<tr>
-					<th>Job ID</th>
-					<th>Job Type</th>
-					<th>Category</th>				
-					<th>Qualification Required</th>
-					<th>Skills Required</th>
-					<th>Description</th>
+					<th>First name</th>
+					<th>Last name</th>					
+					<th>Email</th>
+					<th>Contact number</th>
+					<th>Skill 1</th>
+					<th>Skill 2</th>
+					<th>Qualification</th>
+					<th>Industry interested</th>
+					<th>Status</th>
 					</tr>";
 	
 					while($row = oci_fetch_array($stid)) {
@@ -105,81 +204,40 @@ if ($allowaccess=true)
 					echo "<td>" . $row[3] . "</td>";
 					echo "<td>" . $row[4] . "</td>";
 					echo "<td>" . $row[5] . "</td>";
+					echo "<td>" . $row[6] . "</td>";
+					echo "<td>" . $row[7] . "</td>";
+					echo "<td>" . $row[8] . "</td>";
 					echo "</tr>";
 					}
 					echo "</table>";
 					oci_free_statement($stid);
-				
+
+
+				}
 			?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <br><br>
-<form>				
-				<select name="JobID" id="Job ID"><option value="">select Job ID</option>
-					<?php
-					$sql="select jobid from jobs where owner='$currentuser'";
-					$stid = oci_parse($dbh, $sql);
-					oci_execute($stid, OCI_DEFAULT);
-					while($row = oci_fetch_array($stid)){
-					echo "<option value=\"".$row[0]."\">".$row[0]."</option><br>";
-					}
-					oci_free_statement($stid);
-					?>
-				<input type="submit" name="formSubmit1" value="DELETE" >
-				<?php
-				        if(isset($_GET['formSubmit1']))
-				{
-					    $job_id=$_GET['JobID'];
-						$sql_insert = "delete from jobs where jobid = '$job_id' and owner = '$currentuser'";
-						$stid = oci_parse($dbh, $sql_insert);
-				
-						oci_execute($stid);
-						oci_free_statement($stid);
-										
-                }                         			
-					?>
-				<input type="radio" name="Format" id="Format1" value="JObType">Job Type
-				<input type="radio" name="Format" id="Format1" value="Category">Category
-				<input type="radio" name="Format" id="Format1" value="minrequiredqualification">Qualification Required
-				<input type="radio" name="Format" id="Format1" value="minrequiredskills">Skills Required
-				<input type="radio" name="Format" id="Format1" value="Description">Description
-				Input: <input type="text" name="Title" id="Title">
-				
-				<input type="submit" name="formSubmit2" value="UPDATE" >	
-				<?php
-				        if(isset($_GET['formSubmit2']))
-				{
-					    $field=$_GET['Format'];
-						$input=$_GET['Title'];
-						$job_id=$_GET['JobID'];
-						
-						$sql_insert = "update jobs set $field ='$input' where owner = '$currentuser' and jobid= '$job_id' ";
-						
-					
-						$stid = oci_parse($dbh, $sql_insert);
-						oci_execute($stid);
-						oci_free_statement($stid);
-										
-                }    
-                     			
-					?>
-			</form>			
-</div></div></div></div></div></div>
-
-
 <!-- footer --> 
 <div class="footer">
 	<div class="container">
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
 			<ul class="f_list f_list1">
-				<li><a href="index.php">Home</a></li>
-				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Join Now</a></li>
-				<li><a href="about.php">About</a></li>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="applicantLogin.html">Sign In</a></li>
+				<li><a href="applicantRegister.html">Join Now</a></li>
+				<li><a href="about.html">About</a></li>
 			</ul>
 			<ul class="f_list">
-				<li><a href ="jobs.php">Find a Job</a></li>
-				<li><a href="contact.php">Contact Us</a></li>
-				<li><a href="post.php">Post a Job</a></li>
+				<li><a href ="jobs.html">Find a Job</a></li>
+				<li><a href="contact.html">Contact Us</a></li>
+				<li><a href="post.html">Post a Job</a></li>
 			</ul>
 			<div class="clearfix"> </div>
 		</div>
@@ -204,7 +262,7 @@ if ($allowaccess=true)
   </div>
 </div>
 </body>
-</html>	
+</html>
 <?php
 }
     ?>

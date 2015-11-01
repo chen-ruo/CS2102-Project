@@ -18,5 +18,5 @@ INSERT INTO jobs VALUES('3','Permanent','a0101973@u.nus.edu','IT','Degree','Bank
 INSERT INTO jobs VALUES('5','Permanent','a0101973@u.nus.edu','IT','Degree','Banking background','Staff');
 
 /*Applicants information*/
-insert into information values('chen.ruo@hotmail.com',90042203,NULL,'Degree','C++','Java','Admin',NULL,'Avaliable',NULL,NULL);
+insert into information values('chen.ruo@hotmail.com',90042203,NULL,'Degree','C++','Java','Admin','IT','Avaliable',NULL,NULL);
 insert into information values('wangrenfei1991@gmail.com',NULL,NULL,'Degree','Python',NULL,'Admin','IT','Avaliable',NULL,NULL);
