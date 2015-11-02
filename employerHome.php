@@ -122,7 +122,7 @@ if ($allowaccess=true)
 			 <option value="O-level">O-level</option>
 			 <option value="A-level">A-level</option>
 			 <option value="Diplomas">Diplomas</option>
-			 <option value="Bachelor's degrees">Bachelor's degrees</option>
+			 <option value="Degree">Bachelor's degrees</option>
 			 <option value="Master">Master</option>
 			 <option value="Ph.D">Ph.D</option>
 			 </select>
