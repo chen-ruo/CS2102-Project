@@ -252,27 +252,6 @@ if ($allowaccess=true)
 	oci_execute($stid1);
 	oci_free_statement($stid1);	
 
-	// $sql_insert = 'INSERT INTO applicant (firstname, lastname, email, password, age, mobilenumber, gender, dateofbirth, nationality, personalweb) 
-	// 				VALUES(:firstname, :lastname, :email, :password, :age, :mobilenumber, :gender, :dateofbirth, :nationality, :personalweb)';
-				
-	// 			//echo "<b>SQL: </b>".$sql."<br><br>";
-	// $stid = oci_parse($dbh, $sql_insert);
-	// oci_bind_by_name($stid, ":firstname", $firstname);
-	// oci_bind_by_name($stid, ":lastname", $lastname);
-	// oci_bind_by_name($stid, ":email", $email);
-	// oci_bind_by_name($stid, ":password", $password);
-	// oci_bind_by_name($stid, ":age", $age);
-	// oci_bind_by_name($stid, ":mobilenumber", $mobilenumber);
-	// oci_bind_by_name($stid, ":gender", $gender);
-	// oci_bind_by_name($stid, ":dateofbirth", $dateofbirth);
-	// oci_bind_by_name($stid, ":nationality", $nationality);
-	// oci_bind_by_name($stid, ":personalweb", $personalweb);
-
-	// oci_execute($stid);
-	// oci_free_statement($stid);
-
-
-
 	//check whether is user is inside the additional info
 	$sqlCheck = "SELECT applicant from information";
 	$count = 0;
@@ -330,6 +309,24 @@ if ($allowaccess=true)
 	echo ("<script>alert('The informtaion has been updated successfully')</script>");
 	die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0099726/applicantProfile.php'</script>");
 
+		// $sql_insert = 'INSERT INTO applicant (firstname, lastname, email, password, age, mobilenumber, gender, dateofbirth, nationality, personalweb) 
+	// 				VALUES(:firstname, :lastname, :email, :password, :age, :mobilenumber, :gender, :dateofbirth, :nationality, :personalweb)';
+				
+	// 			//echo "<b>SQL: </b>".$sql."<br><br>";
+	// $stid = oci_parse($dbh, $sql_insert);
+	// oci_bind_by_name($stid, ":firstname", $firstname);
+	// oci_bind_by_name($stid, ":lastname", $lastname);
+	// oci_bind_by_name($stid, ":email", $email);
+	// oci_bind_by_name($stid, ":password", $password);
+	// oci_bind_by_name($stid, ":age", $age);
+	// oci_bind_by_name($stid, ":mobilenumber", $mobilenumber);
+	// oci_bind_by_name($stid, ":gender", $gender);
+	// oci_bind_by_name($stid, ":dateofbirth", $dateofbirth);
+	// oci_bind_by_name($stid, ":nationality", $nationality);
+	// oci_bind_by_name($stid, ":personalweb", $personalweb);
+
+	// oci_execute($stid);
+	// oci_free_statement($stid);
 }
 
 ?>
