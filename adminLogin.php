@@ -1,25 +1,3 @@
-
-Skip to content
-This repository
-
-    Pull requests
-    Issues
-    Gist
-
-    @nicchan92
-
-4
-0
-
-    0
-
-chen-ruo/CS2102-Project
-
-CS2102-Project/employerLogin.php
-0271339 4 days ago
-@renfeirocks renfeirocks forgetPass done
-1 contributor
-334 lines (291 sloc) 12.2 KB
 <?php
 session_start();
 ?>
@@ -94,58 +72,7 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
                 <div class="section-title">
                     <h3>Admin Login</h3><br>
                 </div>
-				<!--<form>
 				
-				Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name = "Email" id="Email"><br><br>
-				Password: <input type = "password" name = "Password" id = "Password"><br><br>
-				<input type="submit" name="formSubmit" value="Login" ><br><br>
-				
-				</form>
-				
-				<div class="forgot">
-                    <div class="login-check">
-                        <label class="checkbox1">
-                            <input type="checkbox" name="checkbox" checked="">
-                            <i></i>Sign Up for Newsletter</label>
-                    </div>
-                    <div class="login-para">
-                        <p>
-                            <a href="forgetPass.php"> Forgot Password? </a>
-                        </p>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-				<!--
-                 <div class="textbox-wrap">
-                            <div class="input-group">
-                                <span class="input-group-addon "><i class="fa fa-user"></i></span>
-                                <input type="text" id = "email" class="form-control" placeholder="Email">
-                            </div>
-                 </div>
-				 
-                 <div class="textbox-wrap">
-                            <div class="input-group">
-                                <span class="input-group-addon "><i class="fa fa-key"></i></span>
-                                <input type="password" id = "password" class="form-control " placeholder="Password">
-                            </div>
-                 </div>
-                <div class="forgot">
-                    <div class="login-check">
-                        <label class="checkbox1">
-                            <input type="checkbox" name="checkbox" checked="">
-                            <i></i>Sign Up for Newsletter</label>
-                    </div>
-                    <div class="login-para">
-                        <p>
-                            <a href="forgetPass.php"> Forgot Password? </a>
-                        </p>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-				
-                 login button 
-		<a type="submit" class="btn btn-default" onClick = "checkServer()" >Login</a>
-		-->
 					<form> 
 					   E-mail: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Email" id="Email">
 					 
@@ -166,7 +93,7 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 					// echo "$username"."<br>";
 					// echo "$password"."<br>";
 					// $sql_applicant = "select email, password from applicant";
-					$sql_employer =  "select email, password from employer";
+					$sql_employer =  "select email, password from admins";
 					// $stid_applicant = oci_parse($dbh, $sql_applicant);
 					$stid_employer = oci_parse($dbh, $sql_employer);
 					$exist = false;
@@ -296,7 +223,5 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 <?php oci_close($dbh); ?>
 </html>	
 
-    Status API Training Shop Blog About Pricing 
 
-    © 2015 GitHub, Inc. Terms Privacy Security Contact Help 
 
