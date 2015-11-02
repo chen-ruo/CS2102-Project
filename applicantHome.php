@@ -104,28 +104,22 @@ if ($allowaccess=true)
 					$keywords=$_GET['Title'];
 					$type=$_GET['Format'];
 					echo $keywords;
-					if($keywords == null ){
-					$sql="select * from jobs where jobtype = '$type'";
+					if($keywords == "Enter job description." ){
+					$sql="select j.*,e.companyname from jobs j,employer e where jobtype = '$type' and j.owner=e.email" ;
 					}
 					else
 					{					
-					$sql="select * from jobs where description like '%$keywords%' and jobtype = '$type'";
+					$sql="select j.* ,e.companyname from jobs j,employer e where description like '%$keywords%' and jobtype = '$type' and j.owner=e.email";
 					}
 					$stid = oci_parse($dbh,$sql);
 					oci_execute($stid,OCI_DEFAULT);
 					echo "<table border=\"1\" >
-				    <col width=\"10%\">
-					<col width=\"15%\">
-					<col width=\"20%\">
-					<col width=\"15%\">
-					<col width=\"15%\">
-					<col width=\"15%\">
-					<col width=\"10%\">
 					
 					<tr>
 					<th>Job ID</th>
 					<th>Job Type</th>					
-					<th>Employer</th>
+					<th>Company Name</th>
+					<th>Employer Email</th>
 					<th>Category</th>
 					<th>Qualification Required</th>
 					<th>Skills Required</th>
@@ -136,6 +130,7 @@ if ($allowaccess=true)
 					echo "<tr>";
 					echo "<td>" . $row[0] . "</td>";
 					echo "<td>" . $row[1] . "</td>";
+					echo "<td>" . $row[7] . "</td>"; 
 					echo "<td>" . $row[2] . "</td>";
 					echo "<td>" . $row[3] . "</td>";
 					echo "<td>" . $row[4] . "</td>";
@@ -204,12 +199,12 @@ if ($allowaccess=true)
 			<form>				
 				<select name="JobID" id="Job ID"><option value="">Select Job ID</option>
 					<?php
-					if($keywords == null &&  isset($_GET['search'])){
-					$sql="select jobid from jobs where jobtype = '$type'";
+					if($keywords == "Enter job description." &&  isset($_GET['search'])){
+					$sql="select distinct jobid from jobs where jobtype = '$type'";
 					}
-					else if ($keywords != null &&  isset($_GET['search']))
+					else if ($keywords != "Enter job description." &&  isset($_GET['search']))
 					{					
-					$sql="select jobid from jobs where description like '%$keywords%' and jobtype = '$type'";
+					$sql="select distinct jobid from jobs where description like '%$keywords%' and jobtype = '$type'";
 					}
 					else if (isset($_GET['recommend'])){
 					$sql= "select distinct j.jobid
@@ -230,12 +225,12 @@ if ($allowaccess=true)
 				</select>
 					<select name="jobOwner" id="jobOwner"><option value="">Select Owner</option>
 					<?php
-					if($keywords == null &&  isset($_GET['search'])){
-					$sql="select jobid from jobs where jobtype = '$type'";
+					if($keywords == "Enter job description." &&  isset($_GET['search'])){
+					$sql="select distinct owner from jobs where jobtype = '$type'";
 					}
-					else if ($keywords != null &&  isset($_GET['search']))
+					else if ($keywords != "Enter job description." &&  isset($_GET['search']))
 					{					
-					$sql="select jobid from jobs where description like '%$keywords%' and jobtype = '$type'";
+					$sql="select distinct owner from jobs where description like '%$keywords%' and jobtype = '$type'";
 					}
 					else if (isset($_GET['recommend'])){
 					$sql= "select distinct j.owner
