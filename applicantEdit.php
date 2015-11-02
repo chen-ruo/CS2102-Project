@@ -127,14 +127,32 @@ if ($allowaccess=true)
         <form>
 		<p>* Denotes compulsory field </p> <br><br><br>
 		
-		  <div class="row">
+		 <!--  <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="hq">*Highest qualification</label>
                 <div class="col-md-9">
                     <input type="text" path="hq" name="hq" id="hq" class="form-control input-sm" placeholder = "Highest qualification"/>
                 </div>
             </div>
+         </div> -->
+
+         <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="hq">*Highest qualification</label>
+                <div class="col-md-9">
+                             <select name="hq">
+								<option value="O'Level">O'Level</option>
+								<option value="A'Level">A'Level</option>
+								<option value="Diploma">Diploma</option>
+								<option value="Degree">Degree</option>
+								<option value="Master">Master</option>
+								<option value="Ph.D">Ph.d</option>
+
+							</select>
+            </div>
          </div>
+     </div>
+
 		 
 		       <div class="row">
             <div class="form-group col-md-12">
@@ -190,14 +208,20 @@ if ($allowaccess=true)
             </div>
          </div>
 
-         <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="title">Status</label>
+        
+          
+		  <div class="row">
+		  	<div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="title">*Status</label>
                 <div class="col-md-9">
-                    <input type="text" path="status" name="status" id="status" class="form-control input-sm" placeholder = "Status."/>
+                	<input type = "radio" name="status" id="status1" value="Available">Available
+                	<input type = "radio" name="status" id="status2" value="Unavailable">Unavailable
                 </div>
+                 </div>
             </div>
-         </div>
+
+                
+        
 		 
 		 <br><br>
 		 
