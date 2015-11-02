@@ -76,7 +76,7 @@ if ($allowaccess=true)
 		    <h1>Start your job search</h1>
 		    <p>
 			 <form>
-			  Title: <input type="text" name="Title" id="Title">
+			  <input type="text" name="Title" id="Title" value="Enter job description." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter job description.';}">
 			  <input type="radio" name="Format" id="Format1" value="Full-time">Full-time
 			  <input type="radio" name="Format" id="Format1" value="Part-time">Part-time
 			  <input type="radio" name="Format" id="Format1" value="Internship">Internship
@@ -156,7 +156,8 @@ if ($allowaccess=true)
 						where i.applicant = '$applicant'
 						and j.owner = e.email
 						and (j.minrequiredskills = i.skill1 or j.minrequiredskills = i.skill2 or i.industryinterested = e.industry)
-						and j.minrequiredqualification = i.highestquali";
+						and j.minrequiredqualification = i.highestquali
+						order by e.companyname, j.jobid";
 
 					$stid = oci_parse($dbh,$sql);
 					oci_execute($stid,OCI_DEFAULT);
@@ -211,12 +212,13 @@ if ($allowaccess=true)
 					$sql="select jobid from jobs where description like '%$keywords%' and jobtype = '$type'";
 					}
 					else if (isset($_GET['recommend'])){
-					$sql= "select j.jobid
+					$sql= "select distinct j.jobid
 							from jobs j, information i, employer e
 							where i.applicant = '$applicant'
 							and j.owner = e.email
 							and (j.minrequiredskills = i.skill1 or j.minrequiredskills = i.skill2 or i.industryinterested = e.industry)
-							and j.minrequiredqualification = i.highestquali";
+							and j.minrequiredqualification = i.highestquali
+							order by j.jobid";
 					}
 					$stid = oci_parse($dbh, $sql);
 					oci_execute($stid, OCI_DEFAULT);
@@ -236,7 +238,7 @@ if ($allowaccess=true)
 					$sql="select jobid from jobs where description like '%$keywords%' and jobtype = '$type'";
 					}
 					else if (isset($_GET['recommend'])){
-					$sql= "select j.owner
+					$sql= "select distinct j.owner
 							from jobs j, information i, employer e
 							where i.applicant = '$applicant'
 							and j.owner = e.email
