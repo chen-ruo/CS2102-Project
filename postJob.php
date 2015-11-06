@@ -85,39 +85,22 @@ if ($allowaccess=true)
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;"."Hello, ".$_SESSION['CurrentUser']."<br>";
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['Role']."<br>";
                     ?>
-			  <li><a href="about.php">About Us</a></li>
-		        <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jobs<b class="caret"></b></a>
-		            <ul class="dropdown-menu">
-			            <li><a href="jobs.php">Part-time Jobs</a></li>
-			            <li><a href="jobs.php">Internships</a></li>
-			            <li><a href="jobs.php">Full-time Jobs</a></li>
-		            </ul>
+            <li><a href="employerHome.php">Search Employees</a></li>
+			<li><a href="postJob.php">Post Jobs</a></li>
+
 		        </li>
-				        <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
-		             <ul class="dropdown-menu">
-						  <li><a href="postJob.php">Post Jobs</a></li>
-						    <li><a href="search.php">Search applicants</a></li>
-							  <li><a href="searchmatched.php">Search for matched applicants</a></li>
-		             </ul>
-		        </li>
-				<!-- 
+				
+				
 				<li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
+		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged In<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
-						  <li><a href="employerLogin.php">Employer login</a></li>
-						    <li><a href="applicantLogin.php">Applicant Login</a></li>
+						  <li><a href="employerProfile.php">User Profile</a></li>
+						    <li><a href="employerEdit.php">Profile Settings/Edit</a></li>
+						    <li><a href="editJob.php">Jobs Settings/Edit</a></li>
+							<li><a href="passwordChange.php">Change Password</a></li>
 		             </ul>
-		        </li> -->
-		<!-- 	<li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registration<b class="caret"></b></a>
-		             <ul class="dropdown-menu">
-						  <li><a href="employerRegister.php">Create an employer account</a></li>
-						    <li><a href="applicantRegister.php">Create an applicant account</a></li>
-		             </ul>
-		        </li> -->
-		     <li><a href = "logout.php">Logout</a></li>   
+		        </li>
+		        <li><a href = "logout.php">Logout</a></li>
 
 	    </div>
 	    <div class="clearfix"> </div>

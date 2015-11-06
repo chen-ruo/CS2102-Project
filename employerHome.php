@@ -87,7 +87,7 @@ if ($allowaccess=true)
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;"."Hello, ".$_SESSION['CurrentUser']."<br>";
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['Role']."<br>";
                     ?>
-
+            <li><a href="employerHome.php">Search Employees</a></li>
 			<li><a href="postJob.php">Post Jobs</a></li>
 
 		        </li>
@@ -229,15 +229,15 @@ if ($allowaccess=true)
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
 			<ul class="f_list f_list1">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="applicantLogin.html">Sign In</a></li>
-				<li><a href="applicantRegister.html">Join Now</a></li>
-				<li><a href="about.html">About</a></li>
+				<li><a href="index.php">Home</a></li>
+				<li><a href="applicantLogin.php">Sign In</a></li>
+				<li><a href="applicantRegister.php">Join Now</a></li>
+				<li><a href="about.php">About</a></li>
 			</ul>
 			<ul class="f_list">
 				<li><a href ="jobs.html">Find a Job</a></li>
-				<li><a href="contact.html">Contact Us</a></li>
-				<li><a href="post.html">Post a Job</a></li>
+				<li><a href="contact.php">Contact Us</a></li>
+				<li><a href="postJob.php">Post a Job</a></li>
 			</ul>
 			<div class="clearfix"> </div>
 		</div>
