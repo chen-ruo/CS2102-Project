@@ -89,81 +89,329 @@ if ($allowaccess=true)
     <div class="single">  
 	   <div class="col-md-9 single_right">
 	   <!-- Description -->
-		<h1> Description of applicant </h1>
-	       <p>"Here displays the description of the applicant"</p>
-		   <?php   
-		            $currentuser=$_SESSION['CurrentUser'];
-					$sql="select a.firstname,a.lastname,a.email,a.age,a.mobilenumber,a.gender,a.dateofbirth,a.nationality,a.personalweb,i.highestquali, i.skills,i.selfdescription,i.prevjob,i.prevworkexperience from applicant a,information i where a.email=$currentuser and i.applicant=$currentuser";
+		<h1> List of jobs applied </hi>
+			<form>
+				
+				<input type="submit" name="View" value="view" style="background-color:#A9E2F3">
+			</form>
+			<br>
+	   	<?php
+	   	$currentuser = $_SESSION['CurrentUser'];
+	   	$sql = "SELECT EmailE, JOBID from applyfor where'$currentuser' = EmailA";
+
+	   	$stid = oci_parse($dbh, $sql);
+	   	oci_execute($stid, OCI_DEFAULT);
+	   	$email = array();
+	   	$jobIndex = array();
+
+	   	while($query = oci_fetch_array($stid)){
+	   		array_push($email, $query[0]);
+	   		array_push($jobIndex, $query[1]);
+	   	}
+
+	   	oci_free_statement($stid);
+	   	//insert code to display 
+
+
+	   	// $sql2 = "SELECT j.owner, j.jobtype, j.category, j.minrequiredQualification, j.minrequiredSkills, j.Description from JOBS where '$email' = j.owner and 'jobIndex' = j.jobid";
+	   	// $stid2 = oci_parse($dbh, $sql2);
+
+	   	$arrSize = count($email);
+
+	   	for($x = 0; $x < $arrSize; $x++) {
+
+	   		$account = $email[$x];
+	   		$jobid = $jobIndex[$x];
+
+	   		// echo "$account"."$jobid"."<br>";
+  			$sql2 = "SELECT e.companyname, j.owner, j.jobid, j.jobtype, j.category, j.minrequiredQualification, j.minrequiredSkills, j.Description from JOBS j, employer e where '$account' = j.owner and '$account' = e.email and j.jobid = '$jobid'";
+			// echo "$sql2";
+			$stid2 = oci_parse($dbh, $sql2);
+			oci_execute($stid2, OCI_DEFAULT);
+			while ($row = oci_fetch_array($stid2)){
+				echo "Company: "."$row[0]"."<br>";
+				echo "Employer: "."$row[1]"."<br>";
+				echo "Job ID: "."$row[2]"."<br>";
+				echo "Job type: "."$row[3]"."<br>";
+				echo "Category: "."$row[4]"."<br>";
+				echo "Minimum Qualification: "."$row[5]"."<br>";
+				echo "Minimum Skills: "."$row[6]"."<br>";
+				echo "Job description: "."$row[7]"."<br>";
+			}
+			oci_free_statement($stid2);
+
+		}
+	   	?>
+
+	   	<!-- <form>
+	   		<select name="JobID" id="Job ID"><option value="">Select Job ID</option>
+					<?php
+					//  if (isset($_GET['View'])){
+					// $sql= "select distinct j.jobid
+					// 		from jobs j, information i, employer e
+					// 		where i.applicant = '$applicant'
+					// 		and j.owner = e.email
+					// 		and (j.minrequiredskills = i.skill1 or j.minrequiredskills = i.skill2 or i.industryinterested = e.industry)
+					// 		and j.minrequiredqualification = i.highestquali
+					// 		order by j.jobid";
+					// }
+					// $stid = oci_parse($dbh, $sql);
+					// oci_execute($stid, OCI_DEFAULT);
+					// while($row = oci_fetch_array($stid)){
+					// echo "<option value=\"".$row[0]."\">".$row[0]."</option><br>";
+					// }
+					// oci_free_statement($stid);
+					?>
+				</select>
+
+	   	</form> -->
+
+	   	<br><br><br>
+	   	<table class="candidate_detail">
+		<h4> Description of applicant </h4>
+		<tbody>
+			<tr>
+				<td>First Name</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT firstname from applicant where '$currentuser' = email";
 					$stid = oci_parse($dbh,$sql);
 					oci_execute($stid,OCI_DEFAULT);
-					echo "<table border=\"1\" >					
-					<tr>
-					<th>First Name</th>
-					</tr>
-					<tr>
-					<th>Last Name</th>
-					</tr>
-					<tr>
-					<th>Email</th>
-					</tr>
-					<tr>
-					<th>Age</th>
-					</tr>
-					<tr>
-					<th>Mobile Number</th>
-					</tr>
-					<tr>
-					<th>Gender</th>
-					</tr>
-					<tr>
-					<th>Date of Birth</th>
-					</tr>
-					<tr>
-					<th>Nationality</th>
-					</tr>
-					<tr>
-					<th>Personal Website</th>
-					</tr>
-					<tr>
-					<th>Highes Quilification</th>
-					</tr>
-					<tr>
-					<th>Skills</th>
-					</tr>
-					<tr>
-					<th>Self Description</th>
-					</tr>
-					<tr>
-					<th>Previous Job</th>
-					</tr>
-					<tr>
-					<th>Previous Working Experimence</th>
-					</tr>";
-	
 					while($row = oci_fetch_array($stid)) {
-					echo "<tr>";
-					echo "<td>" . $row[0] . "</td>";
-					echo "</tr>";
-					echo "<tr>";
-					echo "<td>" . $row[1] . "</td>";
-					echo "</tr>";
-					echo "<tr>";
-					echo "<td>" . $row[2] . "</td>";
-					echo "<td>" . $row[3] . "</td>";
-					echo "<td>" . $row[4] . "</td>";
-					echo "<td>" . $row[5] . "</td>";
-					echo "<td>" . $row[6] . "</td>";
-					echo "<td>" . $row[7] . "</td>";
-					echo "<td>" . $row[8] . "</td>";
-					echo "<td>" . $row[9] . "</td>";
-					echo "<td>" . $row[10] . "</td>";
-					echo "<td>" . $row[11] . "</td>";
-					echo "</tr>";
+					echo "$row[0]"."<br>";
 					}
-					echo "</table>";
 					oci_free_statement($stid);
-				
-			?>
+					?>
+				</td>
+			</tr> 
+
+			<tr>
+				<td>Last Name</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT lastname from applicant where '$currentuser' = email";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+			<tr>
+				<td>Age</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT age from applicant where '$currentuser' = email";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+			<tr>
+				<td>Mobile No.</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT mobilenumber from applicant where '$currentuser' = email";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+			<tr>
+				<td>Gender</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT gender from applicant where '$currentuser' = email";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+			<tr>
+				<td>Nationality</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT nationality from applicant where '$currentuser' = email";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+			<tr>
+				<td>Personal Web</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT personalweb from applicant where '$currentuser' = email";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+			<tr>
+				<td>Highest Qualification</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT highestquali from information where '$currentuser' = applicant";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+			<tr>
+				<td>Skill 1</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT skill1 from information where '$currentuser' = applicant";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+			<tr>
+				<td>Skill 2</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT skill2 from information where '$currentuser' = applicant";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+			<tr>
+				<td>Self Description</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT selfdescription from information where '$currentuser' = applicant";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+			<tr>
+				<td>Industry Interested</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT industryInterested from information where '$currentuser' = applicant";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+			<tr>
+				<td>Status</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT status from information where '$currentuser' = applicant";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+			<tr>
+				<td>Previous Job</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT prevJob from information where '$currentuser' = applicant";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+			<tr>
+				<td>Previous Work Experience</td>
+				<td>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT prevworkexperience from information where '$currentuser' = applicant";
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</td> 
+			</tr>
+
+		</tbody>
+		</table>
 		
 	      
 
@@ -183,16 +431,16 @@ if ($allowaccess=true)
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
 			<ul class="f_list f_list1">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="applicantLogin.html">Sign In</a></li>
-				<li><a href="applicantRegister.html">Join Now</a></li>
-				<li><a href="about.html">About</a></li>
+				<li><a href="applicantHome.php">Applicant Home</a></li>
+				<li><a href="applicantLogin.php">Sign In</a></li>
+				<li><a href="applicantRegister.php">Register</a></li>
+				<li><a href="about.php">About</a></li>
 			</ul>
-			<ul class="f_list">
+			<!-- <ul class="f_list">
 				<li><a href ="jobs.html">Find a Job</a></li>
 				<li><a href="contact.html">Contact Us</a></li>
 				<li><a href="post.html">Post a Job</a></li>
-			</ul>
+			</ul> -->
 			<div class="clearfix"> </div>
 		</div>
 		<div class ="col-md-4 grid 3">

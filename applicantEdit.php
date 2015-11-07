@@ -268,6 +268,8 @@ if ($allowaccess=true)
 	$personalWeb  = $_GET['website'];
 	$availability = $_GET['status'];
 
+	echo "$highestQual"."$availability"."<br>";
+
 	//this part has no issue, I am to edit.
 	$sql1 = "UPDATE applicant SET personalWeb = :personalweb, mobilenumber = :mobileNo where email = '$currentUser'";
 	$stid1 = oci_parse($dbh, $sql1);
@@ -331,26 +333,8 @@ if ($allowaccess=true)
 
 
 	echo ("<script>alert('The informtaion has been updated successfully')</script>");
-	die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0099726/applicantProfile.php'</script>");
+	die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/applicantProfile.php'</script>");
 
-		// $sql_insert = 'INSERT INTO applicant (firstname, lastname, email, password, age, mobilenumber, gender, dateofbirth, nationality, personalweb) 
-	// 				VALUES(:firstname, :lastname, :email, :password, :age, :mobilenumber, :gender, :dateofbirth, :nationality, :personalweb)';
-				
-	// 			//echo "<b>SQL: </b>".$sql."<br><br>";
-	// $stid = oci_parse($dbh, $sql_insert);
-	// oci_bind_by_name($stid, ":firstname", $firstname);
-	// oci_bind_by_name($stid, ":lastname", $lastname);
-	// oci_bind_by_name($stid, ":email", $email);
-	// oci_bind_by_name($stid, ":password", $password);
-	// oci_bind_by_name($stid, ":age", $age);
-	// oci_bind_by_name($stid, ":mobilenumber", $mobilenumber);
-	// oci_bind_by_name($stid, ":gender", $gender);
-	// oci_bind_by_name($stid, ":dateofbirth", $dateofbirth);
-	// oci_bind_by_name($stid, ":nationality", $nationality);
-	// oci_bind_by_name($stid, ":personalweb", $personalweb);
-
-	// oci_execute($stid);
-	// oci_free_statement($stid);
 }
 
 ?>
@@ -363,16 +347,16 @@ if ($allowaccess=true)
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
 			<ul class="f_list f_list1">
-				<li><a href="index.php">Home</a></li>
+				<li><a href="applicantHome.php">Applicant Home</a></li>
 				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Join Now</a></li>
+				<li><a href="applicantRegister.php">Register</a></li>
 				<li><a href="about.php">About</a></li>
 			</ul>
-			<ul class="f_list">
+			<!-- <ul class="f_list">
 				<li><a href ="jobs.php">Find a Job</a></li>
 				<li><a href="contact.php">Contact Us</a></li>
 				<li><a href="post.php">Post a Job</a></li>
-			</ul>
+			</ul> -->
 			<div class="clearfix"> </div>
 		</div>
 		<div class ="col-md-4 grid 3">

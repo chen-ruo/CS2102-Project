@@ -59,7 +59,7 @@ create table information(
   skill2 varchar(64),
   selfDescription varchar(128) not null,
   industryInterested varchar(32),
-  status varchar(12) check(status = 'Avaliable' or status = 'Unavaliable'),
+  status varchar(12) check(status = 'Available' or status = 'Unavailable'),
   prevJob varchar(64),
   prevWorkExperience varchar(64),
   Foreign Key(applicant) References applicant(email)  

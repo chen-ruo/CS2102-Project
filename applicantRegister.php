@@ -325,16 +325,16 @@ include 'connectToServer.php'
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
 			<ul class="f_list f_list1">
-				<li><a href="index.php">Home</a></li>
+				<li><a href="applicantHome.php">Applicant Home</a></li>
 				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Join Now</a></li>
+				<li><a href="applicantRegister.php">Register</a></li>
 				<li><a href="about.php">About</a></li>
 			</ul>
-			<ul class="f_list">
+			<!-- <ul class="f_list">
 				<li><a href ="jobs.php">Find a Job</a></li>
 				<li><a href="contact.php">Contact Us</a></li>
 				<li><a href="post.php">Post a Job</a></li>
-			</ul>
+			</ul> -->
 			<div class="clearfix"> </div>
 		</div>
 		<div class ="col-md-4 grid 3">
