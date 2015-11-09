@@ -256,14 +256,10 @@ if ($allowaccess=true)
 			<h4>Navigate</h4>
 			<ul class="f_list f_list1">
 				<li><a href="index.php">Home</a></li>
-				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Join Now</a></li>
 				<li><a href="about.php">About</a></li>
 			</ul>
 			<ul class="f_list">
-				<li><a href ="jobs.php">Find a Job</a></li>
 				<li><a href="contact.php">Contact Us</a></li>
-				<li><a href="postJob.php">Post a Job</a></li>
 			</ul>
 			<div class="clearfix"> </div>
 		</div>
