@@ -37,7 +37,7 @@ if ($allowaccess=true)
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="home.php"><img src="images/logo.png" alt=""></a>
+                    <a class="navbar-brand" href="applicantHome.php"><img src="images/logo.png" alt=""></a>
                 </div>
              	    <!--/.navbar-header-->
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
@@ -46,13 +46,7 @@ if ($allowaccess=true)
 
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;"."Hello, ".$_SESSION['CurrentUser']."<br>";
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['Role']."<br>";
-                    ?>
-		        
-				
-				    
-				<li><a href="about.php">About Us</a></li>
-		        
-				        
+                    ?> 
 		        </li>
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged In<b class="caret"></b></a>
@@ -302,59 +296,14 @@ if ($allowaccess=true)
                 }       
 					?>
 			</form>
-			    
-		<div id="myTabContent" class="tab-content">
-		  <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-		    <div class="tab_grid">
-			    <div class="jobs-item with-thumb">
-				    <div class="thumb"><a href="jobs_single.php"><img src="images/a2.jpg" class="img-responsive" alt=""/></a></div>
-				    <div class="jobs_right">
-						<div class="date">30 <span>Jul</span></div>
-						<div class="date_desc"><h6 class="title"><a href="jobs_single.php">Front-end Developer</a></h6>
-						  <span class="meta">Envato, Sydney, AU</span>
-						</div>
-						<div class="clearfix"> </div>
-                        <ul class="top-btns">
-							<li><a href="#" class="fa fa-plus toggle"></a></li>
-							<li><a href="#" class="fa fa-star"></a></li>
-							<li><a href="#" class="fa fa-link"></a></li>
-						</ul>
-						<p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, maxime, excepturi, mollitia, voluptatibus similique aliquid a dolores autem laudantium sapiente ad enim ipsa modi laborum accusantium deleniti neque architecto vitae. <a href="jobs_single.php" class="read-more">Read More</a></p>
-                    </div>
-					<div class="clearfix"> </div>
-					
-					
-    <ul class="pagination jobs_pagination">
-		<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-		<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-		<li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-	</ul>
-   </div>
-  <div class="clearfix"> </div>
- </div>
-</div>
-</div></div></div></div></div></div>
+</div></div></div></div></div>
 
 <!-- footer --> 
 <div class="footer">
 	<div class="container">
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
-			<ul class="f_list f_list1">
-				<li><a href="applicantHome.php">Applicant Home</a></li>
-				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Register</a></li>
-				<li><a href="about.php">About</a></li>
-			</ul>
-			<!-- <ul class="f_list">
-				<li><a href ="jobs.php">Find a Job</a></li>
-				<li><a href="contact.php">Contact Us</a></li>
-				<li><a href="post.php">Post a Job</a></li>
-			</ul> -->
+			
 			<div class="clearfix"> </div>
 		</div>
 		<div class ="col-md-4 grid 3">

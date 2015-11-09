@@ -54,7 +54,7 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
     </head>
     
     <body>
-        <nav class="navbar navbar-default" role="navigation">
+       <nav class="navbar navbar-default" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -66,7 +66,30 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
                     </button>
                     <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt=""></a>
                 </div>
-              </nav>
+                <!--/.navbar-header-->
+                <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
+	        <ul class="nav navbar-nav">
+			  <li><a href="about.php">About Us</a></li>
+		        
+				<li class="dropdown">
+		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
+		             <ul class="dropdown-menu">
+						  <li><a href="employerLogin.php">Employer login</a></li>
+						    <li><a href="applicantLogin.php">Applicant Login</a></li>
+		             </ul>
+		        </li>
+			<li class="dropdown">
+		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registration<b class="caret"></b></a>
+		             <ul class="dropdown-menu">
+						  <li><a href="employerRegister.php">Create an employer account</a></li>
+						    <li><a href="applicantRegister.php">Create an applicant account</a></li>
+		             </ul>
+		        </li>
+                <div class="clearfix"></div>
+            </div>
+            <!--/.navbar-collapse-->
+        </nav>
+	  
         <div class="container">
             <div class="single">
                 <div class="section-title">
@@ -85,6 +108,90 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 					</form>
 					
 		
+				
+					
+					<div class="forgot">
+                    <div class="login-check">
+                        <label class="checkbox1">
+                            <input type="checkbox" name="checkbox" checked="">
+                            <i></i>Sign Up for Newsletter</label>
+                    </div>
+                    <div class="login-para">
+                        <p>
+                            <a href="forgetPass.php"> Forgot Password? </a>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+					
+
+                <div class="login-bottom">
+                    <p>With your social media account</p>
+                    <div class="social-icons">
+                        <div class="button">
+                            <a class="tw" href="#"> <i class="fa fa-twitter tw2"> </i><span>Twitter</span>
+
+							<div class="clearfix"> </div></a>
+                            <a class="fa" href="#"> <i class="fa fa-facebook tw2"> </i><span>Facebook</span>
+
+							<div class="clearfix"> </div></a>
+                            <a class="go" href="#"><i class="fa fa-google-plus tw2"> </i><span>Google+</span>
+
+							<div class="clearfix"> </div></a>
+                            <div class="clearfix"></div>
+                        </div>
+                        <h4>Don,t have an Employer Account to post your jobs?
+                            <a href="register.php"> Register Now!</a>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+<!-- footer --> 
+<div class="footer">
+	<div class="container">
+		<div class="col-md-3 grid_3">
+			<h4>Navigate</h4>
+			<ul class="f_list f_list1">
+				<li><a href="applicantLogin.php">Sign In</a></li>
+				<li><a href="applicantRegister.php">Register</a></li>
+				<li><a href="about.php">About</a></li>
+			</ul>
+			<!-- <ul class="f_list">
+				<li><a href ="jobs.php">Find a Job</a></li>
+				<li><a href="contact.php">Contact Us</a></li>
+				<li><a href="post.php">Post a Job</a></li>
+			</ul> -->
+			<div class="clearfix"> </div>
+		</div>
+		<div class ="col-md-4 grid 3">
+		</div>
+		<div class="col-md-4 grid_3">
+			<h4>Sign up for our newsletter</h4>
+			<p>Enter your email below and we will send updates into your inbox.</p>
+			<form>
+				<input type="text" class="form-control" placeholder="Enter your email">
+				<button type="button" class="btn red">Subscribe now!</button>
+		    </form>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<div class="footer_bottom">	
+  <div class="container">
+	<div class="copy">
+		<p>This is a CS2102 Project.</a> </p>
+	</div>
+  </div>
+</div>
+</body>
+
+</html>	
+
+
+
+
 				<?php if(isset($_GET['Submit']))
 				{
 					// username and password sent from form 
@@ -140,88 +247,3 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 					
 					<!--<p><span class="error">* required field.</span></p>-->
 				
-
-				
-					
-					<div class="forgot">
-                    <div class="login-check">
-                        <label class="checkbox1">
-                            <input type="checkbox" name="checkbox" checked="">
-                            <i></i>Sign Up for Newsletter</label>
-                    </div>
-                    <div class="login-para">
-                        <p>
-                            <a href="forgetPass.php"> Forgot Password? </a>
-                        </p>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-					
-
-                <div class="login-bottom">
-                    <p>With your social media account</p>
-                    <div class="social-icons">
-                        <div class="button">
-                            <a class="tw" href="#"> <i class="fa fa-twitter tw2"> </i><span>Twitter</span>
-
-							<div class="clearfix"> </div></a>
-                            <a class="fa" href="#"> <i class="fa fa-facebook tw2"> </i><span>Facebook</span>
-
-							<div class="clearfix"> </div></a>
-                            <a class="go" href="#"><i class="fa fa-google-plus tw2"> </i><span>Google+</span>
-
-							<div class="clearfix"> </div></a>
-                            <div class="clearfix"></div>
-                        </div>
-                        <h4>Don,t have an Employer Account to post your jobs?
-                            <a href="register.php"> Register Now!</a>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-<!-- footer --> 
-<div class="footer">
-	<div class="container">
-		<div class="col-md-3 grid_3">
-			<h4>Navigate</h4>
-			<ul class="f_list f_list1">
-				<li><a href="index.php">Home</a></li>
-				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Join Now</a></li>
-				<li><a href="about.php">About</a></li>
-			</ul>
-			<ul class="f_list">
-				<li><a href ="jobs.php">Find a Job</a></li>
-				<li><a href="contact.php">Contact Us</a></li>
-				<li><a href="post.php">Post a Job</a></li>
-			</ul>
-			<div class="clearfix"> </div>
-		</div>
-		<div class ="col-md-4 grid 3">
-		</div>
-		<div class="col-md-4 grid_3">
-			<h4>Sign up for our newsletter</h4>
-			<p>Enter your email below and we will send updates into your inbox.</p>
-			<form>
-				<input type="text" class="form-control" placeholder="Enter your email">
-				<button type="button" class="btn red">Subscribe now!</button>
-		    </form>
-		</div>
-		<div class="clearfix"> </div>
-	</div>
-</div>
-<div class="footer_bottom">	
-  <div class="container">
-	<div class="copy">
-		<p>This is a CS2102 Project.</a> </p>
-	</div>
-  </div>
-</div>
-</body>
-<?php oci_close($dbh); ?>
-</html>	
-
-
-

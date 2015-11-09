@@ -94,7 +94,7 @@ if ($allowaccess=true)
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 	        </button>
-	        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt=""/></a>
+	        <a class="navbar-brand" href="applicantHome.php"><img src="images/logo.png" alt=""/></a>
 	    </div>
 	    <!--/.navbar-header-->
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
@@ -252,6 +252,38 @@ if ($allowaccess=true)
 </div>
 
 
+
+<!-- footer --> 
+<div class="footer">
+	<div class="container">
+		<div class="col-md-3 grid_3">
+			<h4>Navigate</h4>
+
+			<div class="clearfix"> </div>
+		</div>
+		<div class ="col-md-4 grid 3">
+		</div>
+		<div class="col-md-4 grid_3">
+			<h4>Sign up for our newsletter</h4>
+			<p>Enter your email below and we will send updates into your inbox.</p>
+			<form>
+				<input type="text" class="form-control" placeholder="Enter your email">
+				<button type="button" class="btn red">Subscribe now!</button>
+		    </form>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<div class="footer_bottom">	
+  <div class="container">
+	<div class="copy">
+		<p>This is a CS2102 Project.</a> </p>
+	</div>
+  </div>
+</div>
+</body>
+</html>
+
 <?php  if(isset($_GET['Submit'])){
 
 	//echo ("<script>alert('Hello')</script>");
@@ -338,49 +370,8 @@ if ($allowaccess=true)
 }
 
 ?>
-
-
-
-<!-- footer --> 
-<div class="footer">
-	<div class="container">
-		<div class="col-md-3 grid_3">
-			<h4>Navigate</h4>
-			<ul class="f_list f_list1">
-				<li><a href="applicantHome.php">Applicant Home</a></li>
-				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Register</a></li>
-				<li><a href="about.php">About</a></li>
-			</ul>
-			<!-- <ul class="f_list">
-				<li><a href ="jobs.php">Find a Job</a></li>
-				<li><a href="contact.php">Contact Us</a></li>
-				<li><a href="post.php">Post a Job</a></li>
-			</ul> -->
-			<div class="clearfix"> </div>
-		</div>
-		<div class ="col-md-4 grid 3">
-		</div>
-		<div class="col-md-4 grid_3">
-			<h4>Sign up for our newsletter</h4>
-			<p>Enter your email below and we will send updates into your inbox.</p>
-			<form>
-				<input type="text" class="form-control" placeholder="Enter your email">
-				<button type="button" class="btn red">Subscribe now!</button>
-		    </form>
-		</div>
-		<div class="clearfix"> </div>
-	</div>
-</div>
-<div class="footer_bottom">	
-  <div class="container">
-	<div class="copy">
-		<p>This is a CS2102 Project.</a> </p>
-	</div>
-  </div>
-</div>
-</body>
-</html>
 <?php
 }
-    ?>	
+    ?>
+
+

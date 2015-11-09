@@ -47,7 +47,7 @@ if ($allowaccess=true)
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="home.html"><img src="images/logo.png" alt=""></a>
+                    <a class="navbar-brand" href="applicantHome.html"><img src="images/logo.png" alt=""></a>
                 </div>
              	    <!--/.navbar-header-->
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
@@ -58,11 +58,7 @@ if ($allowaccess=true)
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;"."Hello, ".$_SESSION['CurrentUser']."<br>";
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['Role']."<br>";
                     ?>
-					<li><a href="about.php">About Us</a></li>
-		        
-				        
-		        
-		        </li>
+
 		        <li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged In<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
@@ -89,7 +85,7 @@ if ($allowaccess=true)
     <div class="single">  
 	   <div class="col-md-9 single_right">
 	   <!-- Description -->
-		<h1> List of jobs applied </hi>
+		<h1> List of jobs applied </h1>
 			<form>
 				
 				<input type="submit" name="View" value="view" style="background-color:#A9E2F3">
@@ -430,17 +426,7 @@ if ($allowaccess=true)
 	<div class="container">
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
-			<ul class="f_list f_list1">
-				<li><a href="applicantHome.php">Applicant Home</a></li>
-				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Register</a></li>
-				<li><a href="about.php">About</a></li>
-			</ul>
-			<!-- <ul class="f_list">
-				<li><a href ="jobs.html">Find a Job</a></li>
-				<li><a href="contact.html">Contact Us</a></li>
-				<li><a href="post.html">Post a Job</a></li>
-			</ul> -->
+
 			<div class="clearfix"> </div>
 		</div>
 		<div class ="col-md-4 grid 3">

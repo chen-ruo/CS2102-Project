@@ -49,34 +49,31 @@ if ($allowaccess=true)
                     <a class="navbar-brand" href="home.html"><img src="images/logo.png" alt=""></a>
                 </div>
              	    <!--/.navbar-header-->
-	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
+	     <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
 	        <ul class="nav navbar-nav">
-	        	<?php
+			
+			<?php
 
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;"."Hello, ".$_SESSION['CurrentUser']."<br>";
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['Role']."<br>";
                     ?>
-					<li><a href="about.php">About Us</a></li>
-					</li>
-		        <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
-		             <ul class="dropdown-menu">
-						  <li><a href="postJob.php">Post Jobs</a></li>
-						    <li><a href="searchApplicant.php">Search applicants</a></li>
-							  <li><a href="searchMatched.php">Search for matched applicants</a></li>
-		             </ul>
+            <li><a href="employerHome.php">Search Employees</a></li>
+			<li><a href="postJob.php">Post Jobs</a></li>
+
 		        </li>
+				
 				
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged In<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
 						  <li><a href="employerProfile.php">User Profile</a></li>
 						    <li><a href="employerEdit.php">Profile Settings/Edit</a></li>
-							  <li><a href="passwordChange.php">Change Password</a></li>
+						    <li><a href="editJob.php">Jobs Settings/Edit</a></li>
+							<li><a href="passwordChange.php">Change Password</a></li>
 		             </ul>
 		        </li>
+		        <li><a href = "index.php" onClick = <?php session_destroy();?>>Logout</a></li>
 				
-				<li><a href = "logout.php">Logout</a></li> 
 	    </div>
 	    <div class="clearfix"> </div>
 	  </div>
@@ -270,17 +267,6 @@ if ($allowaccess=true)
 	<div class="container">
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
-			<ul class="f_list f_list1">
-				<li><a href="index.php">Home</a></li>
-				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Join Now</a></li>
-				<li><a href="about.php">About</a></li>
-			</ul>
-			<ul class="f_list">
-				<li><a href ="jobs.html">Find a Job</a></li>
-				<li><a href="contact.html">Contact Us</a></li>
-				<li><a href="postJob.php">Post a Job</a></li>
-			</ul>
 			<div class="clearfix"> </div>
 		</div>
 		<div class ="col-md-4 grid 3">

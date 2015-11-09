@@ -37,23 +37,7 @@ include 'connectToServer.php';
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
 	        <ul class="nav navbar-nav">
 			  <li><a href="about.php">About Us</a></li>
-		        <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jobs<b class="caret"></b></a>
-		            <ul class="dropdown-menu">
-			            <li><a href="jobs.php">Part-time Jobs</a></li>
-			            <li><a href="jobs.php">Internships</a></li>
-			            <li><a href="jobs.php">Full-time Jobs</a></li>
-		            </ul>
-		        </li>
-				        <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
-		             <ul class="dropdown-menu">
-						  <li><a href="post.php">Post Jobs</a></li>
-						    <li><a href="search.php">Search applicants</a></li>
-							  <li><a href="searchmatched.php">Search for matched applicants</a></li>
-		             </ul>
-		        </li>
-				
+		    
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
@@ -92,6 +76,46 @@ include 'connectToServer.php';
         	<input type="submit" name="Submit" value="Retrieve">
 							</form>
 							
+							
+							                    </div>
+                    </div>
+					</div>
+					</div>
+<!-- footer --> 
+<div class="footer">
+	<div class="container">
+		<div class="col-md-3 grid_3">
+			<h4>Navigate</h4>
+			<ul class="f_list f_list1">
+				<li><a href="applicantLogin.php">Sign In</a></li>
+				<li><a href="applicantRegister.php">Join Now</a></li>
+				<li><a href="about.php">About</a></li>
+			</ul>
+
+			<div class="clearfix"> </div>
+		</div>
+		<div class ="col-md-4 grid 3">
+		</div>
+		<div class="col-md-4 grid_3">
+			<h4>Sign up for our newsletter</h4>
+			<p>Enter your email below and we will send updates into your inbox.</p>
+			<form>
+				<input type="text" class="form-control" placeholder="Enter your email">
+				<button type="button" class="btn red">Subscribe now!</button>
+		    </form>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<div class="footer_bottom">	
+  <div class="container">
+	<div class="copy">
+		<p>This is a CS2102 Project.</a> </p>
+	</div>
+  </div>
+</div>
+</body>
+</html>	
 							<?php if(isset($_GET['Submit'])){
 
 								$email=$_GET['email']; 
@@ -157,47 +181,3 @@ include 'connectToServer.php';
 					?>
 
                             <!-- <a type="submit" class="btn btn-default" onClick = "sendtoserver()" >Submit</a> -->
-                    </div>
-                    </div>
-					</div>
-					</div>
-<!-- footer --> 
-<div class="footer">
-	<div class="container">
-		<div class="col-md-3 grid_3">
-			<h4>Navigate</h4>
-			<ul class="f_list f_list1">
-				<li><a href="index.php">Home</a></li>
-				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Join Now</a></li>
-				<li><a href="about.php">About</a></li>
-			</ul>
-			<ul class="f_list">
-				<li><a href ="jobs.php">Find a Job</a></li>
-				<li><a href="contact.php">Contact Us</a></li>
-				<li><a href="post.php">Post a Job</a></li>
-			</ul>
-			<div class="clearfix"> </div>
-		</div>
-		<div class ="col-md-4 grid 3">
-		</div>
-		<div class="col-md-4 grid_3">
-			<h4>Sign up for our newsletter</h4>
-			<p>Enter your email below and we will send updates into your inbox.</p>
-			<form>
-				<input type="text" class="form-control" placeholder="Enter your email">
-				<button type="button" class="btn red">Subscribe now!</button>
-		    </form>
-		</div>
-		<div class="clearfix"> </div>
-	</div>
-</div>
-<div class="footer_bottom">	
-  <div class="container">
-	<div class="copy">
-		<p>This is a CS2102 Project.</a> </p>
-	</div>
-  </div>
-</div>
-</body>
-</html>	

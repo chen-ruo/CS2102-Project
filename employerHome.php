@@ -76,7 +76,7 @@ if ($allowaccess=true)
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 	        </button>
-	        <a class="navbar-brand" href="home.html"><img src="images/logo.png" alt=""/></a>
+	        <a class="navbar-brand" href="employerHome.html"><img src="images/logo.png" alt=""/></a>
 	    </div>
 	    <!--/.navbar-header-->
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
@@ -102,7 +102,7 @@ if ($allowaccess=true)
 							<li><a href="passwordChange.php">Change Password</a></li>
 		             </ul>
 		        </li>
-		        <li><a href = "logout.php">Logout</a></li>
+		        <li><a href = "index.php" onClick = <?php session_destroy();?>>Logout</a></li>
 				
 	    </div>
 	    <div class="clearfix"> </div>
@@ -228,17 +228,7 @@ if ($allowaccess=true)
 	<div class="container">
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
-			<ul class="f_list f_list1">
-				<li><a href="index.php">Home</a></li>
-				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Join Now</a></li>
-				<li><a href="about.php">About</a></li>
-			</ul>
-			<ul class="f_list">
-				<li><a href ="jobs.html">Find a Job</a></li>
-				<li><a href="contact.php">Contact Us</a></li>
-				<li><a href="postJob.php">Post a Job</a></li>
-			</ul>
+
 			<div class="clearfix"> </div>
 		</div>
 		<div class ="col-md-4 grid 3">

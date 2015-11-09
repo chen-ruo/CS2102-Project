@@ -39,16 +39,7 @@ include 'connectToServer.php';
 	        <ul class="nav navbar-nav">
 			  <li><a href="about.php">About Us</a></li>
 			   <li> <a href="#process">Our process</a></li>
-				<li><a href="contact.php">contact Us</a></li>
-		        
-				        <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
-		             <ul class="dropdown-menu">
-						  <li><a href="post.php">Post Jobs</a></li>
-						    <li><a href="search.php">Search applicants</a></li>
-							  <li><a href="searchmatched.php">Search for matched applicants</a></li>
-		             </ul>
-		        </li>
+
 				
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
@@ -150,15 +141,16 @@ include 'connectToServer.php';
 			<h4>Navigate</h4>
 			<ul class="f_list f_list1">
 				<li><a href="index.php">Home</a></li>
+				<ul class="f_list f_list1">
 				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Join Now</a></li>
+				<li><a href="applicantRegister.php">Register</a></li>
 				<li><a href="about.php">About</a></li>
 			</ul>
-			<ul class="f_list">
+			<!-- <ul class="f_list">
 				<li><a href ="jobs.php">Find a Job</a></li>
 				<li><a href="contact.php">Contact Us</a></li>
 				<li><a href="post.php">Post a Job</a></li>
-			</ul>
+			</ul> -->
 			<div class="clearfix"> </div>
 		</div>
 		<div class ="col-md-4 grid 3">

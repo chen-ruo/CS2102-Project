@@ -30,33 +30,23 @@
 	        </button>
 	        <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt=""/></a>
 	    </div>
-	    <!--/.navbar-header-->
+  <!--/.navbar-header-->
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
 	        <ul class="nav navbar-nav">
-			   <li> <a href="#testimonials"> Our Testimonials and team</a></li>
-		        
-				 <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
-		             <ul class="dropdown-menu">
-						  <li><a href="post.php">Post Jobs</a></li>
-						    <li><a href="search.php">Search applicants</a></li>
-							  <li><a href="searchmatched.php">Search for matched applicants</a></li>
-		             </ul>
-		        </li>
-		        
+			  <li><a href="index.php">About Us</a></li>
 				
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
-						  <li><a href="employerLogin.html">Employer login</a></li>
-						    <li><a href="applicantLogin.html">Applicant Login</a></li>
+						  <li><a href="employerLogin.php">Employer login</a></li>
+						    <li><a href="applicantLogin.php">Applicant Login</a></li>
 		             </ul>
 		        </li>
 			<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registration<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
-						  <li><a href="employerRegister.html">Create an employer account</a></li>
-						    <li><a href="applicantRegister.html">Create an applicant account</a></li>
+						  <li><a href="employerRegister.php">Create an employer account</a></li>
+						    <li><a href="applicantRegister.php">Create an applicant account</a></li>
 		             </ul>
 		        </li>
 	    </div>
@@ -230,16 +220,15 @@
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
 			<ul class="f_list f_list1">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="applicantLogin.html">Sign In</a></li>
-				<li><a href="applicantRegister.html">Join Now</a></li>
-				<li><a href="about.html">About</a></li>
+				<li><a href="applicantLogin.php">Sign In</a></li>
+				<li><a href="applicantRegister.php">Register</a></li>
+				<li><a href="about.php">About</a></li>
 			</ul>
-			<ul class="f_list">
-				<li><a href ="jobs.html">Find a Job</a></li>
-				<li><a href="contact.html">Contact Us</a></li>
-				<li><a href="post.html">Post a Job</a></li>
-			</ul>
+			<!-- <ul class="f_list">
+				<li><a href ="jobs.php">Find a Job</a></li>
+				<li><a href="contact.php">Contact Us</a></li>
+				<li><a href="post.php">Post a Job</a></li>
+			</ul> -->
 			<div class="clearfix"> </div>
 		</div>
 		<div class ="col-md-4 grid 3">

@@ -21,75 +21,22 @@ include 'connectToServer.php'
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!----font-Awesome----->
 
-<script>
+<!--Date formatter script -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#dob" ).datepicker({
+	 changeMonth:true,
+					changeYear:true,
+					yearRange:"-100:+0",
+					dateFormat:"dd-M-y"
+					});
+  });
+       </script>
 
-              function checkServer(){
-                var firstname = document.getElementById("firstName").value
-                var lastname = document.getElementById("lastName").value
-                var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-				var username = document.getElementById("email").value
-				var password = document.getElementById("password").value
-				var age = document.getElementById("age").value
-				var mobilenum = document.getElementById("mobilenum").value
-				var gender = document.getElementById("gender").value
-				var dob = document.getElementById("dob").value
-				var nationality = document.getElementById("nationality").value
-				
-			var r = confirm("Are you sure to register for an account?");
-			if (r == true) {
-
-			 var errormsg = "Below are the errors:\n\n";
-			   var errorlog = false;
-			   
-			   if( firstname.trim().length == 0) {
-					errorlog = true;
-					errormsg += "- firstname field is empty.\n";
-				}
-			    if( username.trim().length == 0) {
-					errorlog = true;
-					errormsg += "- Email field is empty.\n";
-				} else if (!username.match(re)){
-					errorlog = true;
-					errormsg += "- Email is invalid. Please enter a valid email so that we can send a confirmation email to you.\n";
-				}
-			   if(password.trim().length < 4){
-					errorlog = true;
-					errormsg += "- Please enter a valid password of atleast 4 characters long.\n";
-				}
-			  if (Number(age)*0 != 0 || age.trim().length == 0 || Number(age) < 13 || Number(age) > 99){
-					errorlog = true;
-					errormsg += "- Please enter a valid agae\n";
-				} if (mobilenum.trim().length == 0){
-					errorlog = true;
-					errormsg += "- Mobile number is empty\n";
-					} if (gender != 'F' && gender != 'M'){
-					errorlog = true;
-					errormsg += "- Gender is invalid. Please enter M for male and F for female.\n"
-					} if (dob.trim().length == 0){
-					errorlog = true;
-					errormsg += "- DOB is empty.\n"
-					}
-					if (nationality.trim().length == 0){
-					errorlog = true;
-					errormsg += "- Nationality is empty.\n"
-					}
-	
-					if(errorlog){
-					errormsg += "\nPlease correct these errors before submitting.";
-					alert(errormsg);
-					} else{
-					setTimeout(setMain, 1000);
-				}
-			} else {
-			}
-              }
-			  
-			  function setMain(){
-				alert("Account created succcessfully");
-			  	window.location.href = "index.php";
-			}
-        </script>
-		
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -108,15 +55,6 @@ include 'connectToServer.php'
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
 	        <ul class="nav navbar-nav">
 			  <li><a href="about.php">About Us</a></li>
-		        
-				        <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
-		             <ul class="dropdown-menu">
-						  <li><a href="post.php">Post Jobs</a></li>
-						    <li><a href="search.php">Search applicants</a></li>
-							  <li><a href="searchmatched.php">Search for matched applicants</a></li>
-		             </ul>
-		        </li>
 				
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
@@ -209,9 +147,9 @@ include 'connectToServer.php'
 		
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="dob">Date of birth *(Please enter it in this format dd-Mth-yy)</label>
+                <label class="col-md-3 control-lable" for="dob">Date of birth</label>
                 <div class="col-md-9">
-                    <input type="text" name="dob" path="dob" id="dob" class="form-control input-sm"/>
+                   <input type="text" name="dob" id="dob"/>
                 </div>
             </div>
         </div>
@@ -237,6 +175,53 @@ include 'connectToServer.php'
         <input type="submit" name="formSubmit" value="Submit" style="display: block; margin: 0 auto;" >
 		
 		</form>
+
+		   </div>
+ </div>
+</div>
+
+
+
+
+<!-- footer --> 
+<div class="footer">
+	<div class="container">
+		<div class="col-md-3 grid_3">
+			<h4>Navigate</h4>
+			<ul class="f_list f_list1">
+				<li><a href="applicantLogin.php">Sign In</a></li>
+				<li><a href="applicantRegister.php">Register</a></li>
+				<li><a href="about.php">About</a></li>
+			</ul>
+			<!-- <ul class="f_list">
+				<li><a href ="jobs.php">Find a Job</a></li>
+				<li><a href="contact.php">Contact Us</a></li>
+				<li><a href="post.php">Post a Job</a></li>
+			</ul> -->
+			<div class="clearfix"> </div>
+		</div>
+		<div class ="col-md-4 grid 3">
+		</div>
+		<div class="col-md-4 grid_3">
+			<h4>Sign up for our newsletter</h4>
+			<p>Enter your email below and we will send updates into your inbox.</p>
+			<form>
+				<input type="text" class="form-control" placeholder="Enter your email">
+				<button type="button" class="btn red">Subscribe now!</button>
+		    </form>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<div class="footer_bottom">	
+  <div class="container">
+	<div class="copy">
+		<p>This is a CS2102 Project.</a> </p>
+	</div>
+  </div>
+</div>
+</body>
+</html>
 
 		 <?php if(isset($_GET['formSubmit']))
 		{
@@ -305,60 +290,11 @@ include 'connectToServer.php'
 
 			if($insert_successful == 1){
 				echo("<script> alert ('Your account is registered succcessfully!')</script>");
-				die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/index.php'</script>");
+				die("<script>location.href = '/~a0133281/index.php'</script>");
 			}
 			oci_free_statement($stid_check);
 			oci_free_statement($sql_insertChk);
 
 			}
 		?>
-    </div>
- </div>
-</div>
-
-
-
-
-<!-- footer --> 
-<div class="footer">
-	<div class="container">
-		<div class="col-md-3 grid_3">
-			<h4>Navigate</h4>
-			<ul class="f_list f_list1">
-				<li><a href="applicantHome.php">Applicant Home</a></li>
-				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Register</a></li>
-				<li><a href="about.php">About</a></li>
-			</ul>
-			<!-- <ul class="f_list">
-				<li><a href ="jobs.php">Find a Job</a></li>
-				<li><a href="contact.php">Contact Us</a></li>
-				<li><a href="post.php">Post a Job</a></li>
-			</ul> -->
-			<div class="clearfix"> </div>
-		</div>
-		<div class ="col-md-4 grid 3">
-		</div>
-		<div class="col-md-4 grid_3">
-			<h4>Sign up for our newsletter</h4>
-			<p>Enter your email below and we will send updates into your inbox.</p>
-			<form>
-				<input type="text" class="form-control" placeholder="Enter your email">
-				<button type="button" class="btn red">Subscribe now!</button>
-		    </form>
-		</div>
-		<div class="clearfix"> </div>
-	</div>
-</div>
-<div class="footer_bottom">	
-  <div class="container">
-	<div class="copy">
-		<p>This is a CS2102 Project.</a> </p>
-	</div>
-  </div>
-</div>
-<?php
-oci_close($dbh);
-?>
-</body>
-</html>	
+ 	
