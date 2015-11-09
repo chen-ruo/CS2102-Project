@@ -149,10 +149,11 @@ if ($allowaccess=true)
 					$employer = $_SESSION['CurrentUser'];
 
 					if($qualification == "Required Qualification"){
+						
 						$sql = "select a.firstname, a.lastname, a.email, a.mobilenumber, i.skill1,i.skill2,i.highestquali, i.industryinterested, i.status
 								from applicant a, information i
 								where a.email = i.applicant
-								and i.status = 'Avaliable'
+								and i.status = 'Available'
 								and i.industryinterested in
 								  (select e.industry
 								    from employer e
@@ -160,11 +161,24 @@ if ($allowaccess=true)
 								    and (i.skill1 = '$skill' or i.skill2 = '$skill') 
 								    )";
 					}
-					else{
+					else if (empty($_GET['skill']) && $qualification != "Required Qualification") {
 						$sql = "select a.firstname, a.lastname, a.email, a.mobilenumber, i.skill1,i.skill2,i.highestquali, i.industryinterested, i.status
 								from applicant a, information i
 								where a.email = i.applicant
-								and i.status = 'Avaliable'
+								and i.status = 'Available'
+								and i.industryinterested in
+								  (select e.industry
+								    from employer e
+								    where e.email = '$employer'
+								    and i.highestquali = '$qualification' 
+								    )";
+					}
+					else{
+
+						$sql = "select a.firstname, a.lastname, a.email, a.mobilenumber, i.skill1,i.skill2,i.highestquali, i.industryinterested, i.status
+								from applicant a, information i
+								where a.email = i.applicant
+								and i.status = 'Available'
 								and i.industryinterested in
 								  (select e.industry
 								    from employer e
@@ -230,14 +244,10 @@ if ($allowaccess=true)
 			<h4>Navigate</h4>
 			<ul class="f_list f_list1">
 				<li><a href="index.php">Home</a></li>
-				<li><a href="applicantLogin.php">Sign In</a></li>
-				<li><a href="applicantRegister.php">Join Now</a></li>
 				<li><a href="about.php">About</a></li>
 			</ul>
 			<ul class="f_list">
-				<li><a href ="jobs.html">Find a Job</a></li>
 				<li><a href="contact.php">Contact Us</a></li>
-				<li><a href="postJob.php">Post a Job</a></li>
 			</ul>
 			<div class="clearfix"> </div>
 		</div>
