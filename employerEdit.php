@@ -127,7 +127,6 @@ if ($allowaccess=true)
 	    </div>
 	    <div class="clearfix"> </div>
 	  </div>
-              
 	    <!--/.navbar-collapse-->
 	</nav>
 <div class="container">
@@ -139,7 +138,7 @@ if ($allowaccess=true)
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="companyname">Company name</label>
                 <div class="col-md-9">
-                    <input type="text" path="companyname" id="companyname" class="form-control input-sm"/>
+                    <input type="text" name="companyname" path="companyname" id="companyname" class="form-control input-sm"/>
                 </div>
             </div>
          </div>
@@ -149,7 +148,7 @@ if ($allowaccess=true)
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="companynum">Company number</label>
                 <div class="col-md-9">
-                    <input type="text" path="companynum" id="companynum" class="form-control input-sm"/>
+                    <input type="text" name="companynum" path="companynum" id="companynum" class="form-control input-sm"/>
                 </div>
             </div>
          </div>
@@ -158,7 +157,7 @@ if ($allowaccess=true)
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="companyurl">Company URL</label>
                 <div class="col-md-9">
-                    <input type="text" path="companyurl" id="companyurl" class="form-control input-sm"/>
+                    <input type="text" name="companyurl" path="companyurl" id="companyurl" class="form-control input-sm"/>
                 </div>
             </div>
          </div>
@@ -168,7 +167,7 @@ if ($allowaccess=true)
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="postalcode">Company Postal Code</label>
                 <div class="col-md-9">
-                    <input type="text" path="postalcode" id="postalcode" class="form-control input-sm"/>
+                    <input type="text" name="postalcode" path="postalcode" id="postalcode" class="form-control input-sm"/>
                 </div>
             </div>
          </div>
@@ -177,7 +176,7 @@ if ($allowaccess=true)
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="natureofbusiness">Nature of Business</label>
                 <div class="col-md-9">
-                    <input type="text" path="natureofbusiness" id="natureofbusiness" class="form-control input-sm"/>
+                    <input type="text" name="natureofbusiness" path="natureofbusiness" id="natureofbusiness" class="form-control input-sm"/>
                 </div>
             </div>
         </div>
@@ -186,7 +185,7 @@ if ($allowaccess=true)
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="addressofcompany">Address of Company</label>
                 <div class="col-md-9">
-                    <input type="text" path="addressofcompany" id="addressofcompany" class="form-control input-sm"/>
+                    <input type="text" name="addressofcompany" path="addressofcompany" id="addressofcompany" class="form-control input-sm"/>
                 </div>
             </div>
         </div>
@@ -195,16 +194,18 @@ if ($allowaccess=true)
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="industry">Industry</label>
                 <div class="col-md-9">
-                    <input type="text" path="industry" id="industry" class="form-control input-sm"/>
+                    <input type="text" name="industry" path="industry" id="industry" class="form-control input-sm"/>
                 </div>
             </div>
         </div>
+        <input type="submit" Value="Submit "name="Submit" id="Submit" style="display: block; margin: 0 auto;">
 		</form>
-		    <input type="submit" name="formSubmit" value="Submit" style="display: block; margin: 0 auto;" >
-    </div>
+
+				    </div>
  </div>
 </div>
-<!-- footer --> 
+
+		<!-- footer --> 
 <div class="footer">
 	<div class="container">
 		<div class="col-md-3 grid_3">
@@ -233,6 +234,78 @@ if ($allowaccess=true)
 </div>
 </body>
 </html>	
+
+		<?php if(isset($_GET['Submit']))
+		{
+
+			$currentUser  = $_SESSION['CurrentUser'];
+			if($companyname  = $_GET['companyname']){
+
+		
+				$sql_updatename = "UPDATE employer SET companyname = :companyname where email = '$currentUser'";
+				$stid_updatename = oci_parse($dbh, $sql_updatename);
+				oci_bind_by_name($stid_updatename, ":companyname", $companyname);
+				oci_execute($stid_updatename);
+				oci_free_statement($stid_updatename);
+			}
+
+			if($companynum = $_GET['companynum']){
+				
+				$sql_updatenum = "UPDATE employer SET companynum = :companynum where email = '$currentUser'";
+				$stid_updatenum = oci_parse($dbh, $sql_updatenum);
+				oci_bind_by_name($stid_updatenum, ":companynum", $companynum);
+				oci_execute($stid_updatenum);
+				oci_free_statement($stid_updatenum);
+			}
+
+			if($companyurl = $_GET['companyurl']){
+				
+				$sql_updateurl = "UPDATE employer SET companyurl = :companyurl where email = '$currentUser'";
+				$stid_updateurl = oci_parse($dbh, $sql_updateurl);
+				oci_bind_by_name($stid_updateurl, ":companyurl", $companyurl);
+				oci_execute($stid_updateurl);
+				oci_free_statement($stid_updateurl);
+			}
+
+			if($postalcode = $_GET['postalcode']){
+				
+				$sql_updatepc = "UPDATE employer SET postalcode = :postalcode where email = '$currentUser'";
+				$stid_updatepc = oci_parse($dbh, $sql_updatepc);
+				oci_bind_by_name($stid_updatepc, ":postalcode", $postalcode);
+				oci_execute($stid_updatepc);
+				oci_free_statement($stid_updatepc);
+			}
+
+			if($natureofbusiness = $_GET['natureofbusiness']){
+				
+				$sql_updatenob = "UPDATE employer SET natureofbusiness = :natureofbusiness where email = '$currentUser'";
+				$stid_updatenob = oci_parse($dbh, $sql_updatenob);
+				oci_bind_by_name($stid_updatenob, ":natureofbusiness", $natureofbusiness);
+				oci_execute($stid_updatenob);
+				oci_free_statement($stid_updatenob);
+			}
+
+			if($addressofcompany   = $_GET['addressofcompany']){
+				
+				$sql_updateaddress = "UPDATE employer SET addressofcompany = :addressofcompany where email = '$currentUser'";
+				$stid_updateaddress = oci_parse($dbh, $sql_updateaddress);
+				oci_bind_by_name($stid_updateaddress, ":addressofcompany", $addressofcompany);
+				oci_execute($stid_updateaddress);
+				oci_free_statement($stid_updateaddress);
+			}
+
+			if($industry = $_GET['industry']){
+				
+				$sql_updateindustry = "UPDATE employer SET industry = :industry where email = '$currentUser'";
+				$stid_updateindustry = oci_parse($dbh, $sql_updateindustry);
+				oci_bind_by_name($stid_updateindustry, ":industry", $industry);
+				oci_execute($stid_updateindustry);
+				oci_free_statement($stid_updateindustry);
+			}		
+			
+			}
+		?>
+		       
 <?php
 }
     ?>	

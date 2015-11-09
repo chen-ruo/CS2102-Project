@@ -46,7 +46,7 @@ if ($allowaccess=true)
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="home.html"><img src="images/logo.png" alt=""></a>
+                    <a class="navbar-brand" href="employerHome.html"><img src="images/logo.png" alt=""></a>
                 </div>
              	    <!--/.navbar-header-->
 	     <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
