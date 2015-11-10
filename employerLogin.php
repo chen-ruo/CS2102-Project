@@ -71,15 +71,6 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
                 <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
 	        <ul class="nav navbar-nav">
 			  <li><a href="about.php">About Us</a></li>
-		        
-				<li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
-		             <ul class="dropdown-menu">
-						  <li><a href="post.php">Post Jobs</a></li>
-						    <li><a href="search.php">Search applicants</a></li>
-							  <li><a href="searchmatched.php">Search for matched applicants</a></li>
-		             </ul>
-		        </li>
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
@@ -276,8 +267,8 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 							<div class="clearfix"> </div></a>
                             <div class="clearfix"></div>
                         </div>
-                        <h4>Don,t have an Employer Account to post your jobs?
-                            <a href="register.php"> Register Now!</a>
+                        <h4>Don't have an Employer Account to post your jobs?
+                            <a href="employerRegister.php"> Register Now!</a>
                         </h4>
                     </div>
                 </div>
@@ -296,9 +287,7 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 				<li><a href="about.php">About</a></li>
 			</ul>
 			<ul class="f_list">
-				<li><a href ="jobs.php">Find a Job</a></li>
 				<li><a href="contact.php">Contact Us</a></li>
-				<li><a href="post.php">Post a Job</a></li>
 			</ul>
 			<div class="clearfix"> </div>
 		</div>
