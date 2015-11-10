@@ -76,7 +76,7 @@ if ($allowaccess=true)
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 	        </button>
-	        <a class="navbar-brand" href="employerHome.html"><img src="images/logo.png" alt=""/></a>
+	        <a class="navbar-brand" href="home.html"><img src="images/logo.png" alt=""/></a>
 	    </div>
 	    <!--/.navbar-header-->
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
@@ -102,7 +102,7 @@ if ($allowaccess=true)
 							<li><a href="passwordChange.php">Change Password</a></li>
 		             </ul>
 		        </li>
-		        <li><a href = "index.php" onClick = <?php session_destroy();?>>Logout</a></li>
+		        <li><a href = "logout.php">Logout</a></li>
 				
 	    </div>
 	    <div class="clearfix"> </div>
@@ -149,10 +149,11 @@ if ($allowaccess=true)
 					$employer = $_SESSION['CurrentUser'];
 
 					if($qualification == "Required Qualification"){
+						
 						$sql = "select a.firstname, a.lastname, a.email, a.mobilenumber, i.skill1,i.skill2,i.highestquali, i.industryinterested, i.status
 								from applicant a, information i
 								where a.email = i.applicant
-								and i.status = 'Avaliable'
+								and i.status = 'Available'
 								and i.industryinterested in
 								  (select e.industry
 								    from employer e
@@ -160,11 +161,24 @@ if ($allowaccess=true)
 								    and (i.skill1 = '$skill' or i.skill2 = '$skill') 
 								    )";
 					}
-					else{
+					else if (empty($_GET['skill']) && $qualification != "Required Qualification") {
 						$sql = "select a.firstname, a.lastname, a.email, a.mobilenumber, i.skill1,i.skill2,i.highestquali, i.industryinterested, i.status
 								from applicant a, information i
 								where a.email = i.applicant
-								and i.status = 'Avaliable'
+								and i.status = 'Available'
+								and i.industryinterested in
+								  (select e.industry
+								    from employer e
+								    where e.email = '$employer'
+								    and i.highestquali = '$qualification' 
+								    )";
+					}
+					else{
+
+						$sql = "select a.firstname, a.lastname, a.email, a.mobilenumber, i.skill1,i.skill2,i.highestquali, i.industryinterested, i.status
+								from applicant a, information i
+								where a.email = i.applicant
+								and i.status = 'Available'
 								and i.industryinterested in
 								  (select e.industry
 								    from employer e
@@ -228,7 +242,13 @@ if ($allowaccess=true)
 	<div class="container">
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
-
+			<ul class="f_list f_list1">
+				<li><a href="index.php">Home</a></li>
+				<li><a href="about.php">About</a></li>
+			</ul>
+			<ul class="f_list">
+				<li><a href="contact.php">Contact Us</a></li>
+			</ul>
 			<div class="clearfix"> </div>
 		</div>
 		<div class ="col-md-4 grid 3">

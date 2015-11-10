@@ -73,8 +73,17 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 			  <li><a href="about.php">About Us</a></li>
 		        
 				<li class="dropdown">
+		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
+		             <ul class="dropdown-menu">
+						  <li><a href="post.php">Post Jobs</a></li>
+						    <li><a href="search.php">Search applicants</a></li>
+							  <li><a href="searchmatched.php">Search for matched applicants</a></li>
+		             </ul>
+		        </li>
+				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
+		            	 <li><a href="adminLogin.php">Admin login</a></li>
 						  <li><a href="employerLogin.php">Employer login</a></li>
 						    <li><a href="applicantLogin.php">Applicant Login</a></li>
 		             </ul>
@@ -169,7 +178,71 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 					   <input type="submit" name="Submit" value="Login">
 					</form>
 					
-									
+		
+				<?php if(isset($_GET['Submit']))
+				{
+
+					// username and password sent from form 
+					$username=$_GET['Email']; 
+					$password=$_GET['Password']; 
+
+					// echo "$username"."<br>";
+					// echo "$password"."<br>";
+
+
+					// $sql_applicant = "select email, password from applicant";
+					$sql_employer =  "select email, password from employer";
+					// $stid_applicant = oci_parse($dbh, $sql_applicant);
+					$stid_employer = oci_parse($dbh, $sql_employer);
+
+					$exist = false;
+					// oci_execute($stid_applicant, OCI_DEFAULT);
+					oci_execute($stid_employer, OCI_DEFAULT);
+
+					// $count_applicant = 0;
+					$count_employer = 0;
+					
+					// while($query_applicant = oci_fetch_array($stid_applicant)){
+					// 	//echo "$count"."<br>";
+					// 	//echo "$query[0] $query[1]"."<br>";
+					// 	//echo "Applicant: "."<br>";
+					// 	//echo "$query_applicant[0] $query_applicant[1]"."<br><br>";
+					// 	if ($username == $query_applicant[0] and $password == $query_applicant[1]){
+					// 		 $count_applicant++;
+					// 	}
+					// 	// echo "Count: $count"."<br>";
+					// }
+
+					while($query_employer = oci_fetch_array($stid_employer)){
+						//echo "$count"."<br>";
+						//echo "$query[0] $query[1]"."<br>";
+						//echo "Employer: "."<br>";
+					    //echo "$query_employer[0] $query_employer[1]"."<br>";
+						if ($username == $query_employer[0] and $password == $query_employer[1]){
+							 $count_employer++;
+						}
+						// echo "Count: $count"."<br>";
+					}
+
+					if($count_employer == 1){
+						$_SESSION['CurrentUser'] = $username;
+						$_SESSION['Role'] = 'Employer';
+						//die("<script> alert ('Employer')</script>");
+						die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/employerHome.php'</script>");
+					}else{
+						//echo "Wrong Username or Password";
+						die("<script> alert ('Wrong Email or Password')</script>");
+						//die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101973/home.php'</script>");
+					
+					}
+
+				}
+				?>
+				
+					
+					
+					<!--<p><span class="error">* required field.</span></p>-->
+				
 
 				
 					
@@ -250,68 +323,5 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
   </div>
 </div>
 </body>
+<?php oci_close($dbh); ?>
 </html>	
-		
-				<?php if(isset($_GET['Submit']))
-				{
-
-					// username and password sent from form 
-					$username=$_GET['Email']; 
-					$password=$_GET['Password']; 
-
-					// echo "$username"."<br>";
-					// echo "$password"."<br>";
-
-
-					// $sql_applicant = "select email, password from applicant";
-					$sql_employer =  "select email, password from employer";
-					// $stid_applicant = oci_parse($dbh, $sql_applicant);
-					$stid_employer = oci_parse($dbh, $sql_employer);
-
-					$exist = false;
-					// oci_execute($stid_applicant, OCI_DEFAULT);
-					oci_execute($stid_employer, OCI_DEFAULT);
-
-					// $count_applicant = 0;
-					$count_employer = 0;
-					
-					// while($query_applicant = oci_fetch_array($stid_applicant)){
-					// 	//echo "$count"."<br>";
-					// 	//echo "$query[0] $query[1]"."<br>";
-					// 	//echo "Applicant: "."<br>";
-					// 	//echo "$query_applicant[0] $query_applicant[1]"."<br><br>";
-					// 	if ($username == $query_applicant[0] and $password == $query_applicant[1]){
-					// 		 $count_applicant++;
-					// 	}
-					// 	// echo "Count: $count"."<br>";
-					// }
-
-					while($query_employer = oci_fetch_array($stid_employer)){
-						//echo "$count"."<br>";
-						//echo "$query[0] $query[1]"."<br>";
-						//echo "Employer: "."<br>";
-					    //echo "$query_employer[0] $query_employer[1]"."<br>";
-						if ($username == $query_employer[0] and $password == $query_employer[1]){
-							 $count_employer++;
-						}
-						// echo "Count: $count"."<br>";
-					}
-
-					if($count_employer == 1){
-						$_SESSION['CurrentUser'] = $username;
-						$_SESSION['Role'] = 'Employer';
-						//die("<script> alert ('Employer')</script>");
-						die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/employerHome.php'</script>");
-					}else{
-						//echo "Wrong Username or Password";
-						die("<script> alert ('Wrong Email or Password')</script>");
-						//die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101973/home.php'</script>");
-					
-					}
-
-				}
-				?>
-				
-					
-					
-					<!--<p><span class="error">* required field.</span></p>-->

@@ -1,3 +1,10 @@
+<?php
+include 'session.php';
+include 'connectToServer.php';
+
+if ($allowaccess=true)
+{
+    ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -56,8 +63,7 @@
 							<li><a href="passwordChange.php">Change Password</a></li>
 		             </ul>
 		        </li>
-		        <li><a href = "index.php" onClick = <?php session_destroy();?>>Logout</a></li>
-				
+		        <li><a href = "logout.php">Logout</a></li>
 	    </div>
 	    <div class="clearfix"> </div>
 	  </div>
@@ -66,56 +72,79 @@
 <div class="container">
     <div class="single">  
 	   <div class="col-md-9 single_right">
-	    <h1>Shows list of applicants who applied for this job <h1>
+	    <h1>List applicants' details</h1>
 		<div class="container">
     <div class="single">  
 	   <div class="col-md-9 single_right">
 	   <!-- List of jobs posted by employer-->
 
 		    <table class="condidate_detail">
-          	<h4>Applicant Details</h4>
+          	<h3>Applicant Details</h3>
+			<?php if (isset($_SESSION['jobid'])){
+
+				echo "Applicants who have applied for Job ID: ";
+				echo $_SESSION['jobid'];
+			}
+			?>
 			<br>
-			<h1>Applicant 1<h1>
 			<tbody>
+			<?php
+				$jobid = $_SESSION['jobid'];
+				$employer = $_SESSION['CurrentUser'];
+				$sql = "select distinct a.firstname, a.lastname, a.email, a.mobilenumber, i.highestquali, i.skill1, i.skill2, i.industryinterested, i.prevjob, i.prevworkexperience
+						from applicant a, information i, applyfor ap, jobs j
+						where ap.emaila = a.email
+						and ap.emaila = i.applicant
+						and ap.jobid = '$jobid'
+						and ap.emaile = '$employer'
+						";
+				$stid = oci_parse($dbh,$sql);
+				oci_execute($stid,OCI_DEFAULT);
+				echo "<table border=\"1\">
+				<col width=\"10%\">
+				<col width=\"15%\">
+				<col width=\"20%\">
+				<col width=\"13%\">
+				<col width=\"10%\">
+				<col width=\"10%\">
+				<col width=\"10%\">
+				<col width=\"17%\">
+				<col width=\"15%\">
+				<col width=\"20%\">
+					
 				<tr>
-					<td>name</td>
+				<th>First name</th>
+				<th>Last name</th>					
+				<th>Email</th>
+				<th>Contact number</th>
+				<th>Highest Qualification</th>
+				<th>Skill 1</th>
+				<th>Skill 2</th>
+				<th>Industry interested</th>
+				<th>Previous job</th>
+				<th>Previous Job experience</th>
+				</tr>";
 	
-				</tr>
-				
-				<tr>
-					<td>gender</td>
-
-				</tr>
-
-				<tr>
-					<td>age</td>
-
-				</tr>
-				
-				<tr>
-					<td>minimum qualification</td>
-				</tr>
-				
-				<tr>
-					<td>dob</td>
-
-				</tr>
-
-				<tr>
-					<td>description</td>
-
-				</tr>
-
-				<tr>
-					<td>contact number</td>
-				</tr>
-
-				<tr>
-					<td>E-mail</td>
-					<td><a href="mailto:hisemail">his email</a></td>
-				</tr>
+					while($row = oci_fetch_array($stid)) {
+					echo "<tr>";
+					echo "<td>" . $row[0] . "</td>";
+					echo "<td>" . $row[1] . "</td>";
+					echo "<td>" . $row[2] . "</td>";
+					echo "<td>" . $row[3] . "</td>";
+					echo "<td>" . $row[4] . "</td>";
+					echo "<td>" . $row[5] . "</td>";
+					echo "<td>" . $row[6] . "</td>";
+					echo "<td>" . $row[7] . "</td>";
+					echo "<td>" . $row[8] . "</td>";
+					echo "<td>" . $row[9] . "</td>";
+					echo "</tr>";
+					}
+					echo "</table>";
+					oci_free_statement($stid);
+			?>
 			</tbody>
 		 </table>
+		 <br><br>
   <div class="clearfix"> </div>
  </div>
 </div>
@@ -126,7 +155,13 @@
 	<div class="container">
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
-
+			<ul class="f_list f_list1">
+				<li><a href="index.php">Home</a></li>
+				<li><a href="about.php">About</a></li>
+			</ul>
+			<ul class="f_list">
+				<li><a href="contact.php">Contact Us</a></li>
+			</ul>
 			<div class="clearfix"> </div>
 		</div>
 		<div class ="col-md-4 grid 3">
@@ -150,4 +185,7 @@
   </div>
 </div>
 </body>
-</html>	
+</html>
+<?php
+}
+    ?>
