@@ -126,21 +126,28 @@ if ($allowaccess=true)
             </div>
         </div>
 
+		
+		    <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="qualification">Minimum Qualification</label>
+                <div class="col-md-9">
+                    <select name="qualification" id="qualification ID">
+					 <option value="O-level">O-level</option>
+					 <option value="A-level">A-level</option>
+					 <option value="Diplomas">Diplomas</option>
+					 <option value="Degree">Bachelor's degrees</option>
+					 <option value="Master">Master</option>
+					 <option value="Ph.D">Ph.D</option>
+					 </select>
+			 </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="category">Category</label>
                 <div class="col-md-9">
                     <input type="text" name = "category" path="category" id="category" class="form-control input-sm"/>
-                </div>
-            </div>
-        </div>
-
-		
-		        <div class="row">
-            <div class="form-group col-md-12">
-                <label class="col-md-3 control-lable" for="qualification">Minimum Qualification</label>
-                <div class="col-md-9">
-                    <input type="text" name = "qualification" path="qualification" id="qualification" class="form-control input-sm"/>
                 </div>
             </div>
         </div>
