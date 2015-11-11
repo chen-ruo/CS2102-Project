@@ -47,7 +47,7 @@ if ($allowaccess=true)
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="applicantHome.html"><img src="images/logo.png" alt=""></a>
+                    <a class="navbar-brand" href="home.html"><img src="images/logo.png" alt=""></a>
                 </div>
              	    <!--/.navbar-header-->
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
@@ -58,7 +58,11 @@ if ($allowaccess=true)
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;"."Hello, ".$_SESSION['CurrentUser']."<br>";
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['Role']."<br>";
                     ?>
-
+					<li><a href="applicantHome.php">Search Jobs</a></li>
+		        
+				        
+		        
+		        </li>
 		        <li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged In<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
@@ -85,84 +89,218 @@ if ($allowaccess=true)
     <div class="single">  
 	   <div class="col-md-9 single_right">
 	   <!-- Description -->
-		<h1> List of jobs applied </h1>
+		<h1> List of jobs applied </hi>
 			<form>
-				
-				<input type="submit" name="View" value="view" style="background-color:#A9E2F3">
-			</form>
-			<br>
-	   	<?php
-	   	$currentuser = $_SESSION['CurrentUser'];
-	   	$sql = "SELECT EmailE, JOBID from applyfor where'$currentuser' = EmailA";
-
-	   	$stid = oci_parse($dbh, $sql);
-	   	oci_execute($stid, OCI_DEFAULT);
-	   	$email = array();
-	   	$jobIndex = array();
-
-	   	while($query = oci_fetch_array($stid)){
-	   		array_push($email, $query[0]);
-	   		array_push($jobIndex, $query[1]);
-	   	}
-
-	   	oci_free_statement($stid);
-	   	//insert code to display 
-
-
-	   	// $sql2 = "SELECT j.owner, j.jobtype, j.category, j.minrequiredQualification, j.minrequiredSkills, j.Description from JOBS where '$email' = j.owner and 'jobIndex' = j.jobid";
-	   	// $stid2 = oci_parse($dbh, $sql2);
-
-	   	$arrSize = count($email);
-
-	   	for($x = 0; $x < $arrSize; $x++) {
-
-	   		$account = $email[$x];
-	   		$jobid = $jobIndex[$x];
-
-	   		// echo "$account"."$jobid"."<br>";
-  			$sql2 = "SELECT e.companyname, j.owner, j.jobid, j.jobtype, j.category, j.minrequiredQualification, j.minrequiredSkills, j.Description from JOBS j, employer e where '$account' = j.owner and '$account' = e.email and j.jobid = '$jobid'";
-			// echo "$sql2";
-			$stid2 = oci_parse($dbh, $sql2);
-			oci_execute($stid2, OCI_DEFAULT);
-			while ($row = oci_fetch_array($stid2)){
-				echo "Company: "."$row[0]"."<br>";
-				echo "Employer: "."$row[1]"."<br>";
-				echo "Job ID: "."$row[2]"."<br>";
-				echo "Job type: "."$row[3]"."<br>";
-				echo "Category: "."$row[4]"."<br>";
-				echo "Minimum Qualification: "."$row[5]"."<br>";
-				echo "Minimum Skills: "."$row[6]"."<br>";
-				echo "Job description: "."$row[7]"."<br>";
-			}
-			oci_free_statement($stid2);
-
-		}
-	   	?>
-
-	   	<!-- <form>
-	   		<select name="JobID" id="Job ID"><option value="">Select Job ID</option>
+				<select name="jobid" id="jobid"><option value="">Select Job ID</option>
 					<?php
-					//  if (isset($_GET['View'])){
-					// $sql= "select distinct j.jobid
-					// 		from jobs j, information i, employer e
-					// 		where i.applicant = '$applicant'
-					// 		and j.owner = e.email
-					// 		and (j.minrequiredskills = i.skill1 or j.minrequiredskills = i.skill2 or i.industryinterested = e.industry)
-					// 		and j.minrequiredqualification = i.highestquali
-					// 		order by j.jobid";
-					// }
-					// $stid = oci_parse($dbh, $sql);
-					// oci_execute($stid, OCI_DEFAULT);
-					// while($row = oci_fetch_array($stid)){
-					// echo "<option value=\"".$row[0]."\">".$row[0]."</option><br>";
-					// }
-					// oci_free_statement($stid);
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT distinct jobid from applyfor where '$currentuser' = emailA";
+					$stid = oci_parse($dbh, $sql);
+					oci_execute($stid, OCI_DEFAULT);
+					while($query = oci_fetch_array($stid)){
+						echo "<option value=\"".$query[0]."\">".$query[0]."</option><br>";
+					}
+					oci_free_statement($stid);
 					?>
 				</select>
+				<select name="employerEmail" id="employerEmail"><option value="">Select Company</option>
+					<?php
+					$currentuser = $_SESSION['CurrentUser'];
+					$sql = "SELECT distinct e.email from applyfor a, employer e
+					where '$currentuser' = a.EmailA and  a.EmailE = e.email";
+					$stid = oci_parse($dbh, $sql);
+					oci_execute($stid, OCI_DEFAULT);
+					while($query = oci_fetch_array($stid)){
+						echo "<option value=\"".$query[0]."\">".$query[0]."</option><br>";
+					}
+					oci_free_statement($stid);
+					?>
+				</select>
+				<br><br>
+				<input type="submit" name="View" value="View"   style="background-color:#A9E2F3">
+				<input type="submit" name="Delete"  value="Delete" style="background-color:#A9E2F3">
+			</form>
+			
+			<table class="candidate_detail">
+			<h4> Description of company </h4>
+			<tbody>
+				<tr>
+				<td>Company</td>
+				<td>
+					<?php if(isset($_GET['View'])){
+					$job_id = $_GET['jobid'];
+	 				$company_email = $_GET['employerEmail'];
+	 				$currentuser = $_SESSION['CurrentUser'];
+	 				$sql = "SELECT e.companyname
+	 						from JOBS j, employer e
+	 						where e.email = '$company_email' and j.JobID = '$job_id' and e.email = j.owner";
+					
+					
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+				}
+					?>
+				</td>
+				</tr> 
 
-	   	</form> -->
+				<td>Job ID</td>
+				<td>
+					<?php if(isset($_GET['View'])){
+					$job_id = $_GET['jobid'];
+	 				$company_email = $_GET['employerEmail'];
+	 				$currentuser = $_SESSION['CurrentUser'];
+	 				$sql = "SELECT j.jobid
+	 						from JOBS j, employer e
+	 						where e.email = '$company_email' and j.JobID = '$job_id' and e.email = j.owner";
+					
+					
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+				}
+					?>
+				</td>
+				</tr> 
 
-	   	<br><br><br>
+				<td>Job Type</td>
+				<td>
+					<?php if(isset($_GET['View'])){
+					$job_id = $_GET['jobid'];
+	 				$company_email = $_GET['employerEmail'];
+	 				$currentuser = $_SESSION['CurrentUser'];
+	 				$sql = "SELECT j.jobtype
+	 						from JOBS j, employer e
+	 						where e.email = '$company_email' and j.JobID = '$job_id' and e.email = j.owner";
+					
+					
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+				}
+
+					?>
+				</td>
+				</tr>
+
+				<td>Category</td>
+				<td>
+					<?php if(isset($_GET['View'])){
+					$job_id = $_GET['jobid'];
+	 				$company_email = $_GET['employerEmail'];
+	 				$currentuser = $_SESSION['CurrentUser'];
+	 				$sql = "SELECT j.category
+	 						from JOBS j, employer e
+	 						where e.email = '$company_email' and j.JobID = '$job_id' and e.email = j.owner";
+					
+					
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+				}
+					?>
+				</td>
+				</tr>
+
+				<td>Minimum Qualification</td>
+				<td>
+					<?php if(isset($_GET['View'])){
+					$job_id = $_GET['jobid'];
+	 				$company_email = $_GET['employerEmail'];
+	 				$currentuser = $_SESSION['CurrentUser'];
+	 				$sql = "SELECT j.minrequiredQualification
+	 						from JOBS j, employer e
+	 						where e.email = '$company_email' and j.JobID = '$job_id' and e.email = j.owner";
+					
+					
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+				}
+					?>
+				</td>
+				</tr> 
+
+				<td>Required Skills</td>
+				<td>
+					<?php if(isset($_GET['View'])){
+					$job_id = $_GET['jobid'];
+	 				$company_email = $_GET['employerEmail'];
+	 				$currentuser = $_SESSION['CurrentUser'];
+	 				$sql = "SELECT j.minrequiredSkills
+	 						from JOBS j, employer e
+	 						where e.email = '$company_email' and j.JobID = '$job_id' and e.email = j.owner";
+					
+					
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+				}
+					?>
+				</td>
+				</tr> 
+
+				<td>Job Description</td>
+				<td>
+					<?php if(isset($_GET['View'])){
+					$job_id = $_GET['jobid'];
+	 				$company_email = $_GET['employerEmail'];
+	 				$currentuser = $_SESSION['CurrentUser'];
+	 				$sql = "SELECT j.Description 
+	 						from JOBS j, employer e
+	 						where e.email = '$company_email' and j.JobID = '$job_id' and e.email = j.owner";
+					
+					
+					$stid = oci_parse($dbh,$sql);
+					oci_execute($stid,OCI_DEFAULT);
+					while($row = oci_fetch_array($stid)) {
+					echo "$row[0]"."<br>";
+					}
+					oci_free_statement($stid);
+				}
+					?>
+				</td>
+				</tr> 
+			</tbody>
+			</table>
+			<?php
+				$job_id = $_GET['jobid'];
+	 			$company_email = $_GET['employerEmail'];
+	 			$currentuser = $_SESSION['CurrentUser'];
+
+				if(isset($_GET['Delete'])){
+					$sql1 = "DELETE from applyfor
+	 						where EmailA = '$currentuser' and EmailE = '$company_email'
+	 						and JobID = '$job_id'";
+
+	 				// echo "$sql1"."<br>";
+	 				$stid1 = oci_parse($dbh, $sql1);
+	 				oci_execute($stid1);
+	 				oci_free_statement($stid1);
+	 				echo ("<script>alert('Delete Successfully')</script>");
+	 				die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/applicantProfile.php'</script>");
+				}
+			?>
+
+	   	<br><br>
 	   	<table class="candidate_detail">
 		<h4> Description of applicant </h4>
 		<tbody>
@@ -426,7 +564,17 @@ if ($allowaccess=true)
 	<div class="container">
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
-
+			<ul class="f_list f_list1">
+				<li><a href="applicantHome.php">Applicant Home</a></li>
+				<li><a href="applicantLogin.php">Sign In</a></li>
+				<li><a href="applicantRegister.php">Register</a></li>
+				<li><a href="about.php">About</a></li>
+			</ul>
+			<!-- <ul class="f_list">
+				<li><a href ="jobs.html">Find a Job</a></li>
+				<li><a href="contact.html">Contact Us</a></li>
+				<li><a href="post.html">Post a Job</a></li>
+			</ul> -->
 			<div class="clearfix"> </div>
 		</div>
 		<div class ="col-md-4 grid 3">
