@@ -117,7 +117,7 @@ if ($allowaccess=true)
 		
 		<div class="row">
 		<div class="form-group col-md-12">
-		<label class="col-md-3 control-lable" for="description">Which job to edit?</label>
+		<label class="col-md-3 control-lable" for="description">Which job to edit/delete?</label>
 		<div class="col-md-9">
 		<select name="jobid"> <option value="">Job ID</option>
 				<?php
@@ -181,9 +181,12 @@ if ($allowaccess=true)
                 </div>
             </div>
         </div>
-		<input type="submit" name="Submit" value="Submit" style="display: block; margin: 0 auto;" >
+        <center>
+		<input type="submit" name="edit" value="Edit">
+		<input type="submit" name="delete" value="Delete">
+		</center>
 		</form>
-		<?php if(isset($_GET['Submit']))
+		<?php if(isset($_GET['edit']))
 		{
 
 			$currentUser  = $_SESSION['CurrentUser'];
@@ -233,7 +236,67 @@ if ($allowaccess=true)
 				oci_free_statement($stid_updatedesp);
 			}
 			
+			echo("<script> alert ('The account has been updated succcessfully!')</script>");
+			die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/employerProfile.php'</script>");
+
 			}
+		?>
+
+		<?php if(isset($_GET['delete']))
+		{
+			$currentUser  = $_SESSION['CurrentUser'];
+			$jobid = $_GET['jobid'];
+
+			$sql_checkapplicantion = "SELECT emaile, jobid from applyfor where jobid = '$jobid' and emaile = '$currentUser'";
+			$stid_check = oci_parse($dbh, $sql_checkapplicantion);
+
+			oci_execute($stid_check, OCI_DEFAULT);
+			$exist = 0;
+
+			while($query_applicantion = oci_fetch_array($stid_check)){
+
+
+				if($query_applicantion[0]){
+
+					$exist = 1;
+				}
+			}
+
+			if($exist == 0){
+
+				$sql_delete = "DELETE from jobs where jobid = '$jobid' and owner = '$currentUser'";
+				$stid_delete = oci_parse($dbh, $sql_delete);
+
+				oci_execute($stid_delete);
+				oci_free_statement($stid_delete);
+
+				echo("<script> alert ('The job has been succcessfully deleted!')</script>");
+				die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/employerProfile.php'</script>");
+
+			}
+			else{
+
+				$sql_deleteapplicantion = "DELETE FROM applyfor where jobid = '$jobid' and emaile = '$currentUser'";
+				$stid_deleteapplicantion = oci_parse($dbh, $sql_deleteapplicantion);
+
+				oci_execute($stid_deleteapplicantion);
+				oci_free_statement($stid_deleteapplicantion);
+
+				$sql_delete = "DELETE from jobs where jobid = '$jobid' and owner = '$currentUser'";
+				$stid_delete = oci_parse($dbh, $sql_delete);
+
+				oci_execute($stid_delete);
+				
+				oci_free_statement($stid_delete);
+
+				echo("<script> alert ('The job has been succcessfully deleted!')</script>");
+				die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/employerProfile.php'</script>");
+
+			}
+
+			oci_free_statement($stid_check);
+
+		}
 		?>
 			    
     </div>
