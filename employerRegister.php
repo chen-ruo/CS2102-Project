@@ -20,73 +20,6 @@ include 'connectToServer.php'
 <!----font-Awesome----->
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!----font-Awesome----->
-<script>
-
-              function checkServer(){
-                var username = document.getElementById("email").value
-                var password = document.getElementById("password").value
-                var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-				var companyname = document.getElementById("companyname").value
-				var companynum = document.getElementById("companynum").value
-				var companyurl = document.getElementById("companyurl").value
-				var industry = document.getElementById("industry").value
-				var addressofcompany = document.getElementById("addressofcompany").value
-				var natureofbusiness = document.getElementById("natureofbusiness").value
-				var postalcode = document.getElementById("addressofcompany").value
-				
-			var r = confirm("Are you sure to register for an account?");
-			if (r == true) {
-
-			 var errormsg = "Below are the errors:\n\n";
-			   var errorlog = false;
-			   
-			    if( username.trim().length == 0) {
-					errorlog = true;
-					errormsg += "- Email field is empty.\n";
-				} else if (!username.match(re)){
-					errorlog = true;
-					errormsg += "- Email is invalid. Please enter a valid email so that we can send a confirmation email to you.\n";
-				}
-			   if(password.trim().length < 4){
-					errorlog = true;
-					errormsg += "- Please enter a valid password of atleast 4 characters long.\n";
-				}
-			   if( companyname.trim().length == 0){
-					errorlog = true;
-					errormsg += "- Name of company is empty\n";
-				} if (companynum.trim().length == 0){
-					errorlog = true;
-					errormsg += "- company number is empty\n";
-					} if (addressofcompany.trim().length == 0){
-					errorlog = true;
-					errormsg += "- Missing address of company\n"
-					} if (industry.trim().length == 0){
-					errorlog = true;
-					errormsg += "- Industry is empty.\n"
-					}
-					if (natureofbusiness.trim().length == 0){
-					errorlog = true;
-					errormsg += "- Nature of business is empty.\n"
-					} 	if (postalcode.trim().length == 0){
-					errorlog = true;
-					errormsg += "- Company's postal code is empty.\n"
-					}
-	
-					if(errorlog){
-					errormsg += "\nPlease correct these errors before submitting.";
-					alert(errormsg);
-					} else{
-					setTimeout(setMain, 1000);
-				}
-			} else {
-			}
-              }
-			  
-			  function setMain(){
-				alert("Account created succcessfully");
-			  	window.location.href = "index.php";
-			}
-        </script>
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -104,16 +37,7 @@ include 'connectToServer.php'
                 <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
 	        <ul class="nav navbar-nav">
 			  <li><a href="about.php">About Us</a></li>
-		        
-				        <li class="dropdown">
-		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers<b class="caret"></b></a>
-		             <ul class="dropdown-menu">
-						  <li><a href="post.php">Post Jobs</a></li>
-						    <li><a href="search.php">Search applicants</a></li>
-							  <li><a href="searchmatched.php">Search for matched applicants</a></li>
-		             </ul>
-		        </li>
-				
+
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
@@ -312,11 +236,6 @@ include 'connectToServer.php'
 				<li><a href="applicantLogin.php">Sign In</a></li>
 				<li><a href="applicantRegister.php">Join Now</a></li>
 				<li><a href="about.php">About</a></li>
-			</ul>
-			<ul class="f_list">
-				<li><a href ="jobs.php">Find a Job</a></li>
-				<li><a href="contact.php">Contact Us</a></li>
-				<li><a href="post.php">Post a Job</a></li>
 			</ul>
 			<div class="clearfix"> </div>
 		</div>

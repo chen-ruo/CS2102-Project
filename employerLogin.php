@@ -33,25 +33,6 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
         <link href="css/font-awesome.css" rel="stylesheet">
         <!----font-Awesome----->
 		
-		<script>
-
-              function checkServer(){
-                var name = document.getElementById("email").value
-                var password = document.getElementById("password").value
-                
-               var r = confirm("Are you sure to login?");
-			if (r == true) {
-				setTimeout(setMain, 1000);
-			} else {
-			}
-              }
-			  
-			  function setMain(){
-				alert("Login succcessfully");
-			  	window.location.href = "home.php";
-			}
-        </script>
-		
     </head>
     
     <body>
@@ -285,9 +266,6 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 				<li><a href="applicantLogin.php">Sign In</a></li>
 				<li><a href="applicantRegister.php">Join Now</a></li>
 				<li><a href="about.php">About</a></li>
-			</ul>
-			<ul class="f_list">
-				<li><a href="contact.php">Contact Us</a></li>
 			</ul>
 			<div class="clearfix"> </div>
 		</div>

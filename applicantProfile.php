@@ -88,7 +88,9 @@ if ($allowaccess=true)
 		<h1> List of jobs applied </h1>
 			<form>
 				
+	   		<select name="JobID" id="Job ID"><option value="">Select Job ID</option>
 				<input type="submit" name="View" value="view" style="background-color:#A9E2F3">
+						<input type="submit" name="Delete" value="delete" style="background-color:#A9E2F3">
 			</form>
 			<br>
 	   	<?php
@@ -139,32 +141,30 @@ if ($allowaccess=true)
 		}
 	   	?>
 
-	   	<!-- <form>
-	   		<select name="JobID" id="Job ID"><option value="">Select Job ID</option>
 					<?php
-					//  if (isset($_GET['View'])){
-					// $sql= "select distinct j.jobid
-					// 		from jobs j, information i, employer e
-					// 		where i.applicant = '$applicant'
-					// 		and j.owner = e.email
-					// 		and (j.minrequiredskills = i.skill1 or j.minrequiredskills = i.skill2 or i.industryinterested = e.industry)
-					// 		and j.minrequiredqualification = i.highestquali
-					// 		order by j.jobid";
-					// }
-					// $stid = oci_parse($dbh, $sql);
-					// oci_execute($stid, OCI_DEFAULT);
-					// while($row = oci_fetch_array($stid)){
-					// echo "<option value=\"".$row[0]."\">".$row[0]."</option><br>";
-					// }
-					// oci_free_statement($stid);
+					  if (isset($_GET['View'])){
+					 $sql= "select distinct j.jobid
+					 		from jobs j, information i, employer e
+					 		where i.applicant = '$applicant'
+					 		and j.owner = e.email
+					 		and (j.minrequiredskills = i.skill1 or j.minrequiredskills = i.skill2 or i.industryinterested = e.industry)
+					 		and j.minrequiredqualification = i.highestquali
+					 		order by j.jobid";
+					 }
+					 $stid = oci_parse($dbh, $sql);
+					 oci_execute($stid, OCI_DEFAULT);
+					 while($row = oci_fetch_array($stid)){
+					 echo "<option value=\"".$row[0]."\">".$row[0]."</option><br>";
+					 }
+					 oci_free_statement($stid);
 					?>
 				</select>
 
-	   	</form> -->
+	   	</form> 
 
 	   	<br><br><br>
 	   	<table class="candidate_detail">
-		<h4> Description of applicant </h4>
+		<h1> Description of applicant </h1>
 		<tbody>
 			<tr>
 				<td>First Name</td>

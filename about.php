@@ -28,12 +28,12 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 	        </button>
-	        <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt=""/></a>
+	        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt=""/></a>
 	    </div>
   <!--/.navbar-header-->
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
 	        <ul class="nav navbar-nav">
-			  <li><a href="index.php">About Us</a></li>
+			  <li><a href="about.php">About Us</a></li>
 				
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
@@ -220,6 +220,7 @@
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
 			<ul class="f_list f_list1">
+							<li><a href="index.php">Home</a></li>
 				<li><a href="applicantLogin.php">Sign In</a></li>
 				<li><a href="applicantRegister.php">Register</a></li>
 				<li><a href="about.php">About</a></li>

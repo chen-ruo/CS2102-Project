@@ -39,7 +39,6 @@ include 'connectToServer.php';
 	        <ul class="nav navbar-nav">
 			  <li><a href="about.php">About Us</a></li>
 			   <li> <a href="#process">Our process</a></li>
-				<li><a href="contact.php">Contact us</a></li>
 				
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
@@ -144,12 +143,6 @@ include 'connectToServer.php';
 				<li><a href="applicantLogin.php">Sign In</a></li>
 				<li><a href="applicantRegister.php">Join Now</a></li>
 				<li><a href="about.php">About</a></li>
-			</ul>
-			<ul class="f_list">
-				<li><a href ="jobs.php">Find a Job</a></li>
-				<li><a href="contact.php">Contact Us</a></li>
-				<li><a href="post.php">Post a Job</a></li>
-			</ul>
 			<div class="clearfix"> </div>
 		</div>
 		<div class ="col-md-4 grid 3">
