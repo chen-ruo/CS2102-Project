@@ -275,10 +275,36 @@ if ($allowaccess=true)
 			if(isset($_GET['deletea']))
 			{
 				$emaila=$_GET['Aemail'];
-				$sql="delete from applicant where applicant.email='$emaila'";
-				$stid = oci_parse($dbh,$sql);
-				oci_execute($stid);
-				oci_free_statement($stid);
+				$exitst=0;
+				$sql_ckeck="select information.applicant from information where information.applicant='$emaila'";
+				$stid_check = oci_parse($dbh,$sql_ckeck);
+				oci_execute($stid_check,OCI_DEFAULT);
+				//oci_free_statement($stid_check);
+				while($query_information = oci_fetch_array($stid_check)){
+								
+									if ($emaila==$query_information[0]){
+										 $exitst=1;
+									}
+								}
+				if($exitst==1){
+								 $sql="delete from information where applicant='$emaila'";
+				   $stid = oci_parse($dbh,$sql);
+					oci_execute($stid);
+					oci_free_statement($stid);
+					 $sql_delete="delete from applicant where email='$emaila'";
+					 $stid_delete = oci_parse($dbh,$sql_delete);
+					oci_execute($stid_delete);
+					oci_free_statement($stid_delete);
+					
+				
+				}
+			   else{
+				  $sql="delete from applicant where applicant.email='$emaila'";
+						$stid = oci_parse($dbh,$sql);
+						oci_execute($stid);
+						oci_free_statement($stid);
+			   }
+				
 			}
 			else if (isset($_GET['updatea']))
 			{
@@ -296,17 +322,17 @@ if ($allowaccess=true)
 										 $exitst=1;
 									}
 								}
-				if($exitst=1 and ($fielda=="highestquali" or $fielda=="skill1" or $fielda=="skill2" or $fielda=="selfdescription" or $fielda=="industryinterested" or $fielda=="status" or $fielda=="prevjob" or $fielda=="prevworkexperience"))
+				if($exitst==1 and ($fielda=="highestquali" or $fielda=="skill1" or $fielda=="skill2" or $fielda=="selfdescription" or $fielda=="industryinterested" or $fielda=="status" or $fielda=="prevjob" or $fielda=="prevworkexperience"))
 				{
 					$sql="update information set $fielda = '$inputa' where information.applicant='$emaila'";
 					$stid = oci_parse($dbh,$sql);
 					oci_execute($stid);
 					oci_free_statement($stid);
 				}
-				else if ($exitst=0 and ($fielda=="highestquali" or $fielda=="skill1" or $fielda=="skill2" or $fielda=="selfdescription" or $fielda=="industryinterested" or $fielda=="status" or $fielda=="prevjob" or $fielda=="prevworkexperience"))
+				else if ($exitst==0 and ($fielda=="highestquali" or $fielda=="skill1" or $fielda=="skill2" or $fielda=="selfdescription" or $fielda=="industryinterested" or $fielda=="status" or $fielda=="prevjob" or $fielda=="prevworkexperience"))
 				{
 				
-		           echo "This applicant has not modified this field yet!";
+		           die("<script> alert ('Thid applicant has not modified this field yet!')</script>");
 					
 				}
 				else {
