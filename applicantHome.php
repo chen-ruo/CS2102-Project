@@ -48,6 +48,9 @@ if ($allowaccess=true)
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['Role']."<br>";
                     ?> 
 		        </li>
+
+<li><a href="applicantHome.php">Search Jobs</a></li>
+		        <li
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged In<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
@@ -244,6 +247,7 @@ if ($allowaccess=true)
 					?>
 				</select>
 					<input type="submit" name="formSubmit1" value="Apply" >
+
 					<?php
 					
 					if (isset($_GET['formSubmit1'])){
@@ -297,16 +301,12 @@ if ($allowaccess=true)
 					?>
 			</form>
 </div></div></div></div></div>
-
+					<br><br》
 <!-- footer --> 
 <div class="footer">
 	<div class="container">
 		<div class="col-md-3 grid_3">
-			<h4>Navigate</h4>
-			
-			<div class="clearfix"> </div>
-		</div>
-		<div class ="col-md-4 grid 3">
+		
 		</div>
 		<div class="col-md-4 grid_3">
 			<h4>Sign up for our newsletter</h4>

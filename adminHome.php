@@ -21,9 +21,9 @@ if ($allowaccess=true)
 <!-- Custom Theme files -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <link href='http://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
-<!----font-Awesome----->
+
 <link href="css/font-awesome.css" rel="stylesheet"> 
-<!----font-Awesome----->
+
 
 
 
@@ -59,15 +59,14 @@ if ($allowaccess=true)
 <div class="container">
     <div class="single">  
 	   <div class="col-md-9 single_right">
-	    <h1>Admin Home Page <h1>
-		<p> * Admin can choose to delete/modify applicants, employer or jobs.</p>
-		<br><br>
-		
+	    <h2>Admin Home Page </h2>
+		<h4> * Admin can choose to delete/modify applicants, employer or jobs.</h4>
+		<br>
 		<div id="search_wrapper1">
 		   <div id="search_form" class="clearfix">
-		    <h1>Select a choice</h1>
+		    <h1>Select a choice</h1> 
 		    <p>
-			 
+			 <br>
            </div>
 		</div>
 		
@@ -93,7 +92,25 @@ if ($allowaccess=true)
 					$sql="select a.*,i.highestquali,i.skill1,i.skill2,i.selfdescription,i.industryinterested,i.status,i.prevjob,i.prevworkexperience from applicant a left join information i on a.email=i.applicant ";
 					$stid = oci_parse($dbh,$sql);
 					oci_execute($stid,OCI_DEFAULT);
-					echo "<table border=\"1\" >				
+					echo "<table border =\"5\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"15%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
+					<col width=\"5%\">
 					<tr>
 					<th>First Name</th>
 					<th>Last Name</th>					
@@ -112,7 +129,7 @@ if ($allowaccess=true)
 					<th>Industry Intrested</th>
 					<th>Status</th>
 					<th>Previous Job</th>
-					<th>Prebious Working Experience</th>
+					<th>Previous Working Experience</th>
 					</tr>";
 	
 					while($row = oci_fetch_array($stid)) {
@@ -145,7 +162,7 @@ if ($allowaccess=true)
 						$sql="select * from employer" ;
 					$stid = oci_parse($dbh,$sql);
 					oci_execute($stid,OCI_DEFAULT);
-					echo "<table border=\"1\" >				
+					echo "<table border=\"5\" >				
 					<tr>
 					<th>Email</th>			
 					<th>Password</th>
@@ -183,7 +200,7 @@ if ($allowaccess=true)
 						$sql="select j.*,e.companyname from jobs j,employer e where j.owner=e.email order by e.companyname" ;
 					$stid = oci_parse($dbh,$sql);
 					oci_execute($stid,OCI_DEFAULT);
-					echo "<table border=\"1\" >				
+					echo "<table border=\"5\" >				
 					<tr>
 					<th>Job ID</th>
 					<th>Job Type</th>					
@@ -214,7 +231,7 @@ if ($allowaccess=true)
 						$sql="select * from applyfor" ;
 					$stid = oci_parse($dbh,$sql);
 					oci_execute($stid,OCI_DEFAULT);
-					echo "<table border=\"1\" >				
+					echo "<table border=\"5\" >				
 					<tr>
 					<th>Applicant Email</th>
 					<th>Company Email</th>					
@@ -234,6 +251,7 @@ if ($allowaccess=true)
 				}
 			?>
 			<form>
+			 <br><br><br>
 			Applicant:
 			<select name="Aemail"><option value="">Select Applicant Email</option>
 		    <?php
@@ -344,9 +362,10 @@ if ($allowaccess=true)
 				
 			}
 			?>
-			
+	
 			<form>
 			<div>
+					 <br>
 			Employer:
 			<select name="Eemail"><option value="">Select Employer Email</option>
 			<?php
@@ -404,7 +423,7 @@ if ($allowaccess=true)
 				
 			}
 			?>
-		
+		 <br>
 			<div>
 			<form>
 			Jobs:
@@ -490,6 +509,7 @@ if ($allowaccess=true)
 				oci_free_statement($stid);
 			}
 			?>
+			 <br>
 			<div>
 			<form>
 			Application:
@@ -525,14 +545,7 @@ if ($allowaccess=true)
 			}
 			oci_free_statement($stid);
 			?>
-			</select>
-			<select name="Appfield"><option value="">Select a Feild to Update</option>
-			
-			echo "<option value="emaila">Applicant Email</option><br>";
-			echo "<option value="emaile">Company Email</option><br>";
-			echo "<option value="jobid">Job ID</option><br>";?>
-			</select>
-			<input type="text" name="inputapplication" id="inputapplication">
+			<
             <input type="submit" name="deleteapp" value="DELETE" style="background-color:#A9E2F3">		
 			<form>
 			<?php
@@ -551,26 +564,26 @@ if ($allowaccess=true)
  </div>
 
 <!-- footer --> 
+ <br> <br>
 <div class="footer">
 	<div class="container">
-		<div class="col-md-3 grid_3">
-			<h4>Navigate</h4>
 
-			<div class="clearfix"> </div>
+	<div class ="col-md-4 grid 3">
 		</div>
-		<div class ="col-md-4 grid 3">
-		</div>
-		<div class="col-md-4 grid_3">
+		<div  class="col-md-3 grid_3" >
 			<h4>Sign up for our newsletter</h4>
 			<p>Enter your email below and we will send updates into your inbox.</p>
 			<form>
 				<input type="text" class="form-control" placeholder="Enter your email">
 				<button type="button" class="btn red">Subscribe now!</button>
 		    </form>
+
 		</div>
+
 		<div class="clearfix"> </div>
 	</div>
 </div>
+
 <div class="footer_bottom">	
   <div class="container">
 	<div class="copy">

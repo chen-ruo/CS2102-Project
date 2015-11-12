@@ -48,7 +48,7 @@ include 'connectToServer.php'
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 	        </button>
-	        <a class="navbar-brand" href="home.php"><img src="images/logo.png" alt=""/></a>
+	        <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt=""/></a>
 	    </div>
 	    <!--/.navbar-header-->
     
@@ -59,8 +59,9 @@ include 'connectToServer.php'
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
+		             <li><a href="adminLogin.php">Admin login</a></li>
 						  <li><a href="employerLogin.php">Employer login</a></li>
-						    <li><a href="applicantLogin.php">Applicant Login</a></li>
+						    <li><a href="applicantLogin.php">Applicant login</a></li>
 		             </ul>
 		        </li>
 			<li class="dropdown">
@@ -103,7 +104,7 @@ include 'connectToServer.php'
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="email">Email</label>
                 <div class="col-md-9">
-                    <input type="text" name="email" path="email" id="email" class="form-control input-sm"/>
+                    <input type="email" name="email" path="email" id="email" class="form-control input-sm"/>
                 </div>
             </div>
         </div>
@@ -189,6 +190,7 @@ include 'connectToServer.php'
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
 			<ul class="f_list f_list1">
+			<li><a href="index.php">Home</a></li>
 				<li><a href="applicantLogin.php">Sign In</a></li>
 				<li><a href="applicantRegister.php">Register</a></li>
 				<li><a href="about.php">About</a></li>
@@ -290,7 +292,7 @@ include 'connectToServer.php'
 
 			if($insert_successful == 1){
 				echo("<script> alert ('Your account is registered succcessfully!')</script>");
-				die("<script>location.href = '/~a0133281/index.php'</script>");
+				die("<script>location.href = '/~a0101002/index.php'</script>");
 			}
 			oci_free_statement($stid_check);
 			oci_free_statement($sql_insertChk);

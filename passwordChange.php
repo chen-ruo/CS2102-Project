@@ -25,54 +25,6 @@ if ($allowaccess=true)
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!----font-Awesome----->
 
-<script>
-
-              function checkServer(){
-				var password = document.getElementById("newpassword").value
-				var existpassword = document.getElementById("existpassword").value
-				
-			var r = confirm("Are you sure to change your existing password?");
-			if (r == true) {
-
-			 var errormsg = "Below are the errors:\n\n";
-			   var errorlog = false;
-			   
-			   <!-- Check password validity here -->
-			   
-			   if(existpassword.trim().length == 0 ){
-					errorlog = true;
-					errormsg += "- Please enter a valid existing password.\n";
-				}
-				
-			   if(password.trim().length < 4){
-					errorlog = true;
-					errormsg += "- Please enter a new valid password of atleast 4 characters long to change.\n";
-				}
-				
-					if(errorlog){
-					errormsg += "\nPlease correct these errors before submitting.";
-					alert(errormsg);
-					} else{
-					setTimeout(setMain, 1000);
-				}
-			} else {
-			}
-              }
-			  
-			  function setMain(){
-				alert("Password changed succcessfully");
-			  	window.location.href = "home.php";
-			}
-			
-			function logout(){
-				var r = confirm("Do you want to logout?");
-			if (r == true) {
-				alert("Logout successfully");
-				window.location.href = "index.php";
-				} else{}
-				}
-				
-        </script>
 		
 </head>
 <body>
@@ -98,7 +50,7 @@ if ($allowaccess=true)
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;"."Hello, ".$_SESSION['CurrentUser']."<br>";
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['Role']."<br>";
                     ?>
-		        <li><a href = "index.php" onClick = <?php session_destroy();?>>Logout</a></li>
+		       <li><a href = "logout.php">Logout</a></li>
 				
 	    </div>
 	    <div class="clearfix"> </div>
@@ -139,13 +91,9 @@ if ($allowaccess=true)
 <!-- footer --> 
 <div class="footer">
 	<div class="container">
-		<div class="col-md-3 grid_3">
-			<h4>Navigate</h4>
-			<div class="clearfix"> </div>
-		</div>
 		<div class ="col-md-4 grid 3">
 		</div>
-		<div class="col-md-4 grid_3">
+		<div class="col-md-3 grid_3">
 			<h4>Sign up for our newsletter</h4>
 			<p>Enter your email below and we will send updates into your inbox.</p>
 			<form>
@@ -227,6 +175,8 @@ if ($allowaccess=true)
 			oci_bind_by_name($stid, ":password", $newPassword);
 			oci_execute($stid);
 			oci_free_statement($stid);
+					echo ("<script>alert('You password has been changed successfully!')</script>");
+		die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/index.php'</script>");
 		}
 
 
@@ -239,8 +189,7 @@ if ($allowaccess=true)
 		// $stidCheck = oci_parse($dbh, $sql_check);
 		// oci_execute($stid,OCI_DEFAULT);
 
-		echo ("<script>alert('You password has been changed successfully!')</script>");
-		die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0099726/index.php'</script>");
+
 
 	}
 

@@ -70,8 +70,9 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
+		              <li><a href="adminLogin.php">Admin login</a></li>
 						  <li><a href="employerLogin.php">Employer login</a></li>
-						    <li><a href="applicantLogin.php">Applicant Login</a></li>
+						    <li><a href="applicantLogin.php">Applicant login</a></li>
 		             </ul>
 		        </li>
 			<li class="dropdown">
@@ -166,7 +167,7 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 							<div class="clearfix"> </div></a>
 							<div class="clearfix"> </div>
 						</div>
-						<h4>Don,t have an Account? <a href="register.php"> Register Now!</a></h4>
+						<h4>Don't have an Account? <a href="applicantRegister.php"> Register Now!</a></h4>
 					 </div>
 		           </div>
                 </div>
@@ -181,6 +182,8 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 		<div class="col-md-3 grid_3">
 			<h4>Navigate</h4>
 			<ul class="f_list f_list1">
+
+				<li><a href="index.php">Home</a></li>
 				<li><a href="applicantLogin.php">Sign In</a></li>
 				<li><a href="applicantRegister.php">Register</a></li>
 				<li><a href="about.php">About</a></li>

@@ -23,65 +23,6 @@ if ($allowaccess=true)
 <!----font-Awesome----->
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!----font-Awesome----->
-
-<script>
-
-              function checkServer(){
-				var hq = document.getElementById("hq").value
-				var skills = document.getElementById("skills").value
-				var descrip = document.getElementById("descrip").value
-				var work = document.getElementById("work").value
-				var title = document.getElementById("title").value
-				
-			var r = confirm("Are you sure to edit your profile?");
-			if (r == true) {
-
-			 var errormsg = "Below are the errors:\n\n";
-			   var errorlog = false;
-			   
-			   if( hq.trim().length == 0) {
-					errorlog = true;
-					errormsg += "- Enter a valid highest qualification.\n";
-				}if (skills.trim().length == 0){
-					errorlog = true;
-					errormsg += "- No valid skills.\n";
-					} if (descrip.trim().length == 0){
-					errorlog = true;
-					errormsg += "- Description field is empty.\n"
-					}
-					if (work.trim().length == 0){
-					errorlog = true;
-					errormsg += "- Give at least one valid work experience.\n"
-					}
-					 if( title.trim().length == 0) {
-					errorlog = true;
-					errormsg += "- Enter a valid last position held.\n";
-				}
-	
-					if(errorlog){
-					errormsg += "\nPlease correct these errors before submitting.";
-					alert(errormsg);
-					} else{
-					setTimeout(setMain, 1000);
-				}
-			} else {
-			}
-              }
-			  
-			  function setMain(){
-				alert("Profile edited succcessfully");
-			  	window.location.href = "index.php";
-			}
-			
-			function logout(){
-				var r = confirm("Do you want to logout?");
-			if (r == true) {
-				alert("Logout successfully");
-				window.location.href = "index.php";
-				} else{}
-				}
-				
-        </script>
 		
 </head>
 <body>
@@ -104,7 +45,7 @@ if ($allowaccess=true)
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;"."Hello, ".$_SESSION['CurrentUser']."<br>";
                     echo "&nbsp;&nbsp;&nbsp;&nbsp;".$_SESSION['Role']."<br>";
                     ?>
-		      
+		      <li><a href="applicantHome.php">Search Jobs</a></li>
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged In<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
@@ -256,14 +197,10 @@ if ($allowaccess=true)
 <!-- footer --> 
 <div class="footer">
 	<div class="container">
-		<div class="col-md-3 grid_3">
-			<h4>Navigate</h4>
 
-			<div class="clearfix"> </div>
-		</div>
 		<div class ="col-md-4 grid 3">
 		</div>
-		<div class="col-md-4 grid_3">
+		<div class="col-md-3 grid_3">
 			<h4>Sign up for our newsletter</h4>
 			<p>Enter your email below and we will send updates into your inbox.</p>
 			<form>

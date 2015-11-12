@@ -41,8 +41,9 @@ include 'connectToServer.php'
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
+		             <li><a href="adminLogin.php">Admin login</a></li>
 						  <li><a href="employerLogin.php">Employer login</a></li>
-						    <li><a href="applicantLogin.php">Applicant Login</a></li>
+						    <li><a href="applicantLogin.php">Applicant login</a></li>
 		             </ul>
 		        </li>
 			<li class="dropdown">
@@ -68,7 +69,7 @@ include 'connectToServer.php'
             <div class="form-group col-md-12">
                 <label class="col-md-3 control-lable" for="email">Email</label>
                 <div class="col-md-9">
-                    <input type="text" name="email" path="email" id="email" class="form-control input-sm"/>
+                    <input type="email" name="email" path="email" id="email" />
                 </div>
             </div>
          </div>

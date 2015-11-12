@@ -74,8 +74,9 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 				<li class="dropdown">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
 		             <ul class="dropdown-menu">
+		              <li><a href="adminLogin.php">Admin login</a></li>
 						  <li><a href="employerLogin.php">Employer login</a></li>
-						    <li><a href="applicantLogin.php">Applicant Login</a></li>
+						    <li><a href="applicantLogin.php">Applicant login</a></li>
 		             </ul>
 		        </li>
 			<li class="dropdown">
@@ -117,9 +118,7 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
                             <i></i>Sign Up for Newsletter</label>
                     </div>
                     <div class="login-para">
-                        <p>
-                            <a href="forgetPass.php"> Forgot Password? </a>
-                        </p>
+                    
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -140,9 +139,7 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 							<div class="clearfix"> </div></a>
                             <div class="clearfix"></div>
                         </div>
-                        <h4>Don,t have an Employer Account to post your jobs?
-                            <a href="register.php"> Register Now!</a>
-                        </h4>
+                
                     </div>
                 </div>
             </div>
@@ -233,7 +230,7 @@ if((isset ($_SESSION['logout'])) or isset ($_GET['logout']))
 						$_SESSION['CurrentUser'] = $username;
 						$_SESSION['Role'] = 'Administrator';
 						//die("<script> alert ('Employer')</script>");
-						die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101973/adminHome.php'</script>");
+						die("<script>location.href = 'http://cs2102-i.comp.nus.edu.sg/~a0101002/adminHome.php'</script>");
 					}else{
 						//echo "Wrong Username or Password";
 						die("<script> alert ('Wrong Email or Password')</script>");

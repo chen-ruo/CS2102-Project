@@ -25,45 +25,6 @@ if ($allowaccess=true)
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!----font-Awesome----->
 
-<script>
-
-              function checkServer(){
-                var description = document.getElementById("description").value
-                var qualification = document.getElementById("qualification").value
-                var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-				var age = document.getElementById("age").value
-			
-				
-			var r = confirm("Are you sure to register for an account?");
-			if (r == true) {
-
-			 var errormsg = "Below are the errors:\n\n";
-			   var errorlog = false;
-			   
-			   if( description.trim().length == 0) {
-					errorlog = true;
-					errormsg += "- Job description field is empty.\n";
-				}
-			    if( qualification.trim().length == 0) {
-					errorlog = true;
-					errormsg += "- Job minimum qualification field is empty.\n";
-				}
-	
-					if(errorlog){
-					errormsg += "\nPlease correct these errors before submitting.";
-					alert(errormsg);
-					} else{
-					setTimeout(setMain, 1000);
-				}
-			} else {
-			}
-              }
-			  
-			  function setMain(){
-				alert("Account created succcessfully");
-			  	window.location.href = "index.html";
-			}
-        </script>
 		
 </head>
 <body>
@@ -76,7 +37,7 @@ if ($allowaccess=true)
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 	        </button>
-	        <a class="navbar-brand" href="home.html"><img src="images/logo.png" alt=""/></a>
+	        <a class="navbar-brand" href="employerHome.php"><img src="images/logo.png" alt=""/></a>
 	    </div>
 	    <!--/.navbar-header-->
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
@@ -121,10 +82,10 @@ if ($allowaccess=true)
 			 <option value="Required Qualification">Required Qualification</option>
 			 <option value="O-level">O-level</option>
 			 <option value="A-level">A-level</option>
-			 <option value="Diplomas">Diplomas</option>
-			 <option value="Degree">Bachelor's degrees</option>
-			 <option value="Master">Master</option>
-			 <option value="Ph.D">Ph.D</option>
+			 <option value="Diplomas">Diploma</option>
+			 <option value="Degree">Bachelor's degree</option>
+			 <option value="Master">Masters</option>
+			 <option value="Ph.D">PhD</option>
 			 </select>
 			<input type="submit" name="search" value="Search" style="background-color:#A9E2F3">
 			 </form>
@@ -240,20 +201,10 @@ if ($allowaccess=true)
 <!-- footer --> 
 <div class="footer">
 	<div class="container">
-		<div class="col-md-3 grid_3">
-			<h4>Navigate</h4>
-			<ul class="f_list f_list1">
-				<li><a href="index.php">Home</a></li>
-				<li><a href="about.php">About</a></li>
-			</ul>
-			<ul class="f_list">
-				<li><a href="contact.php">Contact Us</a></li>
-			</ul>
-			<div class="clearfix"> </div>
-		</div>
+		
 		<div class ="col-md-4 grid 3">
 		</div>
-		<div class="col-md-4 grid_3">
+		<div class="col-md-3 grid_3">
 			<h4>Sign up for our newsletter</h4>
 			<p>Enter your email below and we will send updates into your inbox.</p>
 			<form>
